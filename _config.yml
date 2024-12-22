@@ -24,7 +24,7 @@ description: >- # this means to ignore newlines until "baseurl:"
   Personal blog by port, a web3 dev. I write about web3 development, 
   blockchain technology, and how to learn key concepts. Join me in exploring 
   the EVM and how to build stuff on it.
-baseurl: "/blog" # the subpath of your site, e.g. /blog
+baseurl: ""
 url: "https://portdeveloper.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: port_dev
 github_username:  portdeveloper
