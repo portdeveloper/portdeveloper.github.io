@@ -1,0 +1,48 @@
+<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+    <!-- Title -->
+    <text x="400" y="40" text-anchor="middle" font-size="24" font-weight="bold">ERC20 Contract</text>
+    
+    <!-- Balance Storage Box -->
+    <rect x="50" y="70" width="300" height="160" fill="#fff" stroke="#333" stroke-width="2"/>
+    <text x="200" y="95" text-anchor="middle" font-size="16" font-weight="bold">Token Balances</text>
+    
+    <!-- Balance Headers -->
+    <rect x="60" y="110" width="135" height="30" fill="#f0f0f0" stroke="#333"/>
+    <rect x="195" y="110" width="145" height="30" fill="#f0f0f0" stroke="#333"/>
+    <text x="127" y="130" text-anchor="middle" font-size="14">Address</text>
+    <text x="267" y="130" text-anchor="middle" font-size="14">Balance</text>
+    
+    <!-- Balance Rows -->
+    <rect x="60" y="140" width="135" height="30" fill="#fff" stroke="#333"/>
+    <rect x="195" y="140" width="145" height="30" fill="#fff" stroke="#333"/>
+    <text x="127" y="160" text-anchor="middle" font-size="12">0x1234...</text>
+    <text x="267" y="160" text-anchor="middle" font-size="12">1000 tokens</text>
+    
+    <rect x="60" y="170" width="135" height="30" fill="#fff" stroke="#333"/>
+    <rect x="195" y="170" width="145" height="30" fill="#fff" stroke="#333"/>
+    <text x="127" y="190" text-anchor="middle" font-size="12">0x5678...</text>
+    <text x="267" y="190" text-anchor="middle" font-size="12">500 tokens</text>
+
+    <!-- Functions Box -->
+    <rect x="400" y="70" width="350" height="380" fill="#fff" stroke="#333" stroke-width="2"/>
+    <text x="575" y="95" text-anchor="middle" font-size="16" font-weight="bold">Contract Functions</text>
+
+    <!-- View Functions Group -->
+    <rect x="420" y="110" width="310" height="160" fill="#f8f9fa" stroke="#666" stroke-width="1" stroke-dasharray="4"/>
+    <text x="575" y="130" text-anchor="middle" font-size="14" font-style="italic">View Functions</text>
+    
+    <text x="430" y="155" font-size="12" fill="#2c3e50">name() → string</text>
+    <text x="430" y="180" font-size="12" fill="#2c3e50">symbol() → string</text>
+    <text x="430" y="205" font-size="12" fill="#2c3e50">decimals() → uint8</text>
+    <text x="430" y="230" font-size="12" fill="#2c3e50">totalSupply() → uint256</text>
+    <text x="430" y="255" font-size="12" fill="#2c3e50">balanceOf(address) → uint256</text>
+
+    <!-- State-Changing Functions Group -->
+    <rect x="420" y="280" width="310" height="150" fill="#f8f9fa" stroke="#666" stroke-width="1" stroke-dasharray="4"/>
+    <text x="575" y="300" text-anchor="middle" font-size="14" font-style="italic">State-Changing Functions</text>
+    
+    <text x="430" y="325" font-size="12" fill="#2c3e50">transfer(address, uint256) → bool</text>
+    <text x="430" y="350" font-size="12" fill="#2c3e50">approve(address, uint256) → bool</text>
+    <text x="430" y="375" font-size="12" fill="#2c3e50">transferFrom(address, address, uint256) → bool</text>
+    <text x="430" y="400" font-size="12" fill="#2c3e50">allowance(address, address) → uint256</text>
+</svg>
