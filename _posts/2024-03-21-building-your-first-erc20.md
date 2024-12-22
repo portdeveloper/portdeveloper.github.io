@@ -14,10 +14,10 @@ categories: blockchain solidity
 - [Looking at it from above](#looking-at-it-from-above)
 - [Understanding the interface first](#understanding-the-interface-first)
 - [Building our erc20 token step by step](#building-our-erc20-token-step-by-step)
-  - [Step 1: setting up the basic structure](#step-1-setting-up-the-basic-structure)
-  - [Step 2: adding balance tracking](#step-2-adding-balance-tracking)
-  - [Step 3: implementing token transfers](#step-3-implementing-token-transfers)
-  - [Step 4: adding the approval system](#step-4-adding-the-approval-system)
+  - [Step 1: Setting up the basic structure](#step-1-setting-up-the-basic-structure)
+  - [Step 2: Adding balance tracking](#step-2-adding-balance-tracking)
+  - [Step 3: Implementing token transfers](#step-3-implementing-token-transfers)
+  - [Step 4: Adding the approval system](#step-4-adding-the-approval-system)
 - [Where are the values stored?](#where-are-the-values-stored)
 - [Events](#events)
 - [Deploying our contract](#deploying-our-contract)
@@ -87,7 +87,7 @@ Now let's build our token piece by piece. We'll use Remix - a browser-based IDE 
 
 > **💡 Quick Setup:** Head over to [remix.ethereum.org](https://remix.ethereum.org/#), create a new file called `ERC20.sol` in the contracts section, and let's start coding!
 
-### Step 1: setting up the basic structure
+### Step 1: Setting up the basic structure
 
 First, let's create the basic structure with our token's identity:
 
@@ -106,7 +106,7 @@ Here we have defined the name, symbol, and decimals of our token. Notice the dif
 
 Next, let's add the core functionality - tracking token balances.
 
-### Step 2: adding balance tracking
+### Step 2: Adding balance tracking
 
 ```solidity
 contract MyExtremelySimpleToken {
@@ -137,7 +137,7 @@ Now we have added a private variable `_totalSupply` to track the total supply of
 
 Now our little ERC20 token is able to keep track of the total supply and the balance of any address. But it doesn't have the ability to transfer tokens yet. Let's add that now.
 
-### Step 3: implementing token transfers
+### Step 3: Implementing token transfers
 
 ```solidity
 contract MyExtremelySimpleToken {
@@ -159,7 +159,7 @@ This `transfer` function is used to transfer tokens from the caller to another a
 
 Let's move on to implementing the approval system.
 
-### Step 4: adding the approval system
+### Step 4: Adding the approval system
 
 ```solidity
 contract MyExtremelySimpleToken {
