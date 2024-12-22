@@ -8,10 +8,10 @@ title: "Building Your First ERC20 and Understanding How it Really Works"
 ## Table of contents
 
 - [What's up with the name?](#whats-up-with-the-name)
-- [What is an erc20 token?](#what-is-an-erc20-token)
+- [What is an ERC20 token?](#what-is-an-erc20-token)
 - [Looking at it from above](#looking-at-it-from-above)
 - [Understanding the interface first](#understanding-the-interface-first)
-- [Building our erc20 token step by step](#building-our-erc20-token-step-by-step)
+- [Building our ERC20 token step by step](#building-our-erc20-token-step-by-step)
   - [Step 1: Setting up the basic structure](#step-1-setting-up-the-basic-structure)
   - [Step 2: Adding balance tracking](#step-2-adding-balance-tracking)
   - [Step 3: Implementing token transfers](#step-3-implementing-token-transfers)
@@ -29,7 +29,7 @@ You have probably traded lots of meme coins, made some money and lost some money
 
 ERC stands for "Ethereum Request for Comments", and an ERC is a proposal for Ethereum Standards to ensure interoperability across the ecosystem. [ERC20](https://eips.ethereum.org/EIPS/eip-20) was the 20th of such proposals, and it defined a standard for fungible tokens. Since every other fungible token out there supports the ERC20 standards, we know how to interact with any token.
 
-## What is an erc20 token?
+## What is an ERC20 token?
 
 An ERC20 token is just a ✨glorified✨ Excel spreadsheet that keeps token balances and updates them when asked to. When you are sending some tokens to someone else, you're just asking the contract to subtract some amount of tokens from your balance, and add that amount to theirs, if you have the balance to be able to do so. The key difference from a ✨glorified✨ spreadsheet is that these balance updates happen on the blockchain, which means they are permanent and can't be tampered with once they're recorded. In addition, anyone can check these balances and verify them any time.
 
