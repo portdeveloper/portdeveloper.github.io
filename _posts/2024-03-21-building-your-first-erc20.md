@@ -1,8 +1,6 @@
 ---
 layout: post
 title: "Building Your First ERC20 and Understanding How it Really Works"
-date: 2024-12-21 6:00:00 +0300
-categories: blockchain solidity
 ---
 
 ![ERC20 Token Header Image]({{ site.baseurl }}/assets/images/erc20/header.png)
