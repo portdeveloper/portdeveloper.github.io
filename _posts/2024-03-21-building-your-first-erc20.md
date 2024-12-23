@@ -1,6 +1,8 @@
 ---
 layout: post
 title: "Building Your First ERC20 and Understanding How it Really Works"
+image: /assets/images/erc20/header.png
+description: "Learn how to build your first ERC20 token from scratch and understand how it really works under the hood. A comprehensive guide to token development on Ethereum."
 ---
 
 ![ERC20 Token Header Image]({{ site.baseurl }}/assets/images/erc20/header.png)
