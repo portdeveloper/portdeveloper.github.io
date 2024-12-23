@@ -21,9 +21,9 @@
 title: port's blog
 email: d5u3ayfj@portdev.anonaddy.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Personal blog by port, a web3 dev. I write about web3 development, 
-  blockchain technology, and how to learn key concepts. Join me in exploring 
-  the EVM and how to build stuff on it.
+  Hey! I'm port, and this is where I share my journey through web3 development. 
+  I always learn new stuff and try to write about it. I believe that the best way to
+  learn is to teach. 
 baseurl: ""
 url: "https://portdeveloper.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: port_dev

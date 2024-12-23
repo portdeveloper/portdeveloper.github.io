@@ -1,0 +1,122 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+    <!-- White background -->
+    <rect x="0" y="0" width="800" height="600" fill="white"/>
+    
+    <!-- Title -->
+    <text x="400" y="40" text-anchor="middle" font-size="24" font-weight="bold">Contract Storage</text>
+
+    <!-- Main Table -->
+    <g transform="translate(50,60)">
+        <!-- Column Headers -->
+        <rect x="0" y="0" width="100" height="40" fill="white" stroke="#000"/>
+        <rect x="100" y="0" width="200" height="40" fill="white" stroke="#000"/>
+        <rect x="300" y="0" width="400" height="40" fill="white" stroke="#000"/>
+        
+        <text x="50" y="25" text-anchor="middle" font-size="14">Slot</text>
+        <text x="200" y="25" text-anchor="middle" font-size="14">Variable</text>
+        <text x="500" y="25" text-anchor="middle" font-size="14">Value</text>
+
+        <!-- Fixed Storage Rows -->
+        <g id="fixed-storage">
+            <g transform="translate(0,40)">
+                <rect x="0" width="100" height="35" fill="white" stroke="#000"/>
+                <rect x="100" width="200" height="35" fill="white" stroke="#000"/>
+                <rect x="300" width="400" height="35" fill="white" stroke="#000"/>
+                <text x="50" y="23" text-anchor="middle" font-size="14">0</text>
+                <text x="200" y="23" text-anchor="middle" font-family="monospace" font-size="14">name</text>
+                <text x="500" y="23" text-anchor="middle" font-family="monospace" font-size="14">"MyExtremelySimpleToken"</text>
+            </g>
+            <g transform="translate(0,75)">
+                <rect x="0" width="100" height="35" fill="white" stroke="#000"/>
+                <rect x="100" width="200" height="35" fill="white" stroke="#000"/>
+                <rect x="300" width="400" height="35" fill="white" stroke="#000"/>
+                <text x="50" y="23" text-anchor="middle" font-size="14">1</text>
+                <text x="200" y="23" text-anchor="middle" font-family="monospace" font-size="14">symbol</text>
+                <text x="500" y="23" text-anchor="middle" font-family="monospace" font-size="14">"MEST"</text>
+            </g>
+            <g transform="translate(0,110)">
+                <rect x="0" width="100" height="35" fill="white" stroke="#000"/>
+                <rect x="100" width="200" height="35" fill="white" stroke="#000"/>
+                <rect x="300" width="400" height="35" fill="white" stroke="#000"/>
+                <text x="50" y="23" text-anchor="middle" font-size="14">2</text>
+                <text x="200" y="23" text-anchor="middle" font-family="monospace" font-size="14">decimals</text>
+                <text x="500" y="23" text-anchor="middle" font-family="monospace" font-size="14">18</text>
+            </g>
+            <g transform="translate(0,145)">
+                <rect x="0" width="100" height="35" fill="white" stroke="#000"/>
+                <rect x="100" width="200" height="35" fill="white" stroke="#000"/>
+                <rect x="300" width="400" height="35" fill="white" stroke="#000"/>
+                <text x="50" y="23" text-anchor="middle" font-size="14">3</text>
+                <text x="200" y="23" text-anchor="middle" font-family="monospace" font-size="14">_totalSupply</text>
+                <text x="500" y="23" text-anchor="middle" font-family="monospace" font-size="14">1000000 * 10**18</text>
+            </g>
+        </g>
+
+        <!-- Spacer with dots -->
+        <g transform="translate(0,180)">
+            <rect x="0" width="100" height="35" fill="white" stroke="#000"/>
+            <rect x="100" width="200" height="35" fill="white" stroke="#000"/>
+            <rect x="300" width="400" height="35" fill="white" stroke="#000"/>
+            <text x="350" y="23" text-anchor="middle" font-size="14">. . .</text>
+        </g>
+
+        <!-- Balance Mapping explanation -->
+        <g transform="translate(0,215)">
+            <!-- Merged cells for title -->
+            <rect x="0" width="700" height="35" fill="white" stroke="#000"/>
+            <text x="350" y="23" text-anchor="middle" font-size="14">Mapping Storage (_balances): slot = keccak256(address . 4)</text>
+        </g>
+
+        <!-- Balance Mapping examples -->
+        <g transform="translate(0,250)">
+            <rect x="0" width="100" height="35" fill="white" stroke="#000"/>
+            <rect x="100" width="200" height="35" fill="white" stroke="#000"/>
+            <rect x="300" width="400" height="35" fill="white" stroke="#000"/>
+            <text x="50" y="23" text-anchor="middle" font-family="monospace" font-size="14">8a93..f4</text>
+            <text x="200" y="23" text-anchor="middle" font-family="monospace" font-size="14">_balances[0x1234]</text>
+            <text x="500" y="23" text-anchor="middle" font-family="monospace" font-size="14">1000</text>
+        </g>
+
+        <g transform="translate(0,285)">
+            <rect x="0" width="100" height="35" fill="white" stroke="#000"/>
+            <rect x="100" width="200" height="35" fill="white" stroke="#000"/>
+            <rect x="300" width="400" height="35" fill="white" stroke="#000"/>
+            <text x="50" y="23" text-anchor="middle" font-family="monospace" font-size="14">2c49..b2</text>
+            <text x="200" y="23" text-anchor="middle" font-family="monospace" font-size="14">_balances[0x5678]</text>
+            <text x="500" y="23" text-anchor="middle" font-family="monospace" font-size="14">500</text>
+        </g>
+
+        <!-- Spacer -->
+        <g transform="translate(0,320)">
+            <rect x="0" width="100" height="35" fill="white" stroke="#000"/>
+            <rect x="100" width="200" height="35" fill="white" stroke="#000"/>
+            <rect x="300" width="400" height="35" fill="white" stroke="#000"/>
+            <text x="350" y="23" text-anchor="middle" font-size="14">. . .</text>
+        </g>
+
+        <!-- Allowance Mapping explanation -->
+        <g transform="translate(0,355)">
+            <!-- Merged cells for title -->
+            <rect x="0" width="700" height="35" fill="white" stroke="#000"/>
+            <text x="350" y="23" text-anchor="middle" font-size="14">Mapping Storage (_allowances): slot = keccak256(spender . keccak256(owner . 5))</text>
+        </g>
+
+        <!-- Allowance example -->
+        <g transform="translate(0,390)">
+            <rect x="0" width="100" height="35" fill="white" stroke="#000"/>
+            <rect x="100" width="200" height="35" fill="white" stroke="#000"/>
+            <rect x="300" width="400" height="35" fill="white" stroke="#000"/>
+            <text x="50" y="23" text-anchor="middle" font-family="monospace" font-size="14">f7c2..e9</text>
+            <text x="200" y="23" text-anchor="middle" font-family="monospace" font-size="14">_allowances[0x1234][0xDEX]</text>
+            <text x="500" y="23" text-anchor="middle" font-family="monospace" font-size="14">100</text>
+        </g>
+
+        <!-- Final spacer -->
+        <g transform="translate(0,425)">
+            <rect x="0" width="100" height="35" fill="white" stroke="#000"/>
+            <rect x="100" width="200" height="35" fill="white" stroke="#000"/>
+            <rect x="300" width="400" height="35" fill="white" stroke="#000"/>
+            <text x="350" y="23" text-anchor="middle" font-size="14">. . .</text>
+        </g>
+    </g>
+</svg>

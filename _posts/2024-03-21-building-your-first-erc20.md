@@ -35,7 +35,7 @@ An ERC20 token is just a ✨glorified✨ Excel spreadsheet that keeps token bala
 
 ## Looking at it from above
 
-[Here is the most widely-used ERC20 smart contract implementation ever from the OpenZeppelin team.](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol) I suggest you stop reading this article here, go to OpenZeppelin's implementation of ERC20, and read it slowly. Take your time. We will use almost all of those. And don't get scared if it's a bit overwhelming and long! Even if you skim it, you will get a good idea of how an ERC20 works. We will be building our own ERC20 step by step below.
+[Here is the most widely-used ERC20 smart contract implementation ever from the OpenZeppelin team.](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol) I suggest you stop reading this article here, go to OpenZeppelin's implementation of ERC20, and read it slowly. Take your time. We will use almost all of it. And don't get scared if it's a bit overwhelming! Even if you skim it, you will get a good idea of how an ERC20 works. We will be building our own ERC20 step by step below.
 
 ## Understanding the interface first
 
@@ -81,9 +81,9 @@ function allowance(address _owner, address _spender) public view returns (uint25
 
 ## Building our erc20 token step by step
 
-Now let's build our token piece by piece. We'll use Remix - a browser-based IDE that's perfect for writing and testing Ethereum smart contracts.
+Now let's build our token piece by piece. We'll use [Remix](https://remix.ethereum.org/#) - a browser-based IDE that's perfect for writing and testing Ethereum smart contracts.
 
-> **💡 Quick Setup:** Head over to [remix.ethereum.org](https://remix.ethereum.org/#), create a new file called `ERC20.sol` in the contracts section, and let's start coding!
+> **💡 Quick Setup:** Head over to [remix.ethereum.org](https://remix.ethereum.org/#), create a new file called `MyExtremelySimpleToken.sol` in the contracts section, and let's start coding!
 
 ### Step 1: Setting up the basic structure
 
@@ -99,6 +99,8 @@ contract MyExtremelySimpleToken {
     uint8 public decimals = 18;
 }
 ```
+
+The first line is where we set the license for our code. It is very common to use MIT license in web3 development. The second line, the pragma is where we specify the Solidity version we are using in a contract. `^0.8.20` means that we are using any version of Solidity from 0.8.20 to 0.9.0. More on this [here](https://docs.soliditylang.org/en/develop/layout-of-source-files.html#version-pragma).
 
 Here we have defined the name, symbol, and decimals of our token. Notice the different types of variables we are using. We have used `string` for the name and symbol, and `uint8` for the decimals.
 
@@ -131,7 +133,12 @@ contract MyExtremelySimpleToken {
 }
 ```
 
-Now we have added a private variable `_totalSupply` to track the total supply of the token, which we initialize to 1 million tokens in the constructor. We also added a mapping `_balances` to track the balance of each address. Also we have an event `Transfer` that we will emit when a transfer happens. Inside the constructor, we have initialized the total supply and given all the tokens to the creator(which is the deployer of the contract). And that happens to be me. I am rich now.💸💸💸 In the constructor, we have also emitted a `Transfer` event to indicate that the total supply has been transferred to the creator. Also we have implemented `totalSupply()` and `balanceOf()` functions to get the total supply and the balance of any address respectively.
+Now we have added a private variable `_totalSupply` to track the total supply of the token, which we initialize to 1 million tokens in the constructor. We also added a mapping `_balances` to track the balance of each address. Also we have an event `Transfer` that we will emit when a transfer happens. Inside the constructor, we have initialized the total supply and given all the tokens to the creator(which is the deployer of the contract). And that happens to be me. 💸💸💸 In the constructor, we have also emitted a `Transfer` event to indicate that the total supply has been transferred to the creator. Also we have implemented `totalSupply()` and `balanceOf()` functions to get the total supply and the balance of any address respectively.
+
+> **💡 Note:** `private` variables are not really private. In Solidity, `private` only means other contracts can't read these variables directly. However, all data on the blockchain is public - anyone can:
+>
+> - See the values by reading the blockchain's state directly
+> - Use tools like [Storagoor v2](https://storagoorv2.vercel.app/) to view the raw storage
 
 Now our little ERC20 token is able to keep track of the total supply and the balance of any address. But it doesn't have the ability to transfer tokens yet. Let's add that now.
 
@@ -189,6 +196,29 @@ contract MyExtremelySimpleToken {
     }
 }
 ```
+
+The `_allowances` mapping is a nested mapping because it needs to track:
+
+- Who owns the tokens (first key)
+- Who can spend them (second key)
+- How many they can spend (value)
+
+The approval logic is what enables other parties to spend tokens on your behalf, allowing great tech like DEXes to exist.
+
+1. **Initial Approval**: A token holder first approves a spender (like a DEX) to use their tokens by calling the `approve()` function. This sets an allowance amount in the contract's storage.
+
+2. **Allowance Check**: When the spender wants to move tokens, the contract checks if they have sufficient allowance through the `allowance()` function.
+
+3. **Transfer Execution**: If the allowance is sufficient, the spender can call `transferFrom()` to move tokens from the holder's address to another address (like during a token swap).
+
+![ERC20 Token Approval Flow]({{ site.baseurl }}/assets/images/erc20/erc20-approval-flow.svg)
+
+This two-step process is crucial for DeFi applications:
+
+- It prevents unauthorized access to user tokens
+- Enables complex operations like [automated market making](https://chain.link/education-hub/what-is-an-automated-market-maker-amm)
+
+For example, when you trade tokens on Uniswap v2, you first approve the Uniswap contract to spend your tokens, and then the allowance is checked, if there is enough allowance, the transfer is executed.
 
 ### Getting the full picture
 
@@ -294,12 +324,14 @@ contract MyExtremelySimpleToken {
 
 ## Where are the values stored?
 
-`name`, `symbol`, and `decimals` are stored in the contract's storage. `name` is stored in slot 0, `symbol` is stored in slot 1, and `decimals` is stored in slot 2.
+`name`, `symbol`, and `decimals` are stored in the contract's storage. `name` is stored in slot 0, `symbol` is stored in slot 1, and `decimals` is stored in slot 2. It is pretty straightforward to read the values of these variables from the contract's storage.
 
 Let's inspect the contract's storage using [Storagoor v2](https://storagoorv2.vercel.app/) to see the values of `name`, `symbol`, and `decimals`. I have already [deployed the contract we wrote to the Sepolia testnet.](https://sepolia.etherscan.io/address/0x668058852F2083c699b01fBD503Dd3Dba9F56b69)
 
 You can select Sepolia as the network and the contract address as `0x668058852F2083c699b01fBD503Dd3Dba9F56b69`.
-Then, if you put in 0 for the storage slot position, and click "Read Storage Slot", you get 4 interpretations of the value of `name`, since it is stored in the position 0. You can do the same for other variables except for mappings.
+Then, if you put in 0 for the storage slot position, and click "Read Storage Slot", you get 4 interpretations of the value of `name`. There, you can see that the name is `MyExtremelySimpleToken`.
+
+![Contract storage]({{ site.baseurl }}/assets/images/erc20/storage-diagram.svg)
 
 Mappings work quite differently. Let's look at our two mappings:
 
@@ -339,7 +371,7 @@ Events are a way to log information about what's happening in a smart contract. 
 
 ## Deploying our contract
 
-Let's deploy our contract to the Sepolia testnet. Let's go to [Google's Sepolia testnet faucet](https://cloud.google.com/application/web3/faucet/ethereum/sepolia) and get some testnet ETH.
+Let's deploy our contract to the Sepolia testnet. Let's go to [Google's Sepolia testnet faucet](https://cloud.google.com/application/web3/faucet/ethereum/sepolia) and get some Sepolia ETH.
 
 Once you have some ETH, you can deploy your contract to the Sepolia testnet using Remix.
 
@@ -354,7 +386,7 @@ If successful, you should see something like this:
 
 Expand the contract to see the functions you can call.
 
-![Contract Functions Interface Screenshot]({{ site.baseurl }}/assets/images/erc20/contract-functions.png)
+<img src="{{ site.baseurl }}/assets/images/erc20/contract-functions.png" alt="Contract Functions Interface Screenshot" width="200"/>
 
 ## What we've built
 
@@ -375,6 +407,10 @@ When working with ERC20 tokens, watch out for these common issues:
 
 2. **Approval Racing**: The standard `approve` function has a potential racing condition. That's why many tokens also implement `increaseAllowance` and `decreaseAllowance`. You can read more about it [here](https://ethereum.stackexchange.com/questions/93717/how-can-we-stop-front-running-for-approve).
 
+![tx.origin vs msg.sender meme]({{ site.baseurl }}/assets/images/erc20/tx-origin-meme.jpg)
+
+> Don't take this meme too seriously! Always follow security best practices and understand the real technical differences between `tx.origin` and `msg.sender`.
+
 3. **msg.sender vs tx.origin**: `msg.sender` is the address of the account that called the function. `tx.origin` is the address of the account that initiated the transaction. Always use `msg.sender` to ensure you're working with the immediate caller of your function.
 
 ## Where to go from here
@@ -386,4 +422,6 @@ Now that you understand the basics, you might want to explore:
 - Adding ownership and access control
 - Making your token pausable for emergencies
 
-Note: this is a simplified implementation. For production use, always use audited code like OpenZeppelin's implementation we looked at earlier.
+Note: this is a simplified implementation. For production use, always use audited code like [OpenZeppelin's implementation](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol) we looked at earlier.
+
+Let me know if you have any questions or feedback! Contact me on [X](https://x.com/port_dev), [Telegram](https://t.me/portdev), or [email me](mailto:d5u3ayfj@portdev.anonaddy.com).
