@@ -10,38 +10,60 @@
   <main>
     <h1>port</h1>
     <nav>
-      <a href="https://github.com/portdeveloper">GitHub</a> ·
-      <a href="https://twitter.com/port_dev">Twitter</a> ·
-      <a href="https://t.me/portdev">Telegram</a>
+      <a href="#" class="tab-link active" data-tab="about">About</a> &middot;
+      <a href="#" class="tab-link" data-tab="projects">Projects</a> &middot;
+      <a href="#" class="tab-link" data-tab="writing">Writing</a>
     </nav>
     <hr>
-    <h2>About</h2>
-    <ul>
-      <li>I build and contribute to developer tools. I care about good documentation, open source software, and experimentation.</li>
-      <li>Developer Advocate at <a href="https://www.monad.xyz/">Monad</a>, helping grow the developer community, maintaining the <a href="https://docs.monad.xyz/">docs</a>, and building cool stuff on Monad.</li>
-      <li>Contributor at <a href="https://buidlguidl.com/">BuidlGuidl</a>, helping make <a href="https://abi.ninja/">abi.ninja</a> and <a href="https://scaffoldeth.io/">Scaffold-ETH</a> better, and building public goods.</li>
-    </ul>
 
-    <h2>Projects</h2>
-    <ul>
-      <li><a href="https://blitz.devnads.com/">blitz.devnads.com</a> — Monad-native hackathon platform</li>
-      <li><a href="https://address.vision/">address.vision</a> — peek into any eth address</li>
-      <li><a href="https://storagoor.vercel.app/">storagoor</a> — peek into evm storage slots (beta)</li>
-      <li><a href="https://github.com/portdeveloper/gulltoppr">gulltoppr</a> — actix backend for <a href="https://github.com/Jon-Becker/heimdall-rs">heimdall-rs</a></li>
-      <li><a href="https://www.npmjs.com/package/docusaurus-plugin-copy-page-button">docusaurus-plugin-copy-page-button</a> — docusaurus plugin for rendering openrpc pages</li>
-      <li><a href="https://github.com/portdeveloper/scaffold-pwa">scaffold-pwa</a> — Scaffold-ETH, but pwa, using serwist</li>
-      <li><a href="https://github.com/portdeveloper/monad-monitor">monad-monitor</a> — lightweight TUI for real-time monitoring of Monad nodes</li>
-      <li><a href="https://github.com/portdeveloper/nft-snapshot">nft-snapshot</a> — capture ownership snapshots for ERC-721, ERC-1155, and ERC-20 tokens on Monad</li>
-      <li><a href="https://github.com/portdeveloper/monad-sync-demo">monad-sync-demo</a> — demo for Monad's eth_sendRawTransactionSync RPC method</li>
-      <li><a href="https://github.com/portdeveloper/oracle-dashboard">oracle-dashboard</a> — oracle price feed dashboard for monad mainnet</li>
-      <li><a href="https://github.com/portdeveloper/claude-historian">claude-historian</a> — interactive CLI browser for Claude Code sessions</li>
-      <li><a href="https://github.com/portdeveloper/splait">splait</a> — Scaffold-ETH 2 fork for splitting ETH using words, instead of clicks, powered by gpt</li>
-    </ul>
+    <section id="about" class="tab-content active">
+      <ul>
+        <li>I build and contribute to developer tools. I care about good documentation, open source software, and experimentation.</li>
+        <li>Developer Advocate at <a href="https://www.monad.xyz/">Monad</a>, helping grow the developer community, maintaining the <a href="https://docs.monad.xyz/">docs</a>, and building cool stuff on Monad.</li>
+        <li>Merc at <a href="https://buidlguidl.com/">BuidlGuidl</a>, helping make <a href="https://abi.ninja/">abi.ninja</a> and <a href="https://scaffoldeth.io/">Scaffold-ETH</a> better, building public goods, and doing media work.</li>
+        <li><a href="https://github.com/portdeveloper">GitHub</a> · <a href="https://twitter.com/port_dev">Twitter</a> · <a href="https://t.me/portdev">Telegram</a></li>
+      </ul>
+    </section>
 
-    <h2>Writing</h2>
-    <ul>
-      <li><a href="https://x.com/port_dev/articles">Articles on X</a></li>
-    </ul>
+    <section id="projects" class="tab-content">
+      <ul>
+        <li><a href="https://abi.ninja/">abi.ninja</a> — interact with any contract on any chain (maintainer, not owner)</li>
+        <li><a href="https://app.puddleswap.org/">puddleswap</a> — testnet swap on Monad testnet</li>
+        <li><a href="https://www.monadclip.fun/">monadclip</a> — old school flash game website for Monad-based games</li>
+        <li><a href="https://github.com/portdeveloper/cloudflare-crawl">cloudflare-crawl</a> — Claude Code skill for using Cloudflare's /crawl API</li>
+        <li><a href="https://blitz.devnads.com/">blitz.devnads.com</a> — Monad-native hackathon platform</li>
+        <li><a href="https://address.vision/">address.vision</a> — peek into any eth address</li>
+        <li><a href="https://storagoor.vercel.app/">storagoor</a> — peek into evm storage slots (beta)</li>
+        <li><a href="https://github.com/portdeveloper/gulltoppr">gulltoppr</a> — actix backend for <a href="https://github.com/Jon-Becker/heimdall-rs">heimdall-rs</a></li>
+        <li><a href="https://www.npmjs.com/package/docusaurus-plugin-copy-page-button">docusaurus-plugin-copy-page-button</a> — docusaurus plugin for rendering openrpc pages</li>
+        <li><a href="https://github.com/portdeveloper/scaffold-pwa">scaffold-pwa</a> — Scaffold-ETH, but pwa, using serwist</li>
+        <li><a href="https://github.com/portdeveloper/monad-monitor">monad-monitor</a> — lightweight TUI for real-time monitoring of Monad nodes</li>
+        <li><a href="https://github.com/portdeveloper/nft-snapshot">nft-snapshot</a> — capture ownership snapshots for ERC-721, ERC-1155, and ERC-20 tokens on Monad</li>
+        <li><a href="https://github.com/portdeveloper/monad-sync-demo">monad-sync-demo</a> — demo for Monad's eth_sendRawTransactionSync RPC method</li>
+        <li><a href="https://github.com/portdeveloper/oracle-dashboard">oracle-dashboard</a> — oracle price feed dashboard for monad mainnet</li>
+        <li><a href="https://github.com/portdeveloper/claude-historian">claude-historian</a> — interactive CLI browser for Claude Code sessions</li>
+        <li><a href="https://github.com/portdeveloper/splait">splait</a> — Scaffold-ETH 2 fork for splitting ETH using words, instead of clicks, powered by gpt</li>
+        <li>Also check out my <a href="https://github.com/portdeveloper">GitHub</a> for smaller stuff.</li>
+      </ul>
+    </section>
+
+    <section id="writing" class="tab-content">
+      <ul>
+        <li><a href="https://x.com/port_dev/articles">Articles on X</a></li>
+      </ul>
+    </section>
   </main>
+
+  <script>
+    document.querySelectorAll('.tab-link').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        document.querySelectorAll('.tab-link').forEach(l => l.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(s => s.classList.remove('active'));
+        link.classList.add('active');
+        document.getElementById(link.dataset.tab).classList.add('active');
+      });
+    });
+  </script>
 </body>
 </html>

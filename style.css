@@ -20,22 +20,25 @@ nav {
   margin-bottom: 1rem;
 }
 
-nav a {
+nav a.tab-link {
   margin: 0 0.5rem;
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+nav a.tab-link.active {
+  text-decoration: underline;
+}
+
+nav a.tab-link:hover {
+  text-decoration: underline;
 }
 
 hr {
   border: none;
   border-top: 1px solid #ddd;
   margin: 1.5rem 0;
-}
-
-h2 {
-  font-size: 1rem;
-  font-weight: normal;
-  color: #666;
-  margin-top: 1.5rem;
-  margin-bottom: 0.5rem;
 }
 
 ul {
@@ -53,4 +56,12 @@ a {
 
 a:hover {
   color: #8bb0d6;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
 }
