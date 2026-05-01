@@ -1,0 +1,208 @@
+{
+  "results": [
+    {
+      "name": "desktop",
+      "scheme": "light",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "rootScrollWidth": 1280,
+      "rootClientWidth": 1280,
+      "pageHorizontalOverflow": false,
+      "bodyFontSize": "18px",
+      "bodyLineHeight": "29.7px",
+      "articleWidth": 701,
+      "paragraphLineHeight": "29.7px",
+      "h1FontSize": "40.8px",
+      "h2FontSize": "24.8px",
+      "codeBlocks": 10,
+      "codeBlocksOverflowInside": [
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "maxPreWidth": 832,
+      "linkColor": "rgb(36, 95, 143)",
+      "linkDecoration": "underline",
+      "loadedImages": 3,
+      "totalImages": 3
+    },
+    {
+      "name": "desktop",
+      "scheme": "dark",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "rootScrollWidth": 1280,
+      "rootClientWidth": 1280,
+      "pageHorizontalOverflow": false,
+      "bodyFontSize": "18px",
+      "bodyLineHeight": "29.7px",
+      "articleWidth": 701,
+      "paragraphLineHeight": "29.7px",
+      "h1FontSize": "40.8px",
+      "h2FontSize": "24.8px",
+      "codeBlocks": 10,
+      "codeBlocksOverflowInside": [
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "maxPreWidth": 832,
+      "linkColor": "rgb(142, 188, 233)",
+      "linkDecoration": "underline",
+      "loadedImages": 3,
+      "totalImages": 3
+    },
+    {
+      "name": "mobile",
+      "scheme": "light",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "rootScrollWidth": 375,
+      "rootClientWidth": 375,
+      "pageHorizontalOverflow": false,
+      "bodyFontSize": "16px",
+      "bodyLineHeight": "26.4px",
+      "articleWidth": 343,
+      "paragraphLineHeight": "26.4px",
+      "h1FontSize": "32px",
+      "h2FontSize": "21.6px",
+      "codeBlocks": 10,
+      "codeBlocksOverflowInside": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "maxPreWidth": 343,
+      "linkColor": "rgb(36, 95, 143)",
+      "linkDecoration": "underline",
+      "loadedImages": 3,
+      "totalImages": 3
+    },
+    {
+      "name": "mobile",
+      "scheme": "dark",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "rootScrollWidth": 375,
+      "rootClientWidth": 375,
+      "pageHorizontalOverflow": false,
+      "bodyFontSize": "16px",
+      "bodyLineHeight": "26.4px",
+      "articleWidth": 343,
+      "paragraphLineHeight": "26.4px",
+      "h1FontSize": "32px",
+      "h2FontSize": "21.6px",
+      "codeBlocks": 10,
+      "codeBlocksOverflowInside": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "maxPreWidth": 343,
+      "linkColor": "rgb(142, 188, 233)",
+      "linkDecoration": "underline",
+      "loadedImages": 3,
+      "totalImages": 3
+    }
+  ],
+  "resizeChecks": [
+    {
+      "width": 1280,
+      "overflow": false,
+      "rootScrollWidth": 1280,
+      "rootClientWidth": 1280,
+      "articleWidth": 701,
+      "bodyFontSize": "18px"
+    },
+    {
+      "width": 1100,
+      "overflow": false,
+      "rootScrollWidth": 1100,
+      "rootClientWidth": 1100,
+      "articleWidth": 701,
+      "bodyFontSize": "18px"
+    },
+    {
+      "width": 900,
+      "overflow": false,
+      "rootScrollWidth": 900,
+      "rootClientWidth": 900,
+      "articleWidth": 701,
+      "bodyFontSize": "18px"
+    },
+    {
+      "width": 768,
+      "overflow": false,
+      "rootScrollWidth": 768,
+      "rootClientWidth": 768,
+      "articleWidth": 701,
+      "bodyFontSize": "18px"
+    },
+    {
+      "width": 640,
+      "overflow": false,
+      "rootScrollWidth": 640,
+      "rootClientWidth": 640,
+      "articleWidth": 592,
+      "bodyFontSize": "18px"
+    },
+    {
+      "width": 480,
+      "overflow": false,
+      "rootScrollWidth": 480,
+      "rootClientWidth": 480,
+      "articleWidth": 448,
+      "bodyFontSize": "16px"
+    },
+    {
+      "width": 375,
+      "overflow": false,
+      "rootScrollWidth": 375,
+      "rootClientWidth": 375,
+      "articleWidth": 343,
+      "bodyFontSize": "16px"
+    }
+  ],
+  "internalLinkClick": {
+    "href": "http://127.0.0.1:4173/#writing",
+    "title": "port / portdeveloper / port_dev - Monad and AI coding",
+    "writingVisible": true,
+    "linkDecoration": "underline"
+  }
+}
