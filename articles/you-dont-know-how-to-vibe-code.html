@@ -4,17 +4,94 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="A practical methodology for using AI coding agents without losing control of the codebase.">
+  <link rel="canonical" href="https://portdeveloper.github.io/articles/you-dont-know-how-to-vibe-code.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="port">
+  <meta property="og:title" content="You don't know how to vibe-code">
+  <meta property="og:description" content="A practical methodology for using AI coding agents without losing control of the codebase.">
+  <meta property="og:url" content="https://portdeveloper.github.io/articles/you-dont-know-how-to-vibe-code.html">
+  <meta property="og:image" content="https://portdeveloper.github.io/assets/articles/you-dont-know-how-to-vibe-code/cover.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="480">
+  <meta property="og:image:alt" content="Vibe coding article cover">
+  <meta property="article:author" content="https://portdeveloper.github.io/">
+  <meta property="article:section" content="AI coding workflows">
+  <meta property="article:tag" content="vibe coding">
+  <meta property="article:tag" content="Claude Code">
+  <meta property="article:tag" content="Monad">
+  <meta property="article:published_time" content="2026-01-16T07:35:54Z">
+  <meta property="article:modified_time" content="2026-05-01T00:00:00Z">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="You don't know how to vibe-code">
+  <meta name="twitter:description" content="A practical methodology for using AI coding agents without losing control of the codebase.">
+  <meta name="twitter:image" content="https://portdeveloper.github.io/assets/articles/you-dont-know-how-to-vibe-code/cover.jpg">
+  <meta name="twitter:image:alt" content="Vibe coding article cover">
+  <meta name="twitter:creator" content="@port_dev">
   <title>You don't know how to vibe-code - port</title>
   <link rel="stylesheet" href="../style.css">
+  <link rel="alternate" type="application/rss+xml" title="port - writing" href="https://portdeveloper.github.io/feed.xml">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "You don't know how to vibe-code",
+      "description": "A practical methodology for using AI coding agents without losing control of the codebase.",
+      "image": "https://portdeveloper.github.io/assets/articles/you-dont-know-how-to-vibe-code/cover.jpg",
+      "url": "https://portdeveloper.github.io/articles/you-dont-know-how-to-vibe-code.html",
+      "datePublished": "2026-01-16T07:35:54Z",
+      "dateModified": "2026-05-01T00:00:00Z",
+      "inLanguage": "en",
+      "keywords": [
+        "vibe coding",
+        "Claude Code",
+        "Monad",
+        "AI coding workflows"
+      ],
+      "author": {
+        "@type": "Person",
+        "name": "port",
+        "alternateName": [
+          "portdeveloper",
+          "port_dev"
+        ],
+        "url": "https://portdeveloper.github.io/",
+        "sameAs": [
+          "https://github.com/portdeveloper",
+          "https://twitter.com/port_dev",
+          "https://x.com/port_dev"
+        ],
+        "jobTitle": "Developer Advocate",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Monad",
+          "url": "https://www.monad.xyz/"
+        }
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "port",
+        "url": "https://portdeveloper.github.io/"
+      },
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "port",
+        "url": "https://portdeveloper.github.io/"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://portdeveloper.github.io/articles/you-dont-know-how-to-vibe-code.html"
+      }
+    }
+  </script>
 </head>
 <body>
   <main>
     <header class="site-header">
-      <a class="site-title" href="../index.html">port</a>
+      <a class="site-title" href="../">port</a>
       <nav>
-        <a href="../index.html#about">About</a> &middot;
-        <a href="../index.html#projects">Projects</a> &middot;
-        <a href="../index.html#writing">Writing</a>
+        <a href="../#about">About</a> &middot;
+        <a href="../#projects">Projects</a> &middot;
+        <a href="../#writing">Writing</a>
       </nav>
     </header>
     <hr>
@@ -24,7 +101,7 @@
       <p class="article-meta">January 16, 2026 &middot; originally published on <a href="https://x.com/port_dev/status/2012066266429743362">X</a></p>
 
       <figure>
-        <img src="../assets/articles/you-dont-know-how-to-vibe-code/cover.jpg" alt="Cover image for You don't know how to vibe-code">
+        <img src="../assets/articles/you-dont-know-how-to-vibe-code/cover.jpg" width="1200" height="480" decoding="async" fetchpriority="high" alt="Cover image for You don't know how to vibe-code">
       </figure>
 
       <p>It's 2026. We have AGI (or at least the ability to code almost anything thanks to models like Opus 4.5 from Anthropic and GPT 5.2 from OpenAI).</p>
@@ -38,7 +115,7 @@
       <p>That just won't work, unless you consider this good work:</p>
 
       <figure>
-        <img src="../assets/articles/you-dont-know-how-to-vibe-code/generic-vibeslop.jpg" alt="Generic AI-styled application screenshot">
+        <img src="../assets/articles/you-dont-know-how-to-vibe-code/generic-vibeslop.jpg" width="1200" height="666" loading="lazy" decoding="async" alt="Generic AI-styled application screenshot">
         <figcaption>generic vibeslop, with lots of ai-purple</figcaption>
       </figure>
 
@@ -49,7 +126,7 @@
       <p>I'm going to walk you through how I built <a href="https://execevents.xyz/">execevents.xyz</a>, a real-time execution visualizer for Monad. Blocks race across the screen as they go through consensus. Transactions stream in live. You can see state changes, call traces, gas usage.</p>
 
       <figure>
-        <video controls playsinline preload="metadata" src="../assets/articles/you-dont-know-how-to-vibe-code/execevents-glance.mp4"></video>
+        <video controls playsinline preload="metadata" width="1108" height="720" src="../assets/articles/you-dont-know-how-to-vibe-code/execevents-glance.mp4"></video>
         <figcaption>a short glance at execevents.xyz</figcaption>
       </figure>
 
@@ -70,7 +147,7 @@
       </blockquote>
 
       <figure>
-        <img src="../assets/articles/you-dont-know-how-to-vibe-code/claude-plan.jpg" alt="Claude Code implementation plan screenshot">
+        <img src="../assets/articles/you-dont-know-how-to-vibe-code/claude-plan.jpg" width="1200" height="622" loading="lazy" decoding="async" alt="Claude Code implementation plan screenshot">
         <figcaption>possible answer from my besto-frendo, kraudu kodu-san</figcaption>
       </figure>
 
@@ -79,7 +156,7 @@
       <p><strong>Much like real coding, you want to spend time thinking about the code rather than writing it.</strong></p>
 
       <figure>
-        <img src="../assets/articles/you-dont-know-how-to-vibe-code/time-spent.jpg" alt="Suggested distribution of time spent while building with AI coding tools">
+        <img src="../assets/articles/you-dont-know-how-to-vibe-code/time-spent.jpg" width="1200" height="1050" loading="lazy" decoding="async" alt="Suggested distribution of time spent while building with AI coding tools">
         <figcaption>here is how I would suggest you to spend time</figcaption>
       </figure>
 
@@ -94,7 +171,7 @@
       <p>Then, ask claude to start building. When it finishes doing stuff, test it. This is the part people LOVE skipping, not knowing that the problems that arise later actually stem from it. After it fixes the issue, go back and find another problem to fix, do this until there are no issues left.</p>
 
       <figure>
-        <img src="../assets/articles/you-dont-know-how-to-vibe-code/vibing-cycle.jpg" alt="The cycle of prompting, testing, finding issues, and fixing them">
+        <img src="../assets/articles/you-dont-know-how-to-vibe-code/vibing-cycle.jpg" width="1159" height="567" loading="lazy" decoding="async" alt="The cycle of prompting, testing, finding issues, and fixing them">
         <figcaption>the cycle of vibing</figcaption>
       </figure>
 
@@ -125,7 +202,7 @@
       <p>Or at least, take a quick glance at it. Every time Claude makes a change, I read the diff. Not because I don't trust it, but because I need to understand what I'm shipping.</p>
 
       <figure>
-        <img src="../assets/articles/you-dont-know-how-to-vibe-code/claude-ascii.jpg" alt="Claude Code creating ASCII art">
+        <img src="../assets/articles/you-dont-know-how-to-vibe-code/claude-ascii.jpg" width="1200" height="1001" loading="lazy" decoding="async" alt="Claude Code creating ASCII art">
         <figcaption>claude is surprisingly good at creating ascii stuff</figcaption>
       </figure>
 
@@ -148,7 +225,7 @@
       <p>On the systems side: I now understand how Monad's Execution Events work at a low level, how the Rust API pulls data from shared memory, why certain event types arrive in batches, and how to handle the timing edge cases that come with real-time blockchain data. Claude didn't just write code; it explained the architecture as we built it. When the TPS calculation was wrong, debugging it meant understanding WebSocket message ordering and block finality.</p>
 
       <figure>
-        <img class="small-media" src="../assets/articles/you-dont-know-how-to-vibe-code/me-with-claude.png" alt="Me with Claude">
+        <img class="small-media" src="../assets/articles/you-dont-know-how-to-vibe-code/me-with-claude.png" width="236" height="236" loading="lazy" decoding="async" alt="Me with Claude">
         <figcaption>me with claude</figcaption>
       </figure>
 

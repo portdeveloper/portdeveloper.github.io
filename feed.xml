@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>port - writing</title>
+    <link>https://portdeveloper.github.io/</link>
+    <description>Articles by port about developer tools, AI coding workflows, and Monad development.</description>
+    <language>en</language>
+    <lastBuildDate>Fri, 01 May 2026 00:00:00 GMT</lastBuildDate>
+    <atom:link href="https://portdeveloper.github.io/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>You are prompting GPT 5.5 wrong.</title>
+      <link>https://portdeveloper.github.io/articles/you-are-prompting-gpt-5-5-wrong.html</link>
+      <guid isPermaLink="true">https://portdeveloper.github.io/articles/you-are-prompting-gpt-5-5-wrong.html</guid>
+      <pubDate>Thu, 30 Apr 2026 14:15:34 GMT</pubDate>
+      <description>A short guide to prompting GPT 5.5 in Codex by describing the outcome, removing preamble, biasing to action, parallelizing reads, and verifying work.</description>
+    </item>
+    <item>
+      <title>so... how to create a skill that works?</title>
+      <link>https://portdeveloper.github.io/articles/how-to-create-a-skill-that-works.html</link>
+      <guid isPermaLink="true">https://portdeveloper.github.io/articles/how-to-create-a-skill-that-works.html</guid>
+      <pubDate>Mon, 23 Feb 2026 17:36:58 GMT</pubDate>
+      <description>A practical process for creating skill files by finding model failures, patching knowledge gaps, and benchmarking the result.</description>
+    </item>
+    <item>
+      <title>Skills don't work the way we think they do</title>
+      <link>https://portdeveloper.github.io/articles/skills-dont-work-the-way-we-think-they-do.html</link>
+      <guid isPermaLink="true">https://portdeveloper.github.io/articles/skills-dont-work-the-way-we-think-they-do.html</guid>
+      <pubDate>Fri, 20 Feb 2026 18:39:10 GMT</pubDate>
+      <description>Notes on the SkillBench paper and what it says about curated skills, self-generated skills, and agent performance.</description>
+    </item>
+    <item>
+      <title>You don't know how to vibe-code</title>
+      <link>https://portdeveloper.github.io/articles/you-dont-know-how-to-vibe-code.html</link>
+      <guid isPermaLink="true">https://portdeveloper.github.io/articles/you-dont-know-how-to-vibe-code.html</guid>
+      <pubDate>Fri, 16 Jan 2026 07:35:54 GMT</pubDate>
+      <description>A practical methodology for using AI coding agents without losing control of the codebase.</description>
+    </item>
+  </channel>
+</rss>

@@ -4,17 +4,94 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Notes on the SkillBench paper and what it says about curated skills, self-generated skills, and agent performance.">
+  <link rel="canonical" href="https://portdeveloper.github.io/articles/skills-dont-work-the-way-we-think-they-do.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="port">
+  <meta property="og:title" content="Skills don't work the way we think they do">
+  <meta property="og:description" content="Notes on the SkillBench paper and what it says about curated skills, self-generated skills, and agent performance.">
+  <meta property="og:url" content="https://portdeveloper.github.io/articles/skills-dont-work-the-way-we-think-they-do.html">
+  <meta property="og:image" content="https://portdeveloper.github.io/assets/articles/skills-dont-work-the-way-we-think-they-do/cover.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="480">
+  <meta property="og:image:alt" content="SkillBench chart article cover">
+  <meta property="article:author" content="https://portdeveloper.github.io/">
+  <meta property="article:section" content="Claude skills">
+  <meta property="article:tag" content="Claude skills">
+  <meta property="article:tag" content="SkillBench">
+  <meta property="article:tag" content="AI agents">
+  <meta property="article:published_time" content="2026-02-20T18:39:10Z">
+  <meta property="article:modified_time" content="2026-05-01T00:00:00Z">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Skills don't work the way we think they do">
+  <meta name="twitter:description" content="Notes on the SkillBench paper and what it says about curated skills, self-generated skills, and agent performance.">
+  <meta name="twitter:image" content="https://portdeveloper.github.io/assets/articles/skills-dont-work-the-way-we-think-they-do/cover.jpg">
+  <meta name="twitter:image:alt" content="SkillBench chart article cover">
+  <meta name="twitter:creator" content="@port_dev">
   <title>Skills don't work the way we think they do - port</title>
   <link rel="stylesheet" href="../style.css">
+  <link rel="alternate" type="application/rss+xml" title="port - writing" href="https://portdeveloper.github.io/feed.xml">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Skills don't work the way we think they do",
+      "description": "Notes on the SkillBench paper and what it says about curated skills, self-generated skills, and agent performance.",
+      "image": "https://portdeveloper.github.io/assets/articles/skills-dont-work-the-way-we-think-they-do/cover.jpg",
+      "url": "https://portdeveloper.github.io/articles/skills-dont-work-the-way-we-think-they-do.html",
+      "datePublished": "2026-02-20T18:39:10Z",
+      "dateModified": "2026-05-01T00:00:00Z",
+      "inLanguage": "en",
+      "keywords": [
+        "Claude skills",
+        "SkillBench",
+        "AI agents",
+        "agent performance"
+      ],
+      "author": {
+        "@type": "Person",
+        "name": "port",
+        "alternateName": [
+          "portdeveloper",
+          "port_dev"
+        ],
+        "url": "https://portdeveloper.github.io/",
+        "sameAs": [
+          "https://github.com/portdeveloper",
+          "https://twitter.com/port_dev",
+          "https://x.com/port_dev"
+        ],
+        "jobTitle": "Developer Advocate",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Monad",
+          "url": "https://www.monad.xyz/"
+        }
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "port",
+        "url": "https://portdeveloper.github.io/"
+      },
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "port",
+        "url": "https://portdeveloper.github.io/"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://portdeveloper.github.io/articles/skills-dont-work-the-way-we-think-they-do.html"
+      }
+    }
+  </script>
 </head>
 <body>
   <main>
     <header class="site-header">
-      <a class="site-title" href="../index.html">port</a>
+      <a class="site-title" href="../">port</a>
       <nav>
-        <a href="../index.html#about">About</a> &middot;
-        <a href="../index.html#projects">Projects</a> &middot;
-        <a href="../index.html#writing">Writing</a>
+        <a href="../#about">About</a> &middot;
+        <a href="../#projects">Projects</a> &middot;
+        <a href="../#writing">Writing</a>
       </nav>
     </header>
     <hr>
@@ -24,7 +101,7 @@
       <p class="article-meta">February 20, 2026 &middot; originally published on <a href="https://x.com/port_dev/status/2024916757337571605">X</a></p>
 
       <figure>
-        <img src="../assets/articles/skills-dont-work-the-way-we-think-they-do/cover.jpg" alt="Cover image for Skills don't work the way we think they do">
+        <img src="../assets/articles/skills-dont-work-the-way-we-think-they-do/cover.jpg" width="1200" height="480" decoding="async" fetchpriority="high" alt="Cover image for Skills don't work the way we think they do">
       </figure>
 
       <p>I just finished reading SkillBench paper: <a href="https://arxiv.org/pdf/2602.12670">https://arxiv.org/pdf/2602.12670</a></p>
@@ -34,7 +111,7 @@
       <h2>What researchers did</h2>
 
       <figure>
-        <img src="../assets/articles/skills-dont-work-the-way-we-think-they-do/researchers-did.jpg" alt="SkillBench research setup screenshot">
+        <img src="../assets/articles/skills-dont-work-the-way-we-think-they-do/researchers-did.jpg" width="1200" height="641" loading="lazy" decoding="async" alt="SkillBench research setup screenshot">
       </figure>
 
       <p>They did 86 real-work tasks across 11 domains and executed 7,308 runs.</p>
@@ -48,7 +125,7 @@
       </ol>
 
       <figure>
-        <img src="../assets/articles/skills-dont-work-the-way-we-think-they-do/haiku-skills-opus.jpg" alt="SkillBench result comparing smaller models with skills to larger models without skills">
+        <img src="../assets/articles/skills-dont-work-the-way-we-think-they-do/haiku-skills-opus.jpg" width="1200" height="734" loading="lazy" decoding="async" alt="SkillBench result comparing smaller models with skills to larger models without skills">
         <figcaption>haiku with good skills is better than vanilla opus</figcaption>
       </figure>
 
@@ -71,7 +148,7 @@
       <p>This matters because a huge part of current agent research assumes models can recursively improve by generating better skills/tools. This benchmark suggests that assumption is premature.</p>
 
       <figure>
-        <img src="../assets/articles/skills-dont-work-the-way-we-think-they-do/self-generated-skills.jpg" alt="SkillBench chart showing self-generated skills did not meaningfully improve performance">
+        <img src="../assets/articles/skills-dont-work-the-way-we-think-they-do/self-generated-skills.jpg" width="1200" height="534" loading="lazy" decoding="async" alt="SkillBench chart showing self-generated skills did not meaningfully improve performance">
       </figure>
 
       <h2>Human-made skills work A LOT better</h2>
@@ -88,7 +165,7 @@
       </ul>
 
       <figure>
-        <img src="../assets/articles/skills-dont-work-the-way-we-think-they-do/human-skills-domain-variance.jpg" alt="SkillBench chart showing high domain variance for human-made skills">
+        <img src="../assets/articles/skills-dont-work-the-way-we-think-they-do/human-skills-domain-variance.jpg" width="1200" height="707" loading="lazy" decoding="async" alt="SkillBench chart showing high domain variance for human-made skills">
       </figure>
 
       <p>Skills don't help the same in different fields.. They disproportionately help in structured, procedural domains.</p>
@@ -110,7 +187,7 @@
       <p>Overly broad or verbose skill libraries degraded performance. Focused, minimal skill modules performed better.</p>
 
       <figure>
-        <img src="../assets/articles/skills-dont-work-the-way-we-think-they-do/too-many-skills.jpg" alt="SkillBench result showing too many skills can degrade performance">
+        <img src="../assets/articles/skills-dont-work-the-way-we-think-they-do/too-many-skills.jpg" width="1200" height="460" loading="lazy" decoding="async" alt="SkillBench result showing too many skills can degrade performance">
       </figure>
 
       <p>Pick your skills carefully. 2-3 skills work better than 4+ skills.</p>

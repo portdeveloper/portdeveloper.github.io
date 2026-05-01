@@ -4,17 +4,94 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="A short guide to prompting GPT 5.5 in Codex by describing the outcome, removing preamble, biasing to action, parallelizing reads, and verifying work.">
+  <link rel="canonical" href="https://portdeveloper.github.io/articles/you-are-prompting-gpt-5-5-wrong.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="port">
+  <meta property="og:title" content="You are prompting GPT 5.5 wrong.">
+  <meta property="og:description" content="A short guide to prompting GPT 5.5 in Codex by describing the outcome, removing preamble, biasing to action, parallelizing reads, and verifying work.">
+  <meta property="og:url" content="https://portdeveloper.github.io/articles/you-are-prompting-gpt-5-5-wrong.html">
+  <meta property="og:image" content="https://portdeveloper.github.io/assets/articles/you-are-prompting-gpt-5-5-wrong/cover.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="480">
+  <meta property="og:image:alt" content="Prompting GPT 5.5 article cover">
+  <meta property="article:author" content="https://portdeveloper.github.io/">
+  <meta property="article:section" content="AI coding workflows">
+  <meta property="article:tag" content="GPT 5.5">
+  <meta property="article:tag" content="prompting">
+  <meta property="article:tag" content="Codex">
+  <meta property="article:published_time" content="2026-04-30T14:15:34Z">
+  <meta property="article:modified_time" content="2026-05-01T00:00:00Z">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="You are prompting GPT 5.5 wrong.">
+  <meta name="twitter:description" content="A short guide to prompting GPT 5.5 in Codex by describing the outcome, removing preamble, biasing to action, parallelizing reads, and verifying work.">
+  <meta name="twitter:image" content="https://portdeveloper.github.io/assets/articles/you-are-prompting-gpt-5-5-wrong/cover.jpg">
+  <meta name="twitter:image:alt" content="Prompting GPT 5.5 article cover">
+  <meta name="twitter:creator" content="@port_dev">
   <title>You are prompting GPT 5.5 wrong. - port</title>
   <link rel="stylesheet" href="../style.css">
+  <link rel="alternate" type="application/rss+xml" title="port - writing" href="https://portdeveloper.github.io/feed.xml">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "You are prompting GPT 5.5 wrong.",
+      "description": "A short guide to prompting GPT 5.5 in Codex by describing the outcome, removing preamble, biasing to action, parallelizing reads, and verifying work.",
+      "image": "https://portdeveloper.github.io/assets/articles/you-are-prompting-gpt-5-5-wrong/cover.jpg",
+      "url": "https://portdeveloper.github.io/articles/you-are-prompting-gpt-5-5-wrong.html",
+      "datePublished": "2026-04-30T14:15:34Z",
+      "dateModified": "2026-05-01T00:00:00Z",
+      "inLanguage": "en",
+      "keywords": [
+        "GPT 5.5",
+        "prompting",
+        "Codex",
+        "AI coding workflows"
+      ],
+      "author": {
+        "@type": "Person",
+        "name": "port",
+        "alternateName": [
+          "portdeveloper",
+          "port_dev"
+        ],
+        "url": "https://portdeveloper.github.io/",
+        "sameAs": [
+          "https://github.com/portdeveloper",
+          "https://twitter.com/port_dev",
+          "https://x.com/port_dev"
+        ],
+        "jobTitle": "Developer Advocate",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Monad",
+          "url": "https://www.monad.xyz/"
+        }
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "port",
+        "url": "https://portdeveloper.github.io/"
+      },
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "port",
+        "url": "https://portdeveloper.github.io/"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://portdeveloper.github.io/articles/you-are-prompting-gpt-5-5-wrong.html"
+      }
+    }
+  </script>
 </head>
 <body>
   <main>
     <header class="site-header">
-      <a class="site-title" href="../index.html">port</a>
+      <a class="site-title" href="../">port</a>
       <nav>
-        <a href="../index.html#about">About</a> &middot;
-        <a href="../index.html#projects">Projects</a> &middot;
-        <a href="../index.html#writing">Writing</a>
+        <a href="../#about">About</a> &middot;
+        <a href="../#projects">Projects</a> &middot;
+        <a href="../#writing">Writing</a>
       </nav>
     </header>
     <hr>
@@ -24,7 +101,7 @@
       <p class="article-meta">April 30, 2026 &middot; originally published on <a href="https://x.com/port_dev/status/2049855183631364241">X</a></p>
 
       <figure>
-        <img src="../assets/articles/you-are-prompting-gpt-5-5-wrong/cover.jpg" alt="Cover image for You are prompting GPT 5.5 wrong.">
+        <img src="../assets/articles/you-are-prompting-gpt-5-5-wrong/cover.jpg" width="1200" height="480" decoding="async" fetchpriority="high" alt="Cover image for You are prompting GPT 5.5 wrong.">
       </figure>
 
       <p>Source: OpenAI.</p>
@@ -32,7 +109,7 @@
       <p>Prompting GPT 5.5 is A LOT different than how you prompted any model before. And GPT 5.5 itself can&rsquo;t write good prompts for itself! See the screenshot below from @VictorTaelin</p>
 
       <figure>
-        <img src="../assets/articles/you-are-prompting-gpt-5-5-wrong/victor-taelin-prompt.jpg" alt="Screenshot of a Victor Taelin post about GPT 5.5 prompting">
+        <img src="../assets/articles/you-are-prompting-gpt-5-5-wrong/victor-taelin-prompt.jpg" width="1198" height="307" loading="lazy" decoding="async" alt="Screenshot of a Victor Taelin post about GPT 5.5 prompting">
         <figcaption>btw def follow Taelin!</figcaption>
       </figure>
 
@@ -122,7 +199,7 @@ If validation fails, fix it before reporting done. If validation can't run in th
       </ol>
 
       <figure>
-        <img src="../assets/articles/you-are-prompting-gpt-5-5-wrong/four-rules.jpg" alt="Screenshot summarizing the prompting rules">
+        <img src="../assets/articles/you-are-prompting-gpt-5-5-wrong/four-rules.jpg" width="1200" height="600" loading="lazy" decoding="async" alt="Screenshot summarizing the prompting rules">
         <figcaption>the four rules</figcaption>
       </figure>
 

@@ -4,17 +4,94 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="A practical process for creating skill files by finding model failures, patching knowledge gaps, and benchmarking the result.">
+  <link rel="canonical" href="https://portdeveloper.github.io/articles/how-to-create-a-skill-that-works.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="port">
+  <meta property="og:title" content="so... how to create a skill that works?">
+  <meta property="og:description" content="A practical process for creating skill files by finding model failures, patching knowledge gaps, and benchmarking the result.">
+  <meta property="og:url" content="https://portdeveloper.github.io/articles/how-to-create-a-skill-that-works.html">
+  <meta property="og:image" content="https://portdeveloper.github.io/assets/articles/how-to-create-a-skill-that-works/cover.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="480">
+  <meta property="og:image:alt" content="Skill file article cover">
+  <meta property="article:author" content="https://portdeveloper.github.io/">
+  <meta property="article:section" content="Claude skills">
+  <meta property="article:tag" content="Claude skills">
+  <meta property="article:tag" content="AI agents">
+  <meta property="article:tag" content="SkillBench">
+  <meta property="article:published_time" content="2026-02-23T17:36:58Z">
+  <meta property="article:modified_time" content="2026-05-01T00:00:00Z">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="so... how to create a skill that works?">
+  <meta name="twitter:description" content="A practical process for creating skill files by finding model failures, patching knowledge gaps, and benchmarking the result.">
+  <meta name="twitter:image" content="https://portdeveloper.github.io/assets/articles/how-to-create-a-skill-that-works/cover.jpg">
+  <meta name="twitter:image:alt" content="Skill file article cover">
+  <meta name="twitter:creator" content="@port_dev">
   <title>so... how to create a skill that works? - port</title>
   <link rel="stylesheet" href="../style.css">
+  <link rel="alternate" type="application/rss+xml" title="port - writing" href="https://portdeveloper.github.io/feed.xml">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "so... how to create a skill that works?",
+      "description": "A practical process for creating skill files by finding model failures, patching knowledge gaps, and benchmarking the result.",
+      "image": "https://portdeveloper.github.io/assets/articles/how-to-create-a-skill-that-works/cover.jpg",
+      "url": "https://portdeveloper.github.io/articles/how-to-create-a-skill-that-works.html",
+      "datePublished": "2026-02-23T17:36:58Z",
+      "dateModified": "2026-05-01T00:00:00Z",
+      "inLanguage": "en",
+      "keywords": [
+        "Claude skills",
+        "AI agents",
+        "SkillBench",
+        "skill files"
+      ],
+      "author": {
+        "@type": "Person",
+        "name": "port",
+        "alternateName": [
+          "portdeveloper",
+          "port_dev"
+        ],
+        "url": "https://portdeveloper.github.io/",
+        "sameAs": [
+          "https://github.com/portdeveloper",
+          "https://twitter.com/port_dev",
+          "https://x.com/port_dev"
+        ],
+        "jobTitle": "Developer Advocate",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Monad",
+          "url": "https://www.monad.xyz/"
+        }
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "port",
+        "url": "https://portdeveloper.github.io/"
+      },
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "port",
+        "url": "https://portdeveloper.github.io/"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://portdeveloper.github.io/articles/how-to-create-a-skill-that-works.html"
+      }
+    }
+  </script>
 </head>
 <body>
   <main>
     <header class="site-header">
-      <a class="site-title" href="../index.html">port</a>
+      <a class="site-title" href="../">port</a>
       <nav>
-        <a href="../index.html#about">About</a> &middot;
-        <a href="../index.html#projects">Projects</a> &middot;
-        <a href="../index.html#writing">Writing</a>
+        <a href="../#about">About</a> &middot;
+        <a href="../#projects">Projects</a> &middot;
+        <a href="../#writing">Writing</a>
       </nav>
     </header>
     <hr>
@@ -24,7 +101,7 @@
       <p class="article-meta">February 23, 2026 &middot; originally published on <a href="https://x.com/port_dev/status/2025988266525102525">X</a></p>
 
       <figure>
-        <img src="../assets/articles/how-to-create-a-skill-that-works/cover.jpg" alt="Cover image for so... how to create a skill that works?">
+        <img src="../assets/articles/how-to-create-a-skill-that-works/cover.jpg" width="1200" height="480" decoding="async" fetchpriority="high" alt="Cover image for so... how to create a skill that works?">
       </figure>
 
       <p>In my previous article, I argued that skills don&rsquo;t work the way most people expect.</p>
@@ -44,7 +121,7 @@
       <p>I think human knowledge is like a block of cheese.</p>
 
       <figure>
-        <img class="small-media" src="../assets/articles/how-to-create-a-skill-that-works/human-knowledge-cheese.png" alt="A block of cheese representing human knowledge">
+        <img class="small-media" src="../assets/articles/how-to-create-a-skill-that-works/human-knowledge-cheese.png" width="540" height="360" loading="lazy" decoding="async" alt="A block of cheese representing human knowledge">
         <figcaption>human knowledge or a block of cheese</figcaption>
       </figure>
 
@@ -71,7 +148,7 @@
 
       <p>Through trial and error, I&rsquo;ve noticed there are two kinds.</p>
 
-      <h2>1. Knowledge gaps</h2>
+      <h3>1. Knowledge gaps</h3>
 
       <p>Example:</p>
 
@@ -91,7 +168,7 @@
 
       <p>That&rsquo;s a hole.</p>
 
-      <h2>2. Moldy knowledge</h2>
+      <h3>2. Moldy knowledge</h3>
 
       <p>Sometimes it does know something, but it&rsquo;s outdated.</p>
 
@@ -110,7 +187,7 @@
 
       <p>Here&rsquo;s my actual process.</p>
 
-      <h2>1. I let the model fail</h2>
+      <h3>1. I let the model fail</h3>
 
       <p>For example, when I was building the monad-development skill, I simply said:</p>
 
@@ -124,17 +201,17 @@
 
       <p>I wanted to see where the holes were.</p>
 
-      <h2>2. I take notes on every failure</h2>
+      <h3>2. I take notes on every failure</h3>
 
       <p>This sounds weird but yes I watch it and take notes/let it takes notes afterwards. after the LLM completes its run. I ask it "What did you have problems with?", &ldquo;What did you fail to do on the first try?&rdquo;, and I go and check if the thing I asked for is built the way I wanted it to be.</p>
 
-      <h2>3. I create the skill.md file</h2>
+      <h3>3. I create the skill.md file</h3>
 
       <p>The skill file contains the patches to fill in the gaps of the LLMs knowledge and remove mold+fill in the gap that is created by removing the moldy part.</p>
 
       <p>The file is concise, specific, and clear.</p>
 
-      <h2>4. I re-run and benchmark</h2>
+      <h3>4. I re-run and benchmark</h3>
 
       <p>I run the same prompt again with the skill attached. If it still struggles, I refine the skill.</p>
 
