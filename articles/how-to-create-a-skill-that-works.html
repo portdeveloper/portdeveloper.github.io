@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A practical process for creating skill files by finding model failures, patching knowledge gaps, and benchmarking the result.">
+  <title>so... how to create a skill that works? - port</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <main>
+    <header class="site-header">
+      <a class="site-title" href="../index.html">port</a>
+      <nav>
+        <a href="../index.html#about">About</a> &middot;
+        <a href="../index.html#projects">Projects</a> &middot;
+        <a href="../index.html#writing">Writing</a>
+      </nav>
+    </header>
+    <hr>
+
+    <article class="article">
+      <h1>so... how to create a skill that works?</h1>
+      <p class="article-meta">February 23, 2026 &middot; originally published on <a href="https://x.com/port_dev/status/2025988266525102525">X</a></p>
+
+      <figure>
+        <img src="../assets/articles/how-to-create-a-skill-that-works/cover.jpg" alt="Cover image for so... how to create a skill that works?">
+      </figure>
+
+      <p>In my previous article, I argued that skills don&rsquo;t work the way most people expect.</p>
+
+      <blockquote>
+        <p>Related: <a href="skills-dont-work-the-way-we-think-they-do.html">Skills don&rsquo;t work the way we think they do</a></p>
+      </blockquote>
+
+      <p>The data from SkillBench supports this. Attaching skills doesn&rsquo;t automatically guarantee better performance.</p>
+
+      <p>So the real question becomes:</p>
+
+      <p>If skills don&rsquo;t magically fix models... How do you engineer them properly?</p>
+
+      <p>To answer that, we need to understand how knowledge itself works.</p>
+
+      <p>I think human knowledge is like a block of cheese.</p>
+
+      <figure>
+        <img class="small-media" src="../assets/articles/how-to-create-a-skill-that-works/human-knowledge-cheese.png" alt="A block of cheese representing human knowledge">
+        <figcaption>human knowledge or a block of cheese</figcaption>
+      </figure>
+
+      <p>It grows over time, with holes ever-present.</p>
+
+      <p>When we hit something we don&rsquo;t know, we:</p>
+
+      <ul>
+        <li>look it up</li>
+        <li>learn it</li>
+        <li>apply it</li>
+        <li>patch the hole and move forward</li>
+      </ul>
+
+      <p>LLMs don&rsquo;t do this.</p>
+
+      <p>When they hit a hole, they don&rsquo;t say "I don&rsquo;t know."</p>
+
+      <p>They hallucinate. They lazily fill the gap with plausible-sounding but incorrect information.</p>
+
+      <p>Aaand that&rsquo;s where things break, and we, being the superior entity, come in to help.</p>
+
+      <h2>The Two Types of Holes</h2>
+
+      <p>Through trial and error, I&rsquo;ve noticed there are two kinds.</p>
+
+      <h2>1. Knowledge gaps</h2>
+
+      <p>Example:</p>
+
+      <p>My OpenClaw agent tries to open a browser extension. It fails.</p>
+
+      <p>I tell it:</p>
+
+      <blockquote>
+        <p>&ldquo;You already have a browser. Open that.&rdquo;</p>
+      </blockquote>
+
+      <p>Suddenly the dumdum understands the task and opens the freaking browser.</p>
+
+      <p>It wasn&rsquo;t incapable.</p>
+
+      <p>It just didn&rsquo;t reason through the environment correctly.</p>
+
+      <p>That&rsquo;s a hole.</p>
+
+      <h2>2. Moldy knowledge</h2>
+
+      <p>Sometimes it does know something, but it&rsquo;s outdated.</p>
+
+      <p>Examples:</p>
+
+      <ul>
+        <li>Using <code>useScaffoldContractRead</code> instead of <code>useScaffoldReadContract</code> in Scaffold-ETH</li>
+        <li>Manually defining Monad mainnet instead of importing from <code>viem/chains</code></li>
+      </ul>
+
+      <p>That&rsquo;s stale info on the LLM&rsquo;s side. I call it mold.</p>
+
+      <p>And mold spreads silently. If you don&rsquo;t correct it once, it keeps reappearing in future runs. And you might never notice it.</p>
+
+      <h2>How I Create Skill Files</h2>
+
+      <p>Here&rsquo;s my actual process.</p>
+
+      <h2>1. I let the model fail</h2>
+
+      <p>For example, when I was building the monad-development skill, I simply said:</p>
+
+      <blockquote>
+        <p>&ldquo;Create a token on Monad.&rdquo;</p>
+      </blockquote>
+
+      <p>That&rsquo;s it. Then I watched it fail.</p>
+
+      <p>I didn&rsquo;t over-direct it.</p>
+
+      <p>I wanted to see where the holes were.</p>
+
+      <h2>2. I take notes on every failure</h2>
+
+      <p>This sounds weird but yes I watch it and take notes/let it takes notes afterwards. after the LLM completes its run. I ask it "What did you have problems with?", &ldquo;What did you fail to do on the first try?&rdquo;, and I go and check if the thing I asked for is built the way I wanted it to be.</p>
+
+      <h2>3. I create the skill.md file</h2>
+
+      <p>The skill file contains the patches to fill in the gaps of the LLMs knowledge and remove mold+fill in the gap that is created by removing the moldy part.</p>
+
+      <p>The file is concise, specific, and clear.</p>
+
+      <h2>4. I re-run and benchmark</h2>
+
+      <p>I run the same prompt again with the skill attached. If it still struggles, I refine the skill.</p>
+
+      <p>I repeat until:</p>
+
+      <ul>
+        <li>First-attempt success rate is high</li>
+        <li>Hallucinations drop(mostly)</li>
+        <li>Tool usage becomes clean and consistent</li>
+      </ul>
+
+      <h2>What This Really Is</h2>
+
+      <p>This is systematic failure harvesting. Treat the LLM as a system with blind spots and engineer around them.</p>
+
+      <p>Prompt. Let it fail. Take notes. Create a skill file out of your notes. Rinse and repeat until you are at a desired success rate.</p>
+
+      <p>This is how you create a skill that actually works.</p>
+
+      <h2>Further reading</h2>
+
+      <p>SkillBench paper:</p>
+
+      <blockquote>
+        <p>Skills Don&rsquo;t Always Improve Performance<br>
+        <a href="https://arxiv.org/pdf/2602.12670">https://arxiv.org/pdf/2602.12670</a></p>
+      </blockquote>
+
+      <p>My previous article:</p>
+
+      <blockquote>
+        <p><a href="skills-dont-work-the-way-we-think-they-do.html">Skills don&rsquo;t work the way we think they do</a></p>
+      </blockquote>
+
+      <p>Vercel&rsquo;s agents.md versus skills.md article:</p>
+
+      <blockquote>
+        <p>AGENTS.md outperforms skills in our agent evals<br>
+        <a href="https://vercel.com/blog/agents-md-outperforms-skills-in-our-agent-evals">https://vercel.com/blog/agents-md-outperforms-skills-in-our-agent-evals</a></p>
+      </blockquote>
+    </article>
+  </main>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A practical methodology for using AI coding agents without losing control of the codebase.">
+  <title>You don't know how to vibe-code - port</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <main>
+    <header class="site-header">
+      <a class="site-title" href="../index.html">port</a>
+      <nav>
+        <a href="../index.html#about">About</a> &middot;
+        <a href="../index.html#projects">Projects</a> &middot;
+        <a href="../index.html#writing">Writing</a>
+      </nav>
+    </header>
+    <hr>
+
+    <article class="article">
+      <h1>You don't know how to vibe-code</h1>
+      <p class="article-meta">January 16, 2026 &middot; originally published on <a href="https://x.com/port_dev/status/2012066266429743362">X</a></p>
+
+      <figure>
+        <img src="../assets/articles/you-dont-know-how-to-vibe-code/cover.jpg" alt="Cover image for You don't know how to vibe-code">
+      </figure>
+
+      <p>It's 2026. We have AGI (or at least the ability to code almost anything thanks to models like Opus 4.5 from Anthropic and GPT 5.2 from OpenAI).</p>
+
+      <p>But there's one problem. What you create in minutes creates problems you spend hours trying to fix. And if you're unlucky, you end up with a spaghetti codebase that no LLM can untangle. You no longer understand the code. It doesn't even make sense to read it anymore.</p>
+
+      <p><strong>So, what are you doing wrong and what could you do better, and how do some people get everything right when they are vibe-coding?</strong></p>
+
+      <p>Honestly, vibe coding kinda gave people the wrong impression on using LLMs to write code. Somehow everyone ended up thinking "yeah i can do this with ONE PROMPT, without EVER LOOKING AT THE CODE".</p>
+
+      <p>That just won't work, unless you consider this good work:</p>
+
+      <figure>
+        <img src="../assets/articles/you-dont-know-how-to-vibe-code/generic-vibeslop.jpg" alt="Generic AI-styled application screenshot">
+        <figcaption>generic vibeslop, with lots of ai-purple</figcaption>
+      </figure>
+
+      <p>And the code behind it is even worse. The AI's knowledge is months old, maybe a year. It doesn't know your codebase. It doesn't know what "done" means.</p>
+
+      <p><strong>Alright, here's how I actually vibe-code. Or rather, how I use my current favorite tool (claude code) to build real projects.</strong></p>
+
+      <p>I'm going to walk you through how I built <a href="https://execevents.xyz/">execevents.xyz</a>, a real-time execution visualizer for Monad. Blocks race across the screen as they go through consensus. Transactions stream in live. You can see state changes, call traces, gas usage.</p>
+
+      <figure>
+        <video controls playsinline preload="metadata" src="../assets/articles/you-dont-know-how-to-vibe-code/execevents-glance.mp4"></video>
+        <figcaption>a short glance at execevents.xyz</figcaption>
+      </figure>
+
+      <p>This isn't a toy project. Under the hood, execevents connects to Monad's Execution Events API&mdash;a Rust service that reads blockchain data directly from shared memory, HFT-style. We're talking sub-millisecond latency for real-time block and transaction data. Building something that interfaces with infrastructure this performant would normally require deep systems knowledge.</p>
+
+      <p>But here's the thing: I built this in HOURS, not days, not weeks. Using Claude Code and the methodology below, anyone can build high-performance applications on Monad without being a systems engineer or even a regular developer.</p>
+
+      <p>Below I explain my methodology about vibe-coding, or how I code.</p>
+
+      <hr>
+
+      <h2>Step 1: Think about the end goal</h2>
+
+      <p>Visualize the most basic version of what you want to build. I usually ask claude something like this:</p>
+
+      <blockquote>
+        <p>I read about execution events from Monad docs and I want to build an app showing how to use them. Here is the page about execution events: (i paste the markdown here) Do not start building until I confirm. Tell me how you are planning to build this. Then ask me to confirm. Also, ask me any questions you have. Our first goal is to reach to a basic MVP.</p>
+      </blockquote>
+
+      <figure>
+        <img src="../assets/articles/you-dont-know-how-to-vibe-code/claude-plan.jpg" alt="Claude Code implementation plan screenshot">
+        <figcaption>possible answer from my besto-frendo, kraudu kodu-san</figcaption>
+      </figure>
+
+      <p>Above is the answer I got from claude. Notice how it basically told me what it's going to be doing exactly. I can now visualize what I am gonna be getting and can direct the project better. This is the point where I want to stop and think. If everything looks OK. I move on to the questions claude asks. Then, I start answering them.</p>
+
+      <p><strong>Much like real coding, you want to spend time thinking about the code rather than writing it.</strong></p>
+
+      <figure>
+        <img src="../assets/articles/you-dont-know-how-to-vibe-code/time-spent.jpg" alt="Suggested distribution of time spent while building with AI coding tools">
+        <figcaption>here is how I would suggest you to spend time</figcaption>
+      </figure>
+
+      <p>You might do several iterations before even you tell claude to build. I usually ask it to not to build in every message until I like the implementation plan.</p>
+
+      <p>I also use the plan mode a lot. It is the new way of telling the claude to ask you questions, and it just works really well!</p>
+
+      <hr>
+
+      <h2>Step 2: Build the MVP, then use it</h2>
+
+      <p>Then, ask claude to start building. When it finishes doing stuff, test it. This is the part people LOVE skipping, not knowing that the problems that arise later actually stem from it. After it fixes the issue, go back and find another problem to fix, do this until there are no issues left.</p>
+
+      <figure>
+        <img src="../assets/articles/you-dont-know-how-to-vibe-code/vibing-cycle.jpg" alt="The cycle of prompting, testing, finding issues, and fixing them">
+        <figcaption>the cycle of vibing</figcaption>
+      </figure>
+
+      <h2>Step 3: Iterate with small, focused prompts</h2>
+
+      <p>This is where most people mess up. They find five things wrong and try to fix them all in one massive prompt.</p>
+
+      <p>Don't do that.</p>
+
+      <p>Every time you find something broken, fix just that one thing. Here's what my prompts actually looked like:</p>
+
+      <p><strong>Prompt 1:</strong> "The TPS calculation is wrong. It's counting blocks that arrive in batches over WebSocket. Make it only count consecutive block numbers."</p>
+
+      <p><strong>Prompt 2:</strong> "This doesn't work on mobile. Add a responsive layout with a bottom sheet for block details."</p>
+
+      <p><strong>Prompt 3:</strong> "The block state transitions are too abrupt. Add CSS transitions so blocks slide smoothly between states."</p>
+
+      <p>Each prompt is:</p>
+
+      <ul>
+        <li>Specific -> I'm telling it exactly what's wrong</li>
+        <li>Small -> targeting one thing</li>
+        <li>Reviewable -> I can read the diff and understand what changed</li>
+      </ul>
+
+      <h2>Step 4: Read the Code</h2>
+
+      <p>Or at least, take a quick glance at it. Every time Claude makes a change, I read the diff. Not because I don't trust it, but because I need to understand what I'm shipping.</p>
+
+      <figure>
+        <img src="../assets/articles/you-dont-know-how-to-vibe-code/claude-ascii.jpg" alt="Claude Code creating ASCII art">
+        <figcaption>claude is surprisingly good at creating ascii stuff</figcaption>
+      </figure>
+
+      <p>Reading doesn't mean auditing every line. It usually means:</p>
+
+      <ul>
+        <li>Skimming the diff</li>
+        <li>Understanding the approach</li>
+        <li>Asking yourself "does this make sense?"</li>
+      </ul>
+
+      <p>By reading the code, you will catch mistakes, learn, and stay in control. The moment you stop understanding your codebase is the moment you can't fix it anymore. Do not turn your project into a mess you can't make sense of.</p>
+
+      <p>And if you don't understand anything in the code, you can open a new terminal window and ask claude code to explain it for you.</p>
+
+      <h2>What I Learned</h2>
+
+      <p>Building execevents taught me things I wouldn't have learned from tutorials.</p>
+
+      <p>On the systems side: I now understand how Monad's Execution Events work at a low level, how the Rust API pulls data from shared memory, why certain event types arrive in batches, and how to handle the timing edge cases that come with real-time blockchain data. Claude didn't just write code; it explained the architecture as we built it. When the TPS calculation was wrong, debugging it meant understanding WebSocket message ordering and block finality.</p>
+
+      <figure>
+        <img class="small-media" src="../assets/articles/you-dont-know-how-to-vibe-code/me-with-claude.png" alt="Me with Claude">
+        <figcaption>me with claude</figcaption>
+      </figure>
+
+      <p>On the vibe-coding side: I learned that the quality of your output directly reflects the quality of your iteration loop. The people who fail at vibe-coding aren't bad at prompting, they're bad at testing and reading diffs. They skip the boring parts.</p>
+
+      <p>The real unlock is this: with the right methodology, AI tools let you punch above your weight. You can build performant, production-grade applications that interface with serious infrastructure, even if you've never written Rust or worked with shared memory systems. The barrier isn't coding ability anymore. It's knowing how to guide the process.</p>
+
+      <p>Now, go.</p>
+
+      <p>And do magic, for we live in a magical era.</p>
+    </article>
+  </main>
+</body>
+</html>
