@@ -12,7 +12,7 @@
       "pageHorizontalOverflow": false,
       "bodyFontSize": "18px",
       "bodyLineHeight": "29.7px",
-      "articleWidth": 701,
+      "articleWidth": 773,
       "paragraphLineHeight": "29.7px",
       "h1FontSize": "40.8px",
       "h2FontSize": "24.8px",
@@ -30,7 +30,7 @@
         true
       ],
       "maxPreWidth": 832,
-      "linkColor": "rgb(36, 95, 143)",
+      "linkColor": "rgb(73, 111, 153)",
       "linkDecoration": "underline",
       "loadedImages": 3,
       "totalImages": 3
@@ -47,7 +47,7 @@
       "pageHorizontalOverflow": false,
       "bodyFontSize": "18px",
       "bodyLineHeight": "29.7px",
-      "articleWidth": 701,
+      "articleWidth": 773,
       "paragraphLineHeight": "29.7px",
       "h1FontSize": "40.8px",
       "h2FontSize": "24.8px",
@@ -100,7 +100,7 @@
         true
       ],
       "maxPreWidth": 343,
-      "linkColor": "rgb(36, 95, 143)",
+      "linkColor": "rgb(73, 111, 153)",
       "linkDecoration": "underline",
       "loadedImages": 3,
       "totalImages": 3
@@ -147,7 +147,7 @@
       "overflow": false,
       "rootScrollWidth": 1280,
       "rootClientWidth": 1280,
-      "articleWidth": 701,
+      "articleWidth": 773,
       "bodyFontSize": "18px"
     },
     {
@@ -155,7 +155,7 @@
       "overflow": false,
       "rootScrollWidth": 1100,
       "rootClientWidth": 1100,
-      "articleWidth": 701,
+      "articleWidth": 773,
       "bodyFontSize": "18px"
     },
     {
@@ -163,7 +163,7 @@
       "overflow": false,
       "rootScrollWidth": 900,
       "rootClientWidth": 900,
-      "articleWidth": 701,
+      "articleWidth": 773,
       "bodyFontSize": "18px"
     },
     {
@@ -171,7 +171,7 @@
       "overflow": false,
       "rootScrollWidth": 768,
       "rootClientWidth": 768,
-      "articleWidth": 701,
+      "articleWidth": 720,
       "bodyFontSize": "18px"
     },
     {
@@ -198,11 +198,5 @@
       "articleWidth": 343,
       "bodyFontSize": "16px"
     }
-  ],
-  "internalLinkClick": {
-    "href": "http://127.0.0.1:4173/#writing",
-    "title": "port / portdeveloper / port_dev - Monad and AI coding",
-    "writingVisible": true,
-    "linkDecoration": "underline"
-  }
+  ]
 }

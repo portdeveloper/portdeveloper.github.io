@@ -169,20 +169,21 @@ figcaption {
 }
 
 body.article-page {
-  --article-bg: #fffffc;
-  --article-text: #151515;
+  --article-bg: #fff;
+  --article-text: #000;
   --article-muted: #666;
-  --article-rule: #dedbd2;
-  --article-code-bg: #f5f3ed;
-  --article-code-border: #e4dfd3;
-  --article-link: #245f8f;
-  --article-link-line: #9cb7ca;
-  --article-quote: #3f3f3f;
-  --article-visited: #6d4d85;
+  --article-rule: #ddd;
+  --article-code-bg: #f7f7f7;
+  --article-code-border: #e5e5e5;
+  --article-link: #496f99;
+  --article-link-hover: #6b8fb5;
+  --article-link-line: #b7c8d9;
+  --article-quote: #333;
+  --article-visited: #6d5d83;
 
   background-color: var(--article-bg);
   color: var(--article-text);
-  font-family: Charter, "Bitstream Charter", "Sitka Text", Cambria, Georgia, serif;
+  font-family: Georgia, "Times New Roman", Times, serif;
   font-size: 18px;
   line-height: 1.65;
   margin: 0;
@@ -198,18 +199,17 @@ body.article-page main {
 }
 
 body.article-page .site-header {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 0.9rem;
-  line-height: 1.4;
+  font-size: 1rem;
+  line-height: inherit;
   margin: 0 auto;
   max-width: 70ch;
 }
 
 body.article-page .site-title {
   color: var(--article-text);
-  font-size: 1.35rem;
-  font-weight: 600;
-  margin-bottom: 0.6rem;
+  font-size: 2rem;
+  font-weight: normal;
+  margin-bottom: 1rem;
   text-decoration: none;
 }
 
@@ -218,12 +218,12 @@ body.article-page .site-title:visited {
 }
 
 body.article-page nav {
-  margin-bottom: 1.1rem;
+  margin-bottom: 1rem;
 }
 
 body.article-page hr {
   border-top-color: var(--article-rule);
-  margin: 1.4rem auto 2.8rem;
+  margin: 1.5rem auto 2.8rem;
   max-width: 70ch;
 }
 
@@ -236,8 +236,8 @@ body.article-page .article h1,
 body.article-page .article h2,
 body.article-page .article h3 {
   color: var(--article-text);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-weight: 650;
+  font-family: inherit;
+  font-weight: bold;
   letter-spacing: 0;
 }
 
@@ -262,7 +262,6 @@ body.article-page .article h3 {
 
 body.article-page .article-meta {
   color: var(--article-muted);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 0.92rem;
   line-height: 1.45;
   margin: 0 0 2rem;
@@ -299,7 +298,7 @@ body.article-page a:visited {
 }
 
 body.article-page a:hover {
-  color: var(--article-link);
+  color: var(--article-link-hover);
   text-decoration-color: currentColor;
 }
 
@@ -309,7 +308,6 @@ body.article-page .article figure {
 
 body.article-page .article img,
 body.article-page .article video {
-  border: 1px solid var(--article-rule);
   box-sizing: border-box;
 }
 
@@ -319,7 +317,6 @@ body.article-page .article .small-media {
 
 body.article-page .article figcaption {
   color: var(--article-muted);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 0.86rem;
   line-height: 1.45;
   margin-top: 0.65rem;
@@ -387,14 +384,10 @@ body.article-page .article pre code {
     --article-code-bg: #1b1a17;
     --article-code-border: #3a352e;
     --article-link: #8ebce9;
+    --article-link-hover: #b2d4f5;
     --article-link-line: #557b9e;
     --article-quote: #d0c9be;
     --article-visited: #c4a9df;
-  }
-
-  body.article-page .article img,
-  body.article-page .article video {
-    opacity: 0.94;
   }
 }
 
@@ -421,11 +414,11 @@ body.article-page .article pre code {
   }
 
   body.article-page .site-header {
-    font-size: 0.86rem;
+    font-size: 1rem;
   }
 
   body.article-page .site-title {
-    font-size: 1.2rem;
+    font-size: 2rem;
   }
 
   body.article-page hr {
