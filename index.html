@@ -67,7 +67,7 @@
     </nav>
     <hr>
 
-    <section id="about" class="tab-content active">
+    <section id="tab-about" class="tab-content active">
       <h2 class="visually-hidden">About</h2>
       <ul>
         <li>I build and contribute to developer tools. I care about good documentation, open source software, and experimentation.</li>
@@ -77,7 +77,7 @@
       </ul>
     </section>
 
-    <section id="projects" class="tab-content">
+    <section id="tab-projects" class="tab-content">
       <h2 class="visually-hidden">Projects</h2>
       <ul>
         <li><a href="https://mipland.com/">mipland.com</a> — learn about Monad Improvement Proposals visually</li>
@@ -101,7 +101,7 @@
       </ul>
     </section>
 
-    <section id="writing" class="tab-content">
+    <section id="tab-writing" class="tab-content">
       <h2 class="visually-hidden">Writing</h2>
       <ul>
         <li>
@@ -128,7 +128,7 @@
   <script>
     function activateTab(tab) {
       const link = document.querySelector(`.tab-link[data-tab="${tab}"]`);
-      const section = document.getElementById(tab);
+      const section = document.getElementById(`tab-${tab}`);
       if (!link || !section) return;
       document.querySelectorAll('.tab-link').forEach(l => l.classList.remove('active'));
       document.querySelectorAll('.tab-content').forEach(s => s.classList.remove('active'));
