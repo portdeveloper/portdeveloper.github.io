@@ -129,7 +129,7 @@
 
       <p>(btw the full examples are at the end)</p>
 
-      <pre><code>Resolve the customer's issue end to end.
+      <pre><code class="language-plaintext">Resolve the customer's issue end to end.
 
 Success means:
 - the eligibility decision is made from the available policy and account data
@@ -139,11 +139,11 @@ Success means:
 
       <h2>2. Kill the preamble</h2>
 
-      <p>Codex loves to narrate. "I&rsquo;ll start by examining the file structure." "Let me first check the existing implementation." "Now I&rsquo;ll proceed to make the changes."</p>
+      <p>Codex loves to narrate. &ldquo;I&rsquo;ll start by examining the file structure.&rdquo; &ldquo;Let me first check the existing implementation.&rdquo; &ldquo;Now I&rsquo;ll proceed to make the changes.&rdquo;</p>
 
       <p>You don&rsquo;t need any of this. You can see what it&rsquo;s doing. The preamble is noise &amp; it eats latency before any real work happens.</p>
 
-      <pre><code>Skip preambles. Do not narrate what you are about to do before doing it. Do not announce tool calls. Do not end with "Let me know if you'd like adjustments" or "Feel free to ask if you have questions."
+      <pre><code class="language-plaintext">Skip preambles. Do not narrate what you are about to do before doing it. Do not announce tool calls. Do not end with "Let me know if you'd like adjustments" or "Feel free to ask if you have questions."
 
 When you finish, report what changed in 2-4 lines. File paths, what was modified, anything I need to know to use the change. That's it.</code></pre>
 
@@ -151,7 +151,7 @@ When you finish, report what changed in 2-4 lines. File paths, what was modified
 
       <p>Default Codex behavior on a hard task is to surface a plan and stop. We don&rsquo;t want that. We want action. Get action:</p>
 
-      <pre><code>Bias to action. If the request is clear and the next step is reversible, just do it. Do not stop at analysis, do not stop at a plan, do not stop after the first file change.
+      <pre><code class="language-plaintext">Bias to action. If the request is clear and the next step is reversible, just do it. Do not stop at analysis, do not stop at a plan, do not stop after the first file change.
 
 Persist until the task is fully handled end to end in this turn:
 - carry changes through implementation, verification, and a clear summary
@@ -166,7 +166,7 @@ Unless I explicitly ask for a plan or a question, assume I want code shipped.</c
 
       <p>Watch Codex on a real task. It reads package.json, waits, reads src/index.ts, waits, reads src/utils.ts, aaaand waits some more... Use this:</p>
 
-      <pre><code>When you need to read multiple files, read them in parallel in a single batch, not sequentially.
+      <pre><code class="language-plaintext">When you need to read multiple files, read them in parallel in a single batch, not sequentially.
 
 Workflow:
 1. Plan all the files you need before reading any
@@ -180,7 +180,7 @@ Same for searches. If you need to grep for 3 patterns, run 3 searches in paralle
 
       <p>Run validation and tests. Don&rsquo;t trust &ldquo;this should work&rdquo;::</p>
 
-      <pre><code>After making changes, run the relevant validation:
+      <pre><code class="language-plaintext">After making changes, run the relevant validation:
 - targeted tests for the behavior you changed
 - typecheck and lint
 - build, if the change touches anything build-time sensitive
@@ -207,7 +207,7 @@ If validation fails, fix it before reporting done. If validation can't run in th
 
       <h2>1. Building a feature</h2>
 
-      <pre><code>Build [feature]. Done = it works in the running app, has at least one test for the new behavior, types and lint clean, diff scoped to this change only.
+      <pre><code class="language-plaintext">Build [feature]. Done = it works in the running app, has at least one test for the new behavior, types and lint clean, diff scoped to this change only.
 
 Stop &amp; ask only if: the next step is destructive, requirements are genuinely ambiguous, or you'd need to expand scope to 3+ unrelated files. Otherwise just ship it.
 
@@ -217,7 +217,7 @@ Verify before reporting done: run affected tests, typecheck, lint. If anything f
 
       <h2>2. Fixing a bug</h2>
 
-      <pre><code>Fix [bug]. Done = root cause is fixed (not the symptom), a test exists that fails before the fix and passes after, no other behavior regressed, diff scoped to the fix.
+      <pre><code class="language-plaintext">Fix [bug]. Done = root cause is fixed (not the symptom), a test exists that fails before the fix and passes after, no other behavior regressed, diff scoped to the fix.
 
 Stop &amp; ask only if: the bug isn't reproducible from what I gave you, the root cause is in unexpected scope (different module, infra, dependency), or two plausible root causes exist and the wrong fix would mask the real bug.
 
@@ -227,7 +227,7 @@ Verify before reporting done: run the regression test, run the affected module's
 
       <h2>3. Refactoring</h2>
 
-      <pre><code>Refactor [target]. Done = behavior is byte-identical before and after, all existing tests pass without modification, types and lint clean, diff scoped to the refactor.
+      <pre><code class="language-plaintext">Refactor [target]. Done = behavior is byte-identical before and after, all existing tests pass without modification, types and lint clean, diff scoped to the refactor.
 
 Stop &amp; ask if: you can't preserve behavior without changing a test (means the refactor changed semantics), the refactor naturally pulls in a 3rd+ file beyond what we discussed, or you find a real bug while refactoring (surface it separately, don't silently fix it inside the refactor diff).
 
@@ -237,7 +237,7 @@ Verify before reporting done: run the FULL test suite (refactors break unexpecte
 
       <h2>4. Migration / upgrade</h2>
 
-      <pre><code>Migrate [target] from [old] to [new]. Done = the codebase compiles and runs on the new version, all existing tests pass without behavior changes, deprecation warnings from the migration are resolved (not suppressed), diff is scoped to the migration only.
+      <pre><code class="language-plaintext">Migrate [target] from [old] to [new]. Done = the codebase compiles and runs on the new version, all existing tests pass without behavior changes, deprecation warnings from the migration are resolved (not suppressed), diff is scoped to the migration only.
 
 Stop &amp; ask if: the new version requires a behavior change that affects users (don't make that call alone), the migration touches config, infra, or build files in ways we didn't discuss, or you find code that depends on the old version's bugs (genuinely tricky - surface it, don't paper over it).
 
@@ -247,7 +247,7 @@ Verify before reporting done: run the full test suite (migrations break unexpect
 
       <h2>5. Adding tests to existing code</h2>
 
-      <pre><code>Add tests for [target]. Done = the tests exercise the actual behavior (not implementation details), they pass against the current code, they would fail if the behavior broke, coverage hits the meaningful branches not just the happy path.
+      <pre><code class="language-plaintext">Add tests for [target]. Done = the tests exercise the actual behavior (not implementation details), they pass against the current code, they would fail if the behavior broke, coverage hits the meaningful branches not just the happy path.
 
 Stop &amp; ask if: the code is genuinely hard to test because of how it's structured (don't refactor it to make testing easier without checking), you find a real bug while writing tests (surface it separately, don't quietly fix it), or the existing tests already cover this and I missed it.
 
@@ -262,7 +262,7 @@ Verify before reporting done: run the new tests (must pass), then mutate the cod
         <li>Asking GPT to create a prompt for itself</li>
         <li>Using the same chat for more than one task</li>
         <li>Sequential file reads on multi-file tasks (waste of latency)</li>
-        <li>Trusting "this should work" without running the tests (never do this)</li>
+        <li>Trusting &ldquo;this should work&rdquo; without running the tests (never do this)</li>
       </ul>
 
       <p>Alright, if you take one thing from this: before you reach for that Extra High button, rewrite the prompt using the tips above. (and give me a follow)</p>

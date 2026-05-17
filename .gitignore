@@ -1,1 +1,3 @@
 audits/*.json
+__pycache__/
+*.pyc
