@@ -183,6 +183,11 @@ def _render_blocks(text: str, ctx: dict[str, Any]) -> list[str]:
             while j < len(lines) and not lines[j].startswith("```"):
                 j += 1
             code = "\n".join(lines[i + 1 : j])
+            # Medium's importer splits <pre> blocks on internal blank lines.
+            # For plaintext fences (prompt examples) the blank lines are only
+            # visual; collapse them. Other languages keep their structure.
+            if lang == "plaintext":
+                code = re.sub(r"\n[ \t]*\n+", "\n", code)
             cls = f' class="language-{_attr_escape(lang)}"'
             out.append(f"<pre><code{cls}>{_escape(code)}</code></pre>")
             i = j + 1
