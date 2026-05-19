@@ -29,6 +29,19 @@ SITE_URL = "https://portdeveloper.github.io"
 # ---------- image dimensions (no PIL dependency) ----------
 
 def image_dims(path: Path) -> tuple[int, int]:
+    if path.suffix.lower() == ".svg":
+        text = path.read_text(encoding="utf-8")
+        vb = re.search(
+            r'viewBox\s*=\s*["\']\s*[\d.\-]+\s+[\d.\-]+\s+([\d.]+)\s+([\d.]+)\s*["\']',
+            text,
+        )
+        if vb:
+            return int(round(float(vb.group(1)))), int(round(float(vb.group(2))))
+        w = re.search(r'\swidth\s*=\s*["\']([\d.]+)', text)
+        h = re.search(r'\sheight\s*=\s*["\']([\d.]+)', text)
+        if w and h:
+            return int(round(float(w.group(1)))), int(round(float(h.group(1))))
+        raise ValueError(f"can't determine SVG dimensions: {path}")
     with path.open("rb") as f:
         head = f.read(30)
     if head[:8] == b"\x89PNG\r\n\x1a\n":

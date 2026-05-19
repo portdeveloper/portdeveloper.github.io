@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="How I built puddleswap on Monad testnet, why I almost overengineered the routing, and the broader case for solving the problem you have instead of the problem you imagine.">
+  <link rel="canonical" href="https://portdeveloper.github.io/articles/simple-just-works-how-i-built-puddleswap.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="port">
+  <meta property="og:title" content="Simple just works: how i built puddleswap">
+  <meta property="og:description" content="How I built puddleswap on Monad testnet, why I almost overengineered the routing, and the broader case for solving the problem you have instead of the problem you imagine.">
+  <meta property="og:url" content="https://portdeveloper.github.io/articles/simple-just-works-how-i-built-puddleswap.html">
+  <meta property="og:image" content="https://portdeveloper.github.io/assets/articles/simple-just-works-how-i-built-puddleswap/cover.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="480">
+  <meta property="og:image:alt" content="puddleswap article cover">
+  <meta property="article:author" content="https://portdeveloper.github.io/">
+  <meta property="article:section" content="Developer tools">
+  <meta property="article:tag" content="puddleswap">
+  <meta property="article:tag" content="Monad">
+  <meta property="article:tag" content="DEX">
+  <meta property="article:published_time" content="2026-05-17T12:00:00Z">
+  <meta property="article:modified_time" content="2026-05-17T12:00:00Z">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Simple just works: how i built puddleswap">
+  <meta name="twitter:description" content="How I built puddleswap on Monad testnet, why I almost overengineered the routing, and the broader case for solving the problem you have instead of the problem you imagine.">
+  <meta name="twitter:image" content="https://portdeveloper.github.io/assets/articles/simple-just-works-how-i-built-puddleswap/cover.svg">
+  <meta name="twitter:image:alt" content="puddleswap article cover">
+  <meta name="twitter:creator" content="@port_dev">
+  <title>Simple just works: how i built puddleswap - port</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="alternate" type="application/rss+xml" title="port - writing" href="https://portdeveloper.github.io/feed.xml">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Simple just works: how i built puddleswap",
+      "description": "How I built puddleswap on Monad testnet, why I almost overengineered the routing, and the broader case for solving the problem you have instead of the problem you imagine.",
+      "image": "https://portdeveloper.github.io/assets/articles/simple-just-works-how-i-built-puddleswap/cover.svg",
+      "url": "https://portdeveloper.github.io/articles/simple-just-works-how-i-built-puddleswap.html",
+      "datePublished": "2026-05-17T12:00:00Z",
+      "dateModified": "2026-05-17T12:00:00Z",
+      "inLanguage": "en",
+      "keywords": [
+        "puddleswap",
+        "Monad",
+        "DEX",
+        "routing",
+        "over-engineering"
+      ],
+      "author": {
+        "@type": "Person",
+        "name": "port",
+        "alternateName": [
+          "portdeveloper",
+          "port_dev"
+        ],
+        "url": "https://portdeveloper.github.io/",
+        "sameAs": [
+          "https://github.com/portdeveloper",
+          "https://twitter.com/port_dev",
+          "https://x.com/port_dev"
+        ],
+        "jobTitle": "Developer Advocate",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Monad",
+          "url": "https://www.monad.xyz/"
+        }
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "port",
+        "url": "https://portdeveloper.github.io/"
+      },
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "port",
+        "url": "https://portdeveloper.github.io/"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://portdeveloper.github.io/articles/simple-just-works-how-i-built-puddleswap.html"
+      }
+    }
+  </script>
+</head>
+<body class="article-page">
+  <main>
+    <header class="site-header">
+      <a class="site-title" href="../">port</a>
+      <nav>
+        <a href="../#about">About</a> &middot;
+        <a href="../#projects">Projects</a> &middot;
+        <a href="../#writing">Writing</a>
+      </nav>
+    </header>
+    <hr>
+
+    <article class="article">
+      <h1>Simple just works: how i built puddleswap</h1>
+      <p class="article-meta">May 17, 2026 &middot; originally published on <a href="https://x.com/port_dev">X</a></p>
+
+      <figure>
+        <img src="../assets/articles/simple-just-works-how-i-built-puddleswap/cover.svg" width="1200" height="480" decoding="async" fetchpriority="high" alt="Cover image for Simple just works: how i built puddleswap">
+      </figure>
+
+      <p>Any problem yields to enough complexity.</p>
+
+      <p>I caught myself almost doing exactly that on puddleswap. Here&rsquo;s how that went, plus the gut-check I run now before writing anything clever. If you ever feel yourself overengineering things, this is for you.</p>
+
+      <p>I was at a <a href="https://blitz.devnads.com">Monad Blitz</a> event, if I am not mistaken it was the one in Ankara, and I was watching everyone around me hack on cool stuff while I sat in the corner answering their questions. I mean that&rsquo;s my job but it felt weird not building stuff.</p>
+
+      <p>So at some point I figured I should just build something(while talking to people at the same time lol). Something simple enough that the brag would be how little it took, not how clever it was.</p>
+
+      <p>That&rsquo;s how puddleswap happened. A no-bs DEX on Monad testnet, the kind a weekend buys you.</p>
+
+      <p>Going in, I wanted the fewest moving parts I could get away with. The thing I&rsquo;d be most proud of would be how little there was to maintain.</p>
+
+      <p>Most of the actual work was done by an AI agent. It wrote the React frontend, deployed the contracts, and put together the swap UI. The contracts are stock Uniswap V2, audited a thousand times over the years(centuries in web3) and not something I wanted to fork. The frontend is Vite plus React with no backend anywhere. The swap accepts real Circle USDC, a mock USDT we deployed for testnet liquidity, and WMON. A small rebalancer service keeps the price pegs roughly honest.</p>
+
+      <p>It&rsquo;s live at <a href="https://app.puddleswap.org/">app.puddleswap.org</a>.</p>
+
+      <p>The build was mostly uneventful. The agent did its thing, I reviewed diffs, we iterated. What I want to talk about is the one decision I almost got wrong: the routing.</p>
+
+      <h2>The thing I almost overengineered</h2>
+
+      <p>Standard answer for &ldquo;how does a DEX UI route swaps&rdquo; is a graph algorithm. You have N tokens and M pools, build the liquidity graph, run shortest-path weighted by output amount, return the best route. 1inch and Matcha both work this way and every aggregator article online tells you to do the same, so I started writing it.</p>
+
+      <p>Then I looked at my actual data.</p>
+
+      <p>Three &ldquo;core&rdquo; tokens: USDC, USDT, WMON. Maybe ten pools, every one of them touching at least one core. I was writing a graph algorithm to solve a problem I didn&rsquo;t have.</p>
+
+      <figure>
+        <img src="../assets/articles/simple-just-works-how-i-built-puddleswap/star-routing.svg" width="1200" height="600" loading="lazy" decoding="async" alt="Star routing diagram with A on the left, B on the right, and three core hubs USDC, USDT and WMON in the middle">
+        <figcaption>the whole graph: A and B connect through three core hubs, plus a direct edge when one exists</figcaption>
+      </figure>
+
+      <p>So I deleted it and wrote this instead (s/o to @danielvf for the idea + the initial PRD).</p>
+
+      <h2>The enumeration</h2>
+
+      <p>For any swap A → B, enumerate every plausible route through the hubs:</p>
+
+      <ul>
+        <li>Direct: <code>A → B</code></li>
+        <li>Through one hub: <code>A → USDC → B</code>, <code>A → USDT → B</code>, <code>A → WMON → B</code></li>
+        <li>Through two hubs: <code>A → USDC → USDT → B</code>, <code>A → USDC → WMON → B</code>, <code>A → USDT → WMON → B</code>, and reverses</li>
+      </ul>
+
+      <p>That&rsquo;s at most ten candidate paths. Send all ten quote requests in one multicall, pick the path with the highest output, swap on that.</p>
+
+      <pre><code class="language-typescript">const routes = buildCandidateRoutes(tokenIn, tokenOut, cores);
+
+const results = await publicClient.multicall({
+  contracts: routes.map((path) => ({
+    address: router,
+    abi: routerAbi,
+    functionName: "getAmountsOut",
+    args: [amountIn, path],
+  })),
+  allowFailure: true,
+});
+
+const best = selectBestQuote(results);</code></pre>
+
+      <p>The whole router is around 50 lines. It builds the candidate list, dedups it, and returns whichever path the multicall said had the highest quote.</p>
+
+      <h2>Why this matters (and not just for DEXes)</h2>
+
+      <p>I&rsquo;m not saying graph routing is wrong. For a mainnet aggregator routing across thousands of pools and dozens of DEXes, it&rsquo;s the right tool. I&rsquo;m saying I wasn&rsquo;t building that.</p>
+
+      <p>Here&rsquo;s the lesson: <strong>a lot of code over-solves its problem.</strong></p>
+
+      <p>You see it everywhere once you start looking. Sorting algorithm where the data is always ≤ 10 items (insertion sort is fine, stop). Caching layer where the data hits the database twice a day (the database is already a cache). Pub/sub where there&rsquo;s one publisher and one subscriber (call the function directly).</p>
+
+      <p>The smart-looking solution is usually someone solving the *general* problem, because that&rsquo;s what they were trained on. The general problem is harder, more interesting, and absolutely useless to you if your constraints are narrower.</p>
+
+      <p>On puddleswap, my constraints are:</p>
+
+      <ul>
+        <li>One chain, one DEX, mine</li>
+        <li>Three hub tokens I control</li>
+        <li>Operator-maintained liquidity</li>
+        <li>Test users with low gas budgets</li>
+      </ul>
+
+      <p>Within those constraints, enumeration is provably correct (every meaningful route gets checked), faster than graph traversal (one batched RPC, not N round-trips), and a fraction of the code. The day any of those constraints stops holding is the day I&rsquo;ll bother writing the graph router.</p>
+
+      <h2>When this breaks</h2>
+
+      <p>I&rsquo;d be lying if I said this scales. Obvious failure modes are:</p>
+
+      <ul>
+        <li>Exotic-to-exotic pools that bypass the hubs entirely. Enumeration misses them.</li>
+        <li>A hub runs dry of liquidity on one side. Router still checks routes through it and eats a bad quote.</li>
+      </ul>
+
+      <h2>The end</h2>
+
+      <p>If you&rsquo;re building on Monad testnet and need swaps for your tests, puddleswap is live at <a href="https://app.puddleswap.org/">app.puddleswap.org</a>. The router is at <a href="https://github.com/portdeveloper/puddleswap/blob/main/web/src/lib/routing.ts">puddleswap/web/src/lib/routing.ts</a>.</p>
+
+      <p>And next time you reach for the complex solution, check whether your problem actually needs it. It probably doesn&rsquo;t. </p>
+
+      <p>And maybe ask your agent if there are any easier solutions to the problem you are trying to solve.</p>
+
+      <p>Questions?</p>
+    </article>
+  </main>
+</body>
+</html>

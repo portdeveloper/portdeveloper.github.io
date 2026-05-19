@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" width="1200" height="600">
+  <style>
+    .bg { fill: #ffffff; }
+    .edge { stroke: #000; stroke-width: 2.5; fill: none; }
+    .edge-direct { stroke: #000; stroke-width: 2; stroke-dasharray: 7 5; fill: none; }
+    .edge-hub { stroke: #999; stroke-width: 1.5; fill: none; }
+    .node { fill: #fff; stroke: #000; stroke-width: 2.5; }
+    .node-label { font-family: Georgia, "Times New Roman", serif; font-size: 22px; fill: #000; text-anchor: middle; dominant-baseline: central; }
+    .legend-text { font-family: Georgia, "Times New Roman", serif; font-size: 16px; fill: #444; }
+    .legend-key { stroke-width: 2.5; fill: none; }
+  </style>
+
+  <rect class="bg" x="0" y="0" width="1200" height="600"/>
+
+  <!-- Inter-hub edges (light, behind everything) -->
+  <line class="edge-hub" x1="600" y1="130" x2="600" y2="300"/>
+  <line class="edge-hub" x1="600" y1="300" x2="600" y2="470"/>
+  <path class="edge-hub" d="M 600 130 Q 760 300 600 470"/>
+
+  <!-- A → hubs -->
+  <line class="edge" x1="180" y1="300" x2="600" y2="130"/>
+  <line class="edge" x1="180" y1="300" x2="600" y2="300"/>
+  <line class="edge" x1="180" y1="300" x2="600" y2="470"/>
+
+  <!-- Hubs → B -->
+  <line class="edge" x1="600" y1="130" x2="1020" y2="300"/>
+  <line class="edge" x1="600" y1="300" x2="1020" y2="300"/>
+  <line class="edge" x1="600" y1="470" x2="1020" y2="300"/>
+
+  <!-- Direct A → B arc (dashed, over the top) -->
+  <path class="edge-direct" d="M 180 300 Q 600 30 1020 300"/>
+
+  <!-- Nodes -->
+  <circle class="node" cx="180" cy="300" r="55"/>
+  <text class="node-label" x="180" y="300">A</text>
+
+  <circle class="node" cx="600" cy="130" r="55"/>
+  <text class="node-label" x="600" y="130">USDC</text>
+
+  <circle class="node" cx="600" cy="300" r="55"/>
+  <text class="node-label" x="600" y="300">USDT</text>
+
+  <circle class="node" cx="600" cy="470" r="55"/>
+  <text class="node-label" x="600" y="470">WMON</text>
+
+  <circle class="node" cx="1020" cy="300" r="55"/>
+  <text class="node-label" x="1020" y="300">B</text>
+
+  <!-- Legend bottom-left -->
+  <g transform="translate(60, 540)">
+    <line class="legend-key" stroke="#000" x1="0" y1="0" x2="40" y2="0"/>
+    <text class="legend-text" x="52" y="5">single-hop</text>
+
+    <line class="legend-key" stroke="#000" stroke-dasharray="7 5" x1="180" y1="0" x2="220" y2="0"/>
+    <text class="legend-text" x="232" y="5">direct A → B</text>
+
+    <line class="legend-key" stroke="#999" x1="380" y1="0" x2="420" y2="0"/>
+    <text class="legend-text" x="432" y="5">inter-hub (used by two-hop paths)</text>
+  </g>
+</svg>
