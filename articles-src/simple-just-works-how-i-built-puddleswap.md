@@ -1,6 +1,6 @@
 ---
 title: "Simple just works: how i built puddleswap"
-description: "How I built puddleswap on Monad testnet, why I almost overengineered the routing, and the broader case for solving the problem you have instead of the problem you imagine."
+description: "How I built puddleswap on Monad testnet, why I almost overengineered the routing, and the case for solving the problem you have, not the one you imagine."
 slug: simple-just-works-how-i-built-puddleswap
 published_at: "2026-05-17T12:00:00Z"
 modified_at: "2026-05-17T12:00:00Z"

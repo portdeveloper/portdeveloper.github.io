@@ -1,6 +1,6 @@
 ---
 title: "How a button I built for one docs site ended up on twenty"
-description: "The heuristic I trust for picking what to build: solve your own problems, because they are everyone else's problems too. Here's how the copy page button proved it."
+description: "The heuristic I trust for picking what to build: solve your own problems. They're everyone else's problems too. The copy page button proved it."
 slug: how-a-button-i-built-for-one-docs-site-ended-up-on-twenty
 published_at: "2026-05-22T12:00:00Z"
 modified_at: "2026-05-22T12:00:00Z"

@@ -12,14 +12,14 @@
       <link>https://portdeveloper.github.io/articles/how-a-button-i-built-for-one-docs-site-ended-up-on-twenty.html</link>
       <guid isPermaLink="true">https://portdeveloper.github.io/articles/how-a-button-i-built-for-one-docs-site-ended-up-on-twenty.html</guid>
       <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
-      <description>The heuristic I trust for picking what to build: solve your own problems, because they are everyone else's problems too. Here's how the copy page button proved it.</description>
+      <description>The heuristic I trust for picking what to build: solve your own problems. They're everyone else's problems too. The copy page button proved it.</description>
     </item>
     <item>
       <title>Simple just works: how i built puddleswap</title>
       <link>https://portdeveloper.github.io/articles/simple-just-works-how-i-built-puddleswap.html</link>
       <guid isPermaLink="true">https://portdeveloper.github.io/articles/simple-just-works-how-i-built-puddleswap.html</guid>
       <pubDate>Sun, 17 May 2026 12:00:00 GMT</pubDate>
-      <description>How I built puddleswap on Monad testnet, why I almost overengineered the routing, and the broader case for solving the problem you have instead of the problem you imagine.</description>
+      <description>How I built puddleswap on Monad testnet, why I almost overengineered the routing, and the case for solving the problem you have, not the one you imagine.</description>
     </item>
     <item>
       <title>You are prompting GPT 5.5 wrong.</title>
