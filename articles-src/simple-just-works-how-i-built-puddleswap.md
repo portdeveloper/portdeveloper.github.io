@@ -23,6 +23,7 @@ cover:
 originally_published:
   platform: X
   url: "https://x.com/port_dev"
+devto_id: 3708879
 ---
 
 ![Cover image for Simple just works: how i built puddleswap](assets/articles/simple-just-works-how-i-built-puddleswap/cover.svg)
@@ -118,5 +119,7 @@ If you're building on Monad testnet and need swaps for your tests, puddleswap is
 And next time you reach for the complex solution, check whether your problem actually needs it. It probably doesn't. 
 
 And maybe ask your agent if there are any easier solutions to the problem you are trying to solve.
+
+> Related: [How a button I built for one docs site ended up on twenty](how-a-button-i-built-for-one-docs-site-ended-up-on-twenty.html) - the same heuristic applied to a different problem.
 
 Questions?

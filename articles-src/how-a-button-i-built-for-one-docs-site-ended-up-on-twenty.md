@@ -138,4 +138,6 @@ The plugin is at [github.com/portdeveloper/docusaurus-plugin-copy-page-button](h
 
 If your Docusaurus site doesn't have it, it's a one-line install.
 
+> Related: [Simple just works: how i built puddleswap](simple-just-works-how-i-built-puddleswap.html) - the same "solve your own problem" heuristic on a different project.
+
 Questions?
