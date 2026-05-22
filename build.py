@@ -357,6 +357,9 @@ PAGE = """<!DOCTYPE html>
   <script type="application/ld+json">
 {ldjson}
   </script>
+  <script type="application/ld+json">
+{breadcrumb_ldjson}
+  </script>
 </head>
 <body class="article-page">
   <main>
@@ -440,6 +443,31 @@ def build_article(front: dict, body_md: str) -> tuple[str, str]:
 
     body_html = render_body(body_md)
 
+    breadcrumb = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": f"{SITE_URL}/",
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Writing",
+                "item": f"{SITE_URL}/#writing",
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": title,
+                "item": canonical,
+            },
+        ],
+    }
+
     page = PAGE.format(
         description=_attr_escape(description),
         canonical=canonical,
@@ -454,6 +482,7 @@ def build_article(front: dict, body_md: str) -> tuple[str, str]:
         published_at=front["published_at"],
         modified_at=front["modified_at"],
         ldjson=_indent(json.dumps(ld, indent=2, ensure_ascii=False), 4),
+        breadcrumb_ldjson=_indent(json.dumps(breadcrumb, indent=2, ensure_ascii=False), 4),
         date_display=_escape(front["date_display"]),
         op_url=_attr_escape(op["url"]),
         op_platform=_escape(op["platform"]),

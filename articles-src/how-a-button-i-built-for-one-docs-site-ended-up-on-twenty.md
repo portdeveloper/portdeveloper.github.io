@@ -11,6 +11,11 @@ tags:
   - documentation
   - side projects
   - AI tools
+devto_tags:
+  - docusaurus
+  - opensource
+  - ai
+  - webdev
 keywords:
   - docusaurus plugin
   - copy page button
