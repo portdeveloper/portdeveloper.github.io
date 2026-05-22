@@ -201,3 +201,5 @@ Verify before reporting done: run the new tests (must pass), then mutate the cod
 Alright, if you take one thing from this: before you reach for that Extra High button, rewrite the prompt using the tips above. (and give me a follow)
 
 > Read more: [developers.openai.com/api/docs/guides/prompt-guidance](https://developers.openai.com/api/docs/guides/prompt-guidance)
+
+> Related: [You don't know how to vibe-code](you-dont-know-how-to-vibe-code.html) - the methodology that pairs with these prompts.

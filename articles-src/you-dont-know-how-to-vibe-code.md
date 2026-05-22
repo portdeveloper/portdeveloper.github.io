@@ -29,6 +29,8 @@ devto_id: 3687668
 
 It's 2026. We have AGI (or at least the ability to code almost anything thanks to models like Opus 4.5 from Anthropic and GPT 5.2 from OpenAI).
 
+> Related: [You are prompting GPT 5.5 wrong](you-are-prompting-gpt-5-5-wrong.html) - if you specifically work in Codex/GPT.
+
 But there's one problem. What you create in minutes creates problems you spend hours trying to fix. And if you're unlucky, you end up with a spaghetti codebase that no LLM can untangle. You no longer understand the code. It doesn't even make sense to read it anymore.
 
 **So, what are you doing wrong and what could you do better, and how do some people get everything right when they are vibe-coding?**

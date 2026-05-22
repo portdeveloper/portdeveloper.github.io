@@ -336,6 +336,7 @@ PAGE = """<!DOCTYPE html>
   <meta property="og:title" content="{title}">
   <meta property="og:description" content="{description}">
   <meta property="og:url" content="{canonical}">
+  <meta property="og:locale" content="en_US">
   <meta property="og:image" content="{cover_url}">
   <meta property="og:image:width" content="{cover_w}">
   <meta property="og:image:height" content="{cover_h}">

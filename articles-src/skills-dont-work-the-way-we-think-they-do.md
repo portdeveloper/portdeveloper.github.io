@@ -105,3 +105,5 @@ If this paper is right (and i think it is, mostly because of my personal experie
 - Skill architecture design is now a first-class research problem
 
 Read the full paper: [https://arxiv.org/pdf/2602.12670](https://arxiv.org/pdf/2602.12670)
+
+> Related: [so... how to create a skill that works?](how-to-create-a-skill-that-works.html) - my follow-up with a practical process.
