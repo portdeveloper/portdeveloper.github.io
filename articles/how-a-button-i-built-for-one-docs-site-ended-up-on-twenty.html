@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The heuristic I trust for picking what to build: solve your own problems, because they are everyone else's problems too. Here's how the copy page button proved it.">
+  <link rel="canonical" href="https://portdeveloper.github.io/articles/how-a-button-i-built-for-one-docs-site-ended-up-on-twenty.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="port">
+  <meta property="og:title" content="How a button I built for one docs site ended up on twenty">
+  <meta property="og:description" content="The heuristic I trust for picking what to build: solve your own problems, because they are everyone else's problems too. Here's how the copy page button proved it.">
+  <meta property="og:url" content="https://portdeveloper.github.io/articles/how-a-button-i-built-for-one-docs-site-ended-up-on-twenty.html">
+  <meta property="og:image" content="https://portdeveloper.github.io/assets/articles/how-a-button-i-built-for-one-docs-site-ended-up-on-twenty/cover.png">
+  <meta property="og:image:width" content="997">
+  <meta property="og:image:height" content="697">
+  <meta property="og:image:alt" content="Bell curve meme cover">
+  <meta property="article:author" content="https://portdeveloper.github.io/">
+  <meta property="article:section" content="Developer tools">
+  <meta property="article:tag" content="docusaurus">
+  <meta property="article:tag" content="documentation">
+  <meta property="article:tag" content="side projects">
+  <meta property="article:tag" content="AI tools">
+  <meta property="article:published_time" content="2026-05-22T12:00:00Z">
+  <meta property="article:modified_time" content="2026-05-22T12:00:00Z">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How a button I built for one docs site ended up on twenty">
+  <meta name="twitter:description" content="The heuristic I trust for picking what to build: solve your own problems, because they are everyone else's problems too. Here's how the copy page button proved it.">
+  <meta name="twitter:image" content="https://portdeveloper.github.io/assets/articles/how-a-button-i-built-for-one-docs-site-ended-up-on-twenty/cover.png">
+  <meta name="twitter:image:alt" content="Bell curve meme cover">
+  <meta name="twitter:creator" content="@port_dev">
+  <title>How a button I built for one docs site ended up on twenty - port</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="alternate" type="application/rss+xml" title="port - writing" href="https://portdeveloper.github.io/feed.xml">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "How a button I built for one docs site ended up on twenty",
+      "description": "The heuristic I trust for picking what to build: solve your own problems, because they are everyone else's problems too. Here's how the copy page button proved it.",
+      "image": "https://portdeveloper.github.io/assets/articles/how-a-button-i-built-for-one-docs-site-ended-up-on-twenty/cover.png",
+      "url": "https://portdeveloper.github.io/articles/how-a-button-i-built-for-one-docs-site-ended-up-on-twenty.html",
+      "datePublished": "2026-05-22T12:00:00Z",
+      "dateModified": "2026-05-22T12:00:00Z",
+      "inLanguage": "en",
+      "keywords": [
+        "docusaurus plugin",
+        "copy page button",
+        "how to find the right thing to build",
+        "side projects",
+        "open source",
+        "AI tools",
+        "MCP"
+      ],
+      "author": {
+        "@type": "Person",
+        "name": "port",
+        "alternateName": [
+          "portdeveloper",
+          "port_dev"
+        ],
+        "url": "https://portdeveloper.github.io/",
+        "sameAs": [
+          "https://github.com/portdeveloper",
+          "https://twitter.com/port_dev",
+          "https://x.com/port_dev"
+        ],
+        "jobTitle": "Developer Advocate",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Monad",
+          "url": "https://www.monad.xyz/"
+        }
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "port",
+        "url": "https://portdeveloper.github.io/"
+      },
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "port",
+        "url": "https://portdeveloper.github.io/"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://portdeveloper.github.io/articles/how-a-button-i-built-for-one-docs-site-ended-up-on-twenty.html"
+      }
+    }
+  </script>
+</head>
+<body class="article-page">
+  <main>
+    <header class="site-header">
+      <a class="site-title" href="../">port</a>
+      <nav>
+        <a href="../#about">About</a> &middot;
+        <a href="../#projects">Projects</a> &middot;
+        <a href="../#writing">Writing</a>
+      </nav>
+    </header>
+    <hr>
+
+    <article class="article">
+      <h1>How a button I built for one docs site ended up on twenty</h1>
+      <p class="article-meta">May 22, 2026 &middot; originally published on <a href="https://x.com/port_dev">X</a></p>
+
+      <figure>
+        <img src="../assets/articles/how-a-button-i-built-for-one-docs-site-ended-up-on-twenty/cover.png" width="997" height="697" decoding="async" fetchpriority="high" alt="Bell curve meme: 'i solve my own problems' and 'if i have a problem, others have it as well' on the tails, 'i don't know what to build' in the middle">
+      </figure>
+
+      <p>The hardest part of building anything is picking the right thing to build.</p>
+
+      <p>There is exactly one heuristic I trust:</p>
+
+      <blockquote>
+        <p>If I have a problem with the tools I use every day, other people probably have it too. So I solve it, and then I publish it.</p>
+      </blockquote>
+
+      <p>That is the whole bit. Here&rsquo;s the most recent time it worked for me.</p>
+
+      <p>One day I saw that every company was adding a copy page button to their docs. I wanted to add one to Monad docs as well. So I built something with Claude, and then I thought, well why don&rsquo;t I make this a plugin so that other people use it too? If this is a problem for me, it is a problem for other people as well, right?</p>
+
+      <p>I quickly published an initial version and I have been maintaining it for months now.</p>
+
+      <p>My little plugin is now used by over twenty docs sites, most notably:</p>
+
+      <ol>
+        <li>Puppeteer</li>
+        <li>Ethereum execution-apis</li>
+        <li>Cardano</li>
+        <li>Arbitrum</li>
+        <li>Sui</li>
+      </ol>
+
+      <p>Enough boasting 😭. Now I will explain how I found this problem, how I solved it, and why this little side project actually went anywhere.</p>
+
+      <h2>How I found the problem</h2>
+
+      <p>Back when Monad docs ran on Docusaurus, I kept wanting to dump a doc page into Claude as context. Have you ever tried doing that natively?</p>
+
+      <p>It&rsquo;s awful. You always get more than you wanted (the sidebar, the navbar, three layers of breadcrumb), the formatting breaks in transit, and I&rsquo;d end up spending more time massaging the paste than writing the actual question lol.</p>
+
+      <p>Here is roughly what you actually paste into Claude when you select-all on a Docusaurus page:</p>
+
+      <pre><code class="language-plaintext">Skip to main content
+Docs
+Reference  Guides  Standards  About
+GitHub  X
+Search
+On this page
+  Move Basics
+  Variables and Types
+  Functions
+  References
+Move Basics
+Move is a statically typed language designed for the Sui blockchain.
+This page covers the basic features of the language, including...
+Edit this page
+Last updated on May 15, 2026
+Previous
+Introduction
+Next
+Object Model
+Was this page useful?</code></pre>
+
+      <p>Yeah. Half of that is sidebar text. The other half is footer chrome. The actual page content is the two sentences in the middle.</p>
+
+      <p>I worked around it manually for a while, doing the copy-paste-clean dance every time I needed context. After enough loops it hit me that I was spending more time on the workaround than on the actual question. The workaround had become the problem. Well you can choose not to clean it but then you spend a lot more tokens than needed.</p>
+
+      <p>That is the signal I trust now. <strong>When you find yourself doing the same workaround for the third time, you have found something worth building.</strong> Once you notice it, you can stop being a customer of the bug and start being the person who fixes it.</p>
+
+      <h2>How I solved it</h2>
+
+      <p>I asked Claude to write a custom button for the Monad site. The first version was maybe 200 lines and I shipped it the same afternoon.</p>
+
+      <figure>
+        <img src="../assets/articles/how-a-button-i-built-for-one-docs-site-ended-up-on-twenty/button-screenshot.png" width="836" height="896" loading="lazy" decoding="async" alt="Screenshot of the copy page button with dropdown open, showing Copy page, View as Markdown, Open in ChatGPT, Open in Claude, and Open in Gemini actions">
+        <figcaption>the actual artifact, with the dropdown open</figcaption>
+      </figure>
+
+      <p>It was great. The whole team started using it daily, and anyone who landed a Monad docs PR with &ldquo;I asked Claude&rdquo; in the description had probably touched it.</p>
+
+      <p>Here is the part that matters most. The day after I shipped the custom button, I asked myself &ldquo;is this only my problem?&rdquo; Obviously not. Every Docusaurus site has the same copy-paste pain. The button I had built was Monad-specific, but the problem it solved was universal.</p>
+
+      <p>So I spent another afternoon cleaning it up, ripped out the Monad-specific bits, published it on npm as <code>docusaurus-plugin-copy-page-button</code>, and walked away.</p>
+
+      <h2>The proof</h2>
+
+      <p>Now, here&rsquo;s the funny part.</p>
+
+      <p>A few months after I shipped the plugin, Monad docs migrated to Mintlify.</p>
+
+      <p>The thing I built for Monad docs no longer runs on Monad docs 😭.</p>
+
+      <p>But the plugin kept spreading anyway. The full list of adopters now includes Puppeteer, Ethereum execution-apis, Cardano, Arbitrum, Sui, Besu, Kaia, Flare, Walrus, Nillion, Chronicle, and a long tail of smaller sites. And right now there are open PRs at React Native, Jest, tRPC, Redux Toolkit, Uniswap, Cypress, pnpm, Ionic, Logto, Dagger, Ceramic, Oasis Protocol, SRS, StreamElements. Some might never get merged in but some might get in, I try my best! A few have already gotten the standard &ldquo;we&rsquo;d rather users read the source markdown&rdquo; reply (s/o to the Babel reviewer for that one).</p>
+
+      <figure>
+        <img src="../assets/articles/how-a-button-i-built-for-one-docs-site-ended-up-on-twenty/inline-proof.png" width="1959" height="1942" loading="lazy" decoding="async" alt="Soyjak meme reacting to docusaurus-plugin-copy-page-button npm page showing 7,440 weekly downloads and the Used By section">
+        <figcaption>the moment I checked the npm page lol</figcaption>
+      </figure>
+
+      <p>And people I have never met are filing real bug reports! @Simek&rsquo;s review on the React Native PR turned into a four-bug bugfix release. Strangers DM me with feature ideas I would never have thought of (MCP install actions came from a stranger). The plugin has a contributor base now.</p>
+
+      <p><strong>You don&rsquo;t get to pick which of your side projects takes off.</strong> The &ldquo;real&rdquo; thing I was working on was Monad docs content. The plugin was scaffolding. The scaffolding outlived its host.</p>
+
+      <h2>Open source must win</h2>
+
+      <p>s/o <a href="https://x.com/0xSero/status/2035022588439581076">@0xSero</a> for the line that has been living in my head rent-free:</p>
+
+      <blockquote>
+        <p>Open source must win.</p>
+      </blockquote>
+
+      <p>Honestly that is the whole point of writing this article. You have problems with the tools you use every day, and so does everyone else. But it only gets fixed if you ship something. And once you do, the multiplier is wild. Your two-day side project ends up running on docs sites you have never visited, helping people you will never meet.</p>
+
+      <p>So next time you find yourself doing the same workaround for the third time, just build the thing and publish it. An afternoon of your time might save everyone else a lot of afternoons.</p>
+
+      <p>The plugin is at <a href="https://github.com/portdeveloper/docusaurus-plugin-copy-page-button">github.com/portdeveloper/docusaurus-plugin-copy-page-button</a>. Recent additions are all from what people asked for: Perplexity (was annoying that ChatGPT and Claude had buttons and Perplexity didn&rsquo;t), MCP install links for Cursor and VS Code (one-click install for docs sites that ship an MCP server), and <code>.md</code> URL routes so you can hand <code>your-docs.com/page.md</code> straight to any LLM that can fetch URLs.</p>
+
+      <p>If your Docusaurus site doesn&rsquo;t have it, it&rsquo;s a one-line install.</p>
+
+      <p>Questions?</p>
+    </article>
+  </main>
+</body>
+</html>
