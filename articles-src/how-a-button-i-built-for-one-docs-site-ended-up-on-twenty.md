@@ -144,3 +144,8 @@ If your Docusaurus site doesn't have it, it's a one-line install.
 > Related: [Simple just works: how i built puddleswap](simple-just-works-how-i-built-puddleswap.html) - the same "solve your own problem" heuristic on a different project.
 
 Questions?
+
+<blockquote class="twitter-tweet">
+  <a href="https://x.com/i/status/2058530385974194476"></a>
+</blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
