@@ -120,6 +120,6 @@ And next time you reach for the complex solution, check whether your problem act
 
 And maybe ask your agent if there are any easier solutions to the problem you are trying to solve.
 
-> Related: [How a button I built for one docs site ended up on twenty](how-a-button-i-built-for-one-docs-site-ended-up-on-twenty.html) - the same heuristic applied to a different problem.
+> Related: [How to find ideas worth building](how-a-button-i-built-for-one-docs-site-ended-up-on-twenty.html) - the same heuristic applied to a different problem.
 
 Questions?
