@@ -61,8 +61,6 @@ Enough boasting 😭. Now I will explain how I found this problem, how I solved 
 
 Back when Monad docs ran on Docusaurus, I kept wanting to dump a doc page into Claude as context. Have you ever tried doing that natively?
 
-It's awful. You always get more than you wanted (the sidebar, the navbar, three layers of breadcrumb), the formatting breaks in transit, and I'd end up spending more time massaging the paste than writing the actual question lol.
-
 Here is roughly what you actually paste into Claude when you select-all on a Docusaurus page:
 
 ```
@@ -107,9 +105,9 @@ I asked Claude to write a custom button for the Monad site. The first version wa
 
 ![Screenshot of the copy page button with dropdown open, showing Copy page, View as Markdown, Open in ChatGPT, Open in Claude, and Open in Gemini actions](assets/articles/how-a-button-i-built-for-one-docs-site-ended-up-on-twenty/button-screenshot.png "the actual artifact, with the dropdown open")
 
-It was great. The whole team started using it daily, and anyone who landed a Monad docs PR with "I asked Claude" in the description had probably touched it.
+It was great. The docs started using it, and anyone who landed a Monad docs PR with "I asked Claude" in the description had probably touched it.
 
-Here is the part that matters most. The day after I shipped the custom button, I asked myself "is this only my problem?" Obviously not. Every Docusaurus site has the same copy-paste pain. The button I had built was Monad-specific, but the problem it solved was universal.
+The day after I shipped the custom button, I asked myself "is this only my problem?" Obviously not. Every Docusaurus site has the same copy-paste pain. The button I had built was Monad-specific, but the problem it solved was universal.
 
 So I spent another afternoon cleaning it up, ripped out the Monad-specific bits, published it on npm as `docusaurus-plugin-copy-page-button`, and walked away.
 
