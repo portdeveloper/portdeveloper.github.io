@@ -12,6 +12,8 @@ How articles on portdeveloper.github.io are written. Derived from the existing p
 6. **No hedge stacking.** "Perhaps it could potentially be argued that..." gets cut to the claim.
 7. **No closing summary that restates the article.** End on the punch, the CTA, or the link. Not a recap.
 8. **No headings like "Introduction", "Conclusion", "Background".** Headings name the actual thing in that section ("The thing I almost overengineered", "Too many skills can hurt").
+9. **No antithesis-as-emphasis ("X, not Y").** Banned: "This is X, not Y", "It's not X, it's Y", "not just X but Y", and bare "X, not Y" clauses dropped in for emphasis. It's a copywriter reflex and one of the loudest AI tells. Delete it or state the point flat. "This is a courtesy heads-up, not a blocker." becomes "No rush on it." "It's not about speed, it's about correctness." becomes "Correctness is the point." If a contrast is genuinely load-bearing (a real correction the reader needs), split it into two sentences instead of hinging on a comma. Write "it's under `linux-arm64`. The `linux-aarch64` path 404s." rather than "it's under `linux-arm64`, not `linux-aarch64`."
+10. **No standalone punch-sentences.** Short declarative beats dropped in for emphasis are an AI terseness tic: "That's the whole fix.", "That's it.", "That's the point.", "It's a separate commit.", "It's that simple.", "This isn't theoretical.", "Wrong." Cut them, or fold the point into the surrounding line. The same goes for meta-narration that announces what the writing does ("so the guide leads with the distinction", "this section will cover") instead of just doing it. A normal relative clause inside a longer sentence ("that's the field you add") is fine; the tic is the standalone punchy one.
 
 ## Voice
 
@@ -32,7 +34,7 @@ How articles on portdeveloper.github.io are written. Derived from the existing p
 - Stretched words for emphasis are allowed and on-brand: `aaaand`, `aaand`, `dumdum`. Use sparingly.
 - Emoji and emoji shortcodes are allowed for self-deprecating callouts only. 😭 is the workhorse (`Enough boasting 😭`, `I don't 😭`). Cap: one per section, max two per article. Never use emoji for decoration, never use them where bold would do the job. Write emoji as actual unicode characters (`😭`), not shortcodes (`:sob:`), since the site is plain markdown.
 - Exclamation marks are fine if they're earned by real enthusiasm or surprise. "It was great!" earns one. "Here's the article!" doesn't.
-- Lowercase `i` is only used in **titles** ("how i built puddleswap"). Body text uses `I`.
+- Lowercase `i` is the default in **titles** ("how i built puddleswap"). Body text uses `I` in normal sentences, but port lets `i` go lowercase inside casual parenthetical asides ("(If possible, i wanted nothing to maintain at all.)"). Don't auto-correct those, and don't worry if a casual proper noun shows up lowercase in body text either (`dex`, `claude`, `railway`).
 - Sentence-case titles, no Title Case.
 - Sentence fragments are fine. So are one-word sentences. Use them for rhythm.
 - Code blocks for code, not for emphasis. Don't put a one-liner observation in a code block.
@@ -158,6 +160,18 @@ Bad:
 ## The frontmatter
 
 Copy an existing article's frontmatter as the template. Don't try to remember the shape. Required fields: `title`, `description`, `slug`, `published_at`, `modified_at`, `date_display`, `section`, `tags`, `keywords`, `cover`. `originally_published` and `devto_id` get added if/when cross-posted.
+
+## Calibration from port's own edits
+
+Port revised a draft by hand. The pattern in those edits, recorded so the same things stop getting reintroduced:
+
+- **Cut the writerly closer-clause.** "A no-bs DEX on Monad testnet, the kind a weekend buys you." became "A testnet dex on Monad testnet". The clause that makes a sentence sound well-crafted is usually the first one to delete. Plainer wins.
+- **Keep humanizing asides even when they don't advance the argument.** Port added "while everyone else is trying their best", "(rip grandma)", "(or my agent controls)", "(If possible, i wanted nothing to maintain at all.)". These exist to sound like a person typed them. Don't strip them as redundant, and don't be afraid to add them.
+- **Name the concrete thing.** "A small rebalancer service" gained "on railway". Say the host, the tool, the place when you know it.
+- **Reach for a lived, current example over a textbook one.** To the list of over-engineering examples port appended "claude suggesting using redis for caching instead of a simple in-memory cache for tiny apps that would not get restarted enough times to justify it." Specific, agent-era, from experience. It's also a fourth item, longer and shaped differently than the three before it, which breaks the rhythm instead of padding a rule-of-three. A good model for how to add an example without making the list more symmetric.
+- **Trim dead intensifiers and spare clauses.** "with no backend anywhere" lost "anywhere". "audited a thousand times over the years (centuries in web3) and not something I wanted to fork" lost the trailing clause. "Vite plus React" became "Vite + React" (use `+` for tight pairs).
+- **Don't echo your own framing verb.** "it's the right tool. I'm saying I wasn't building that." became "...the right tool. But I wasn't building that." The repeated "I'm saying" was the tell; a plain "But" carries it.
+- **Dropping "X, not Y" usually means deleting Y, not rephrasing it.** "how little it took, not how clever it was" just became "how little it took". Port cut the antithesis rather than splitting it into two sentences. When in doubt, delete the contrast clause.
 
 ## When in doubt
 

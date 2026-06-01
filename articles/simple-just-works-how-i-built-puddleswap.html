@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="How I built puddleswap on Monad testnet, why I almost overengineered the routing, and the case for solving the problem you have, not the one you imagine.">
+  <meta name="description" content="How I built puddleswap on Monad testnet, why I almost overengineered the routing, and the case for solving the narrow problem you actually have instead of the general one you imagine.">
   <link rel="canonical" href="https://portdeveloper.github.io/articles/simple-just-works-how-i-built-puddleswap.html">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="port">
   <meta property="og:title" content="Simple just works: how i built puddleswap">
-  <meta property="og:description" content="How I built puddleswap on Monad testnet, why I almost overengineered the routing, and the case for solving the problem you have, not the one you imagine.">
+  <meta property="og:description" content="How I built puddleswap on Monad testnet, why I almost overengineered the routing, and the case for solving the narrow problem you actually have instead of the general one you imagine.">
   <meta property="og:url" content="https://portdeveloper.github.io/articles/simple-just-works-how-i-built-puddleswap.html">
   <meta property="og:locale" content="en_US">
   <meta property="og:image" content="https://portdeveloper.github.io/assets/articles/simple-just-works-how-i-built-puddleswap/cover.svg">
@@ -24,7 +24,7 @@
   <meta property="article:modified_time" content="2026-05-17T12:00:00Z">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Simple just works: how i built puddleswap">
-  <meta name="twitter:description" content="How I built puddleswap on Monad testnet, why I almost overengineered the routing, and the case for solving the problem you have, not the one you imagine.">
+  <meta name="twitter:description" content="How I built puddleswap on Monad testnet, why I almost overengineered the routing, and the case for solving the narrow problem you actually have instead of the general one you imagine.">
   <meta name="twitter:image" content="https://portdeveloper.github.io/assets/articles/simple-just-works-how-i-built-puddleswap/cover.svg">
   <meta name="twitter:image:alt" content="puddleswap article cover">
   <meta name="twitter:creator" content="@port_dev">
@@ -36,7 +36,7 @@
       "@context": "https://schema.org",
       "@type": "Article",
       "headline": "Simple just works: how i built puddleswap",
-      "description": "How I built puddleswap on Monad testnet, why I almost overengineered the routing, and the case for solving the problem you have, not the one you imagine.",
+      "description": "How I built puddleswap on Monad testnet, why I almost overengineered the routing, and the case for solving the narrow problem you actually have instead of the general one you imagine.",
       "image": "https://portdeveloper.github.io/assets/articles/simple-just-works-how-i-built-puddleswap/cover.svg",
       "url": "https://portdeveloper.github.io/articles/simple-just-works-how-i-built-puddleswap.html",
       "datePublished": "2026-05-17T12:00:00Z",
@@ -136,15 +136,15 @@
 
       <p>I caught myself almost doing exactly that on puddleswap. Here&rsquo;s how that went, plus the gut-check I run now before writing anything clever. If you ever feel yourself overengineering things, this is for you.</p>
 
-      <p>I was at a <a href="https://blitz.devnads.com">Monad Blitz</a> event, if I am not mistaken it was the one in Ankara, and I was watching everyone around me hack on cool stuff while I sat in the corner answering their questions. I mean that&rsquo;s my job but it felt weird not building stuff.</p>
+      <p>I was at a <a href="https://blitz.devnads.com">Monad Blitz</a> event, if I am not mistaken it was the one in Ankara, and I was watching everyone around me hack on cool stuff while I sat in the corner answering their questions. I mean that&rsquo;s my job but it felt weird not building stuff while everyone else is trying their best.</p>
 
-      <p>So at some point I figured I should just build something(while talking to people at the same time lol). Something simple enough that the brag would be how little it took, not how clever it was.</p>
+      <p>So at some point I figured I should just build something(while not ignoring people at the same time lol). Something simple enough that the brag would be how little it took.</p>
 
-      <p>That&rsquo;s how puddleswap happened. A no-bs DEX on Monad testnet, the kind a weekend buys you.</p>
+      <p>That&rsquo;s how puddleswap happened. A testnet dex on Monad testnet</p>
 
-      <p>Going in, I wanted the fewest moving parts I could get away with. The thing I&rsquo;d be most proud of would be how little there was to maintain.</p>
+      <p>Going in, I wanted the fewest moving parts I could get away with. The thing I&rsquo;d be most proud of would be how little there was to maintain. (If possible, i wanted nothing to maintain at all.)</p>
 
-      <p>Most of the actual work was done by an AI agent. It wrote the React frontend, deployed the contracts, and put together the swap UI. The contracts are stock Uniswap V2, audited a thousand times over the years(centuries in web3) and not something I wanted to fork. The frontend is Vite plus React with no backend anywhere. The swap accepts real Circle USDC, a mock USDT we deployed for testnet liquidity, and WMON. A small rebalancer service keeps the price pegs roughly honest.</p>
+      <p>Most of the actual work was done by an AI agent. It wrote the React frontend and deployed the contracts; the swap UI came together as it went. The contracts are stock Uniswap V2, audited a thousand times over the years(centuries in web3). The frontend is Vite + React with no backend. The swap accepts real Circle USDC, a mock USDT we deployed for testnet liquidity, and WMON. A small rebalancer service on railway keeps the price pegs roughly honest.</p>
 
       <p>It&rsquo;s live at <a href="https://app.puddleswap.org/">app.puddleswap.org</a>.</p>
 
@@ -163,7 +163,7 @@
         <figcaption>the whole graph: A and B connect through three core hubs, plus a direct edge when one exists</figcaption>
       </figure>
 
-      <p>So I deleted it and wrote this instead (s/o to @danielvf for the idea + the initial PRD).</p>
+      <p>So I deleted it and wrote the following instead (s/o to @danielvf for the idea + the initial PRD).</p>
 
       <h2>The enumeration</h2>
 
@@ -191,28 +191,28 @@ const results = await publicClient.multicall({
 
 const best = selectBestQuote(results);</code></pre>
 
-      <p>The whole router is around 50 lines. It builds the candidate list, dedups it, and returns whichever path the multicall said had the highest quote.</p>
+      <p>The whole router is around 50 lines. It builds the candidate list (deduped) and returns whichever path the multicall said had the highest quote.</p>
 
-      <h2>Why this matters (and not just for DEXes)</h2>
+      <h2>Why this matters beyond DEXes</h2>
 
-      <p>I&rsquo;m not saying graph routing is wrong. For a mainnet aggregator routing across thousands of pools and dozens of DEXes, it&rsquo;s the right tool. I&rsquo;m saying I wasn&rsquo;t building that.</p>
+      <p>I&rsquo;m not saying graph routing is wrong. For a mainnet aggregator routing across thousands of pools and dozens of DEXes, it&rsquo;s the right tool. But I wasn&rsquo;t building that.</p>
 
       <p>Here&rsquo;s the lesson: <strong>a lot of code over-solves its problem.</strong></p>
 
-      <p>You see it everywhere once you start looking. Sorting algorithm where the data is always ≤ 10 items (insertion sort is fine, stop). Caching layer where the data hits the database twice a day (the database is already a cache). Pub/sub where there&rsquo;s one publisher and one subscriber (call the function directly).</p>
+      <p>You see it everywhere once you start looking. A sorting algorithm where the data is always ten items or fewer, when plain insertion sort would have done. A caching layer sitting in front of a database that gets hit twice a day, as if the database weren&rsquo;t already a cache. Or my favorite, pub/sub wired up for exactly one publisher and one subscriber, where you could have called the function. Another example you might have noticed is claude suggesting using redis for caching instead of using a simple in-memory cache for tiny apps that would not get restarted enough times to justify it.</p>
 
       <p>The smart-looking solution is usually someone solving the *general* problem, because that&rsquo;s what they were trained on. The general problem is harder, more interesting, and absolutely useless to you if your constraints are narrower.</p>
 
       <p>On puddleswap, my constraints are:</p>
 
       <ul>
-        <li>One chain, one DEX, mine</li>
-        <li>Three hub tokens I control</li>
+        <li>One chain, one DEX</li>
+        <li>Three hub tokens I control (or my agent controls)</li>
         <li>Operator-maintained liquidity</li>
-        <li>Test users with low gas budgets</li>
+        <li>UI being so simple that my grandma can use it(rip grandma)</li>
       </ul>
 
-      <p>Within those constraints, enumeration is provably correct (every meaningful route gets checked), faster than graph traversal (one batched RPC, not N round-trips), and a fraction of the code. The day any of those constraints stops holding is the day I&rsquo;ll bother writing the graph router.</p>
+      <p>Within those constraints, enumeration is provably correct (every meaningful route gets checked) and faster than graph traversal, since it&rsquo;s one batched RPC instead of N round-trips. It&rsquo;s also a fraction of the code. The day any of those constraints stops holding is the day I&rsquo;ll bother writing the graph router.</p>
 
       <h2>When this breaks</h2>
 

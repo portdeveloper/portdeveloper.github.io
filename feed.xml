@@ -19,7 +19,7 @@
       <link>https://portdeveloper.github.io/articles/simple-just-works-how-i-built-puddleswap.html</link>
       <guid isPermaLink="true">https://portdeveloper.github.io/articles/simple-just-works-how-i-built-puddleswap.html</guid>
       <pubDate>Sun, 17 May 2026 12:00:00 GMT</pubDate>
-      <description>How I built puddleswap on Monad testnet, why I almost overengineered the routing, and the case for solving the problem you have, not the one you imagine.</description>
+      <description>How I built puddleswap on Monad testnet, why I almost overengineered the routing, and the case for solving the narrow problem you actually have instead of the general one you imagine.</description>
     </item>
     <item>
       <title>You are prompting GPT 5.5 wrong.</title>
