@@ -47,6 +47,9 @@ def image_dims(path: Path) -> tuple[int, int]:
     if head[:8] == b"\x89PNG\r\n\x1a\n":
         w, h = struct.unpack(">II", head[16:24])
         return w, h
+    if head[:6] in (b"GIF87a", b"GIF89a"):
+        w, h = struct.unpack("<HH", head[6:10])
+        return w, h
     if head[:2] == b"\xff\xd8":
         with path.open("rb") as f:
             f.read(2)

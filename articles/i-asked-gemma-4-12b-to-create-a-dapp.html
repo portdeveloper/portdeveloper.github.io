@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="I had a free local Gemma 4 12B build a dapp on Monad, and kept every prompt. It wrote a safe contract, hallucinated a whole frontend, and found zero of its own bugs. Here's how usable a 12B actually is for fullstack work.">
+  <link rel="canonical" href="https://portdeveloper.github.io/articles/i-asked-gemma-4-12b-to-create-a-dapp.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="port">
+  <meta property="og:title" content="I asked Gemma 4 12B to create a dapp. Make no mistakes.">
+  <meta property="og:description" content="I had a free local Gemma 4 12B build a dapp on Monad, and kept every prompt. It wrote a safe contract, hallucinated a whole frontend, and found zero of its own bugs. Here's how usable a 12B actually is for fullstack work.">
+  <meta property="og:url" content="https://portdeveloper.github.io/articles/i-asked-gemma-4-12b-to-create-a-dapp.html">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://portdeveloper.github.io/assets/articles/i-asked-gemma-4-12b-to-create-a-dapp/cover.png">
+  <meta property="og:image:width" content="1672">
+  <meta property="og:image:height" content="941">
+  <meta property="og:image:alt" content="Gemma 4 12B creates a dapp">
+  <meta property="article:author" content="https://portdeveloper.github.io/">
+  <meta property="article:section" content="Developer tools">
+  <meta property="article:tag" content="Gemma">
+  <meta property="article:tag" content="Monad">
+  <meta property="article:tag" content="AI">
+  <meta property="article:published_time" content="2026-06-05T12:00:00Z">
+  <meta property="article:modified_time" content="2026-06-05T12:00:00Z">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="I asked Gemma 4 12B to create a dapp. Make no mistakes.">
+  <meta name="twitter:description" content="I had a free local Gemma 4 12B build a dapp on Monad, and kept every prompt. It wrote a safe contract, hallucinated a whole frontend, and found zero of its own bugs. Here's how usable a 12B actually is for fullstack work.">
+  <meta name="twitter:image" content="https://portdeveloper.github.io/assets/articles/i-asked-gemma-4-12b-to-create-a-dapp/cover.png">
+  <meta name="twitter:image:alt" content="Gemma 4 12B creates a dapp">
+  <meta name="twitter:creator" content="@port_dev">
+  <title>I asked Gemma 4 12B to create a dapp. Make no mistakes. - port</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="alternate" type="application/rss+xml" title="port - writing" href="https://portdeveloper.github.io/feed.xml">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "I asked Gemma 4 12B to create a dapp. Make no mistakes.",
+      "description": "I had a free local Gemma 4 12B build a dapp on Monad, and kept every prompt. It wrote a safe contract, hallucinated a whole frontend, and found zero of its own bugs. Here's how usable a 12B actually is for fullstack work.",
+      "image": "https://portdeveloper.github.io/assets/articles/i-asked-gemma-4-12b-to-create-a-dapp/cover.png",
+      "url": "https://portdeveloper.github.io/articles/i-asked-gemma-4-12b-to-create-a-dapp.html",
+      "datePublished": "2026-06-05T12:00:00Z",
+      "dateModified": "2026-06-05T12:00:00Z",
+      "inLanguage": "en",
+      "keywords": [
+        "gemma 4",
+        "monad",
+        "local llm",
+        "dapp",
+        "foundry"
+      ],
+      "author": {
+        "@type": "Person",
+        "name": "port",
+        "alternateName": [
+          "portdeveloper",
+          "port_dev"
+        ],
+        "url": "https://portdeveloper.github.io/",
+        "sameAs": [
+          "https://github.com/portdeveloper",
+          "https://twitter.com/port_dev",
+          "https://x.com/port_dev"
+        ],
+        "jobTitle": "Developer Advocate",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Monad",
+          "url": "https://www.monad.xyz/"
+        }
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "port",
+        "url": "https://portdeveloper.github.io/"
+      },
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "port",
+        "url": "https://portdeveloper.github.io/"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://portdeveloper.github.io/articles/i-asked-gemma-4-12b-to-create-a-dapp.html"
+      }
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://portdeveloper.github.io/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Writing",
+          "item": "https://portdeveloper.github.io/#writing"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "I asked Gemma 4 12B to create a dapp. Make no mistakes.",
+          "item": "https://portdeveloper.github.io/articles/i-asked-gemma-4-12b-to-create-a-dapp.html"
+        }
+      ]
+    }
+  </script>
+</head>
+<body class="article-page">
+  <main>
+    <header class="site-header">
+      <a class="site-title" href="../">port</a>
+      <nav>
+        <a href="../#about">About</a> &middot;
+        <a href="../#projects">Projects</a> &middot;
+        <a href="../#writing">Writing</a>
+      </nav>
+    </header>
+    <hr>
+
+    <article class="article">
+      <h1>I asked Gemma 4 12B to create a dapp. Make no mistakes.</h1>
+      <p class="article-meta">June 5, 2026 &middot; originally published on <a href="https://x.com/port_dev">X</a></p>
+
+      <figure>
+        <img src="../assets/articles/i-asked-gemma-4-12b-to-create-a-dapp/cover.png" width="1672" height="941" decoding="async" fetchpriority="high" alt="Gemma 4 12B creates a dapp">
+        <figcaption>the whole thing was written by a 12B running on a laptop</figcaption>
+      </figure>
+
+      <p>A free model that fits on a laptop wrote my entire dapp, contract and frontend, and then couldn&rsquo;t find a single one of its own bugs.</p>
+
+      <p>I had a question in mind: can a free, open model you run on your own machine actually build something real for an EVM chain? So I set it up as a test. A local Gemma 4 12B wrote the code, and Claude operated it, sending the prompts and pasting back whatever the compiler said. I kept every prompt and every broken file, so you can see for yourself where a 12B helps and where it falls over.</p>
+
+      <p>The model is the new Gemma 4 12B, out June 3rd under an Apache 2.0 license, so you can do what you like with it. It fits in about 16GB, so I ran it on my own machine with llama.cpp, no API key and nothing leaving the laptop. It managed 20 to 40 tokens a second. The thing I had it build is a game called last-clicker. You pay a tiny fee to click, and each click resets a short countdown. Whoever clicked last when the timer runs out takes the pot. I built it against Anvil, Foundry&rsquo;s local node.</p>
+
+      <h2>The first draft was good code that didn&rsquo;t compile</h2>
+
+      <p>I gave it one prompt:</p>
+
+      <blockquote>
+        <p>Build a &ldquo;last clicker&rdquo; game in Solidity with Foundry: a pot funded by a small fee per click, a short countdown that resets on each click, and whoever clicked last when the timer ends can claim the pot. Give me the contract.</p>
+      </blockquote>
+
+      <p>The game logic came back right on the first try, and so did the security. Its <code>claim()</code> clears the balance before it sends any money out:</p>
+
+      <pre><code class="language-solidity">function claim() external {
+    require(block.timestamp >= gameEndTime, "Timer has not expired yet");
+    require(msg.sender == lastClickListener, "You were not the last clicker");
+    require(pot > 0, "Pot is empty");
+
+    uint256 amount = pot;
+    pot = 0;                              // state cleared first
+    gameActive = false;
+    lastClickListener = address(0);
+
+    payable(msg.sender).transfer(amount); // then the transfer
+}</code></pre>
+
+      <p>That ordering, state first and the external call last, is what stops a reentrancy attack, where the recipient calls back into <code>claim()</code> and drains the contract before the balance updates. It is the bug behind the 2016 DAO hack, and I assumed a 12B would reach for the naive version, but it wrote the safe one.</p>
+
+      <p>What it could not do was hand me a project that compiled. The test file opened with this:</p>
+
+      <pre><code class="language-solidity">import "hardhat"; // If using standard, but for Foundry we use:
+import "../src/LastClicker.sol";</code></pre>
+
+      <p>That is a Hardhat import in a Foundry project, with a half-finished comment where the model started to correct itself and gave up. The contract declared its constructor twice:</p>
+
+      <pre><code class="language-solidity">constructor() {
+    gameActive = true;
+    gameEndTime = block.timestamp + COUNTDOWN_DURATION;
+}
+// ...further down, in the same contract...
+constructor() {
+    owner = msg.sender;
+}</code></pre>
+
+      <p>And the test set itself up with a deploy helper that doesn&rsquo;t exist in Foundry:</p>
+
+      <pre><code class="language-solidity">game = LastClicker(deploy(LastClicker.sol));</code></pre>
+
+      <p>None of it compiles, so I pasted back just the first error, the Hardhat import, and it rewrote the whole file in one pass, fixing every compile error, including the ones I hadn&rsquo;t pointed at. For boilerplate it can&rsquo;t quite remember, that&rsquo;s a fast way back to green.</p>
+
+      <h2>Then it couldn&rsquo;t debug its own tests</h2>
+
+      <p>The code compiled, so I ran the tests. All three reverted on the first line that moved money:</p>
+
+      <pre><code class="language-solidity">vm.prank(player1);
+game.click{value: 0.001 ether}();   // reverts: player1 holds no ether</code></pre>
+
+      <p>The test never funded the accounts. In Foundry you give a test address a balance with <code>vm.deal</code>, and that one line fixes all three. I handed it the failure. It added <code>vm.warp</code>, then on the next round <code>vm.roll</code>, convinced the problem was timing. Three rounds in, the tests were failing exactly as before, down to the gas, and it was still editing the clock while the real cause sat untouched in its own output.</p>
+
+      <p>So I stopped asking it to fix the tests and told it the cause instead:</p>
+
+      <blockquote>
+        <p>The tests revert on the first <code>click{value:}</code> because the player accounts have a zero balance. In Foundry you fund an address with <code>vm.deal</code>. Fix the test.</p>
+      </blockquote>
+
+      <p>It added <code>vm.deal</code>, and one of the three passed. The other two had their own bugs: a timer check that never advanced the clock, and player addresses set to <code>address(1)</code> and <code>address(2)</code>, which are precompiles and can&rsquo;t receive ether. Each passed only after I named the exact cause. <strong>It can apply a fix you hand it, but it can&rsquo;t find one on its own.</strong></p>
+
+      <figure>
+        <img src="../assets/articles/i-asked-gemma-4-12b-to-create-a-dapp/tests.png" width="2360" height="1160" loading="lazy" decoding="async" alt="forge test output, three rounds failing then passing">
+        <figcaption>three rounds red, then green the moment I named the cause</figcaption>
+      </figure>
+
+      <h2>The frontend looked finished and was hollow</h2>
+
+      <p>I asked for a single-page frontend with viem. The layout it returned was genuinely good, a clean dark card with a live countdown. The web3 layer under it was invented from scratch, starting with the imports:</p>
+
+      <pre><code class="language-js">import {
+  createPublicClient, createWalletClient, parseEther,
+  publicAddress, solidityAbiInterpreter, formatEther
+} from 'https://esm.sh/viem';</code></pre>
+
+      <p><code>publicAddress</code> and <code>solidityAbiInterpreter</code> are not part of viem. They sound like they should be, which is the whole problem. It then sent transactions through a method it invented:</p>
+
+      <pre><code class="language-js">const hash = await walletClient.sendTransaction({
+  to: CONTRACT_ADDRESS,
+  data: contract.writeMethods.click.encoded,   // not a real thing
+});</code></pre>
+
+      <p>It built the chain config with the wrong shape and called <code>wallet_switchChain</code>, which isn&rsquo;t a real wallet method (the real one is <code>wallet_switchEthereumChain</code>). On a library it has seen less of, it knows the silhouette of the right code and fills the specifics with confident fiction, and the glue between a contract and a UI is almost all specifics. I rewrote the wiring myself. The interface was its work, the plumbing was mine.</p>
+
+      <h2>The reveal: it was Monad, and it took one line</h2>
+
+      <p>I never told the model what chain this was for, because there was nothing to tell it. Anvil is just the EVM, and every line it wrote was ordinary EVM code. Once the contract and tests were green, I pointed Foundry at one URL:</p>
+
+      <pre><code class="language-bash">forge create src/LastClicker.sol:LastClicker --rpc-url https://testnet-rpc.monad.xyz --broadcast</code></pre>
+
+      <p>Foundry read the chain id off the endpoint on its own, and the deploy went through on the first try. Verifying the source on Monad&rsquo;s explorer was one more API call that came back a perfect match. The chain was Monad (where I work, so grain of salt), and the model never needed to know it, because Monad runs EVM bytecode and the Solidity it already knew was correct. The only Monad-specific detail in the whole build was that one RPC URL, and even the testnet MON for gas came from an agent faucet over an API call.</p>
+
+      <p>One honest caveat: forge&rsquo;s linter flagged the timer for leaning on <code>block.timestamp</code>, which validators can nudge. That matters more on a one-second chain than a twelve-second one, and you would tighten it before mainnet.</p>
+
+      <p>The result is live at https://gemma-last-clicker.vercel.app. Connect a wallet with a little testnet MON and click.</p>
+
+      <figure>
+        <img src="../assets/articles/i-asked-gemma-4-12b-to-create-a-dapp/live-game.png" width="1280" height="720" loading="lazy" decoding="async" alt="the last-clicker game running on Monad testnet">
+        <figcaption>the game, live on monad testnet</figcaption>
+      </figure>
+
+      <p>Every click is a real transaction that confirms in about a second and costs a fraction of a cent, which is the only reason a game made of last-second clicks can live entirely on-chain.</p>
+
+      <h2>So how usable is it?</h2>
+
+      <p>Treat a free local model as a fast junior. It is genuinely good at the parts it has seen a thousand times, standard contract logic and clean HTML, and it reached for the right security pattern without being asked. It saves you real time on the first draft. It comes apart the moment it touches a specific library&rsquo;s real API or has to read a stack trace, and across this whole build it found zero of its own bugs. Every error was caught by the compiler or by me.</p>
+
+      <p>So a 12B gets you a working first draft of a contract and a good-looking shell of a frontend, and then you do the debugging and the integration by hand. For learning and for things you&rsquo;ll throw away, that&rsquo;s plenty. For anything you would deploy and walk away from, it needs someone next to it who can read the errors it can&rsquo;t.</p>
+
+      <p>The repo has the code and every prompt I used: https://github.com/portdeveloper/gemma-last-clicker. The file that finally got it deploying to Monad cleanly is <code>MONAD_CONTEXT.md</code> in there.</p>
+
+      <figure>
+        <img class="small-media" src="../assets/articles/i-asked-gemma-4-12b-to-create-a-dapp/wizard-meme.gif" width="740" height="476" loading="lazy" decoding="async" alt="wizard meme">
+        <figcaption>go do some magic</figcaption>
+      </figure>
+
+      <p>Questions?</p>
+    </article>
+  </main>
+</body>
+</html>
