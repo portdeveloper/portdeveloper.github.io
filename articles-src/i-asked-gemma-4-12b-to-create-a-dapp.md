@@ -23,6 +23,7 @@ cover:
 originally_published:
   platform: X
   url: "https://x.com/port_dev"
+devto_id: 3822775
 ---
 
 ![Gemma 4 12B creates a dapp](assets/articles/i-asked-gemma-4-12b-to-create-a-dapp/cover.png "the whole thing was written by a 12B running on a laptop")
