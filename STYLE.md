@@ -174,6 +174,17 @@ Port revised a draft by hand. The pattern in those edits, recorded so the same t
 - **Don't echo your own framing verb.** "it's the right tool. I'm saying I wasn't building that." became "...the right tool. But I wasn't building that." The repeated "I'm saying" was the tell; a plain "But" carries it.
 - **Dropping "X, not Y" usually means deleting Y, not rephrasing it.** "how little it took, not how clever it was" just became "how little it took". Port cut the antithesis rather than splitting it into two sentences. When in doubt, delete the contrast clause.
 
+## More slop tells (caught while drafting, 2026-06)
+
+These kept reappearing even in a piece that was about avoiding slop. Watch for them.
+
+- **Don't telegraph the question, just ask it.** "The question I wanted answered was simple:" or "what I really wanted to know was" is throat-clearing. Cut to "I had a question in mind:" or ask the question in the first person and move on.
+- **Don't announce the result before you give it.** "the part I expected it to fail, it nailed:" and "here's the surprising part" pre-chew the reader's reaction. Show what happened and let them have the reaction themselves.
+- **Say a motif once.** A good setup line ("I never told it which chain it was for") loses all its weight if you repeat it three times across the piece. State the premise once, pay it off once, don't restate it in between.
+- **The rule-of-three keeps coming back in disguise.** It isn't only "fast, reliable, and scalable." Verb lists ("run it, fine-tune it, and ship it"), noun lists ("a pot, a short timer, every click, and whoever clicks last"), and clause lists ("imported Hardhat, declared two constructors, used a fake modifier, and called a dead helper") are the same tell. Cut to one vivid item, or break the parallel hard.
+- **No standalone punch-sentences for drama.** "Then I watched.", "It didn't.", "Credit where it's due." Each is a tic. Fold the point into the sentence next to it.
+- **Don't inflate the stakes for effect.** "the bug that emptied the DAO in 2016 and split Ethereum in two" is two clauses of drama where one plain fact carries it: "the bug behind the 2016 DAO hack". State it flat.
+
 ## When in doubt
 
 Read the puddleswap article. If your draft sounds different in voice, fix the draft.
