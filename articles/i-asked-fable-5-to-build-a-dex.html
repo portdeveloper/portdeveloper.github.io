@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="I gave Anthropic's Fable 5 the same test I gave a local Gemma 4 12B: build a dapp for Monad, full stack, and I keep score. It wrote the AMM from scratch, debugged its own tests, drove a browser to verify the swap, and the only thing it needed from me was 5 testnet MON.">
+  <link rel="canonical" href="https://portdeveloper.github.io/articles/i-asked-fable-5-to-build-a-dex.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="port">
+  <meta property="og:title" content="I asked Fable 5 to build a dex. Here's how it went.">
+  <meta property="og:description" content="I gave Anthropic's Fable 5 the same test I gave a local Gemma 4 12B: build a dapp for Monad, full stack, and I keep score. It wrote the AMM from scratch, debugged its own tests, drove a browser to verify the swap, and the only thing it needed from me was 5 testnet MON.">
+  <meta property="og:url" content="https://portdeveloper.github.io/articles/i-asked-fable-5-to-build-a-dex.html">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://portdeveloper.github.io/assets/articles/i-asked-fable-5-to-build-a-dex/cover.png">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="720">
+  <meta property="og:image:alt" content="Fable 5 builds a dex">
+  <meta property="article:author" content="https://portdeveloper.github.io/">
+  <meta property="article:section" content="Developer tools">
+  <meta property="article:tag" content="Claude">
+  <meta property="article:tag" content="Monad">
+  <meta property="article:tag" content="AI">
+  <meta property="article:published_time" content="2026-06-11T12:00:00Z">
+  <meta property="article:modified_time" content="2026-06-11T12:00:00Z">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="I asked Fable 5 to build a dex. Here's how it went.">
+  <meta name="twitter:description" content="I gave Anthropic's Fable 5 the same test I gave a local Gemma 4 12B: build a dapp for Monad, full stack, and I keep score. It wrote the AMM from scratch, debugged its own tests, drove a browser to verify the swap, and the only thing it needed from me was 5 testnet MON.">
+  <meta name="twitter:image" content="https://portdeveloper.github.io/assets/articles/i-asked-fable-5-to-build-a-dex/cover.png">
+  <meta name="twitter:image:alt" content="Fable 5 builds a dex">
+  <meta name="twitter:creator" content="@port_dev">
+  <title>I asked Fable 5 to build a dex. Here's how it went. - port</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="alternate" type="application/rss+xml" title="port - writing" href="https://portdeveloper.github.io/feed.xml">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "I asked Fable 5 to build a dex. Here's how it went.",
+      "description": "I gave Anthropic's Fable 5 the same test I gave a local Gemma 4 12B: build a dapp for Monad, full stack, and I keep score. It wrote the AMM from scratch, debugged its own tests, drove a browser to verify the swap, and the only thing it needed from me was 5 testnet MON.",
+      "image": "https://portdeveloper.github.io/assets/articles/i-asked-fable-5-to-build-a-dex/cover.png",
+      "url": "https://portdeveloper.github.io/articles/i-asked-fable-5-to-build-a-dex.html",
+      "datePublished": "2026-06-11T12:00:00Z",
+      "dateModified": "2026-06-11T12:00:00Z",
+      "inLanguage": "en",
+      "keywords": [
+        "fable 5",
+        "claude",
+        "monad",
+        "dex",
+        "amm",
+        "foundry",
+        "wagmi"
+      ],
+      "author": {
+        "@type": "Person",
+        "name": "port",
+        "alternateName": [
+          "portdeveloper",
+          "port_dev"
+        ],
+        "url": "https://portdeveloper.github.io/",
+        "sameAs": [
+          "https://github.com/portdeveloper",
+          "https://twitter.com/port_dev",
+          "https://x.com/port_dev"
+        ],
+        "jobTitle": "Developer Advocate",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Monad",
+          "url": "https://www.monad.xyz/"
+        }
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "port",
+        "url": "https://portdeveloper.github.io/"
+      },
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "port",
+        "url": "https://portdeveloper.github.io/"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://portdeveloper.github.io/articles/i-asked-fable-5-to-build-a-dex.html"
+      }
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://portdeveloper.github.io/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Writing",
+          "item": "https://portdeveloper.github.io/#writing"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "I asked Fable 5 to build a dex. Here's how it went.",
+          "item": "https://portdeveloper.github.io/articles/i-asked-fable-5-to-build-a-dex.html"
+        }
+      ]
+    }
+  </script>
+</head>
+<body class="article-page">
+  <main>
+    <header class="site-header">
+      <a class="site-title" href="../">port</a>
+      <nav>
+        <a href="../#about">About</a> &middot;
+        <a href="../#projects">Projects</a> &middot;
+        <a href="../#writing">Writing</a>
+      </nav>
+    </header>
+    <hr>
+
+    <article class="article">
+      <h1>I asked Fable 5 to build a dex. Here&rsquo;s how it went.</h1>
+      <p class="article-meta">June 11, 2026</p>
+
+      <figure>
+        <img src="../assets/articles/i-asked-fable-5-to-build-a-dex/cover.png" width="1280" height="720" decoding="async" fetchpriority="high" alt="Fable 5 builds a dex">
+        <figcaption>the dex it built, live on monad testnet</figcaption>
+      </figure>
+
+      <p>A few days ago I published the Gemma 4 12B test, where a free local model wrote a dapp and found zero of its own bugs. The obvious follow-up was to run the same test on a frontier model and keep the same score. So I asked Claude&rsquo;s new Fable 5 to build me a dex, full stack, contracts to frontend, in one autonomous pass. It needed me exactly once across the whole build, to send 5 testnet MON to an address it generated for itself.</p>
+
+      <blockquote>
+        <p>The Gemma test, with the same methodology and scoring: <a href="https://portdeveloper.github.io/articles/i-asked-gemma-4-12b-to-create-a-dapp.html">I asked Gemma 4 12B to create a dapp. Make no mistakes.</a></p>
+      </blockquote>
+
+      <h2>Same test, opposite end of the scale</h2>
+
+      <p>My prompt was the same kind of one-liner I gave Gemma. Here it is in full, this is everything the model got from me up front:</p>
+
+      <blockquote>
+        <p>You are claude fable 5, I want to measure your web3 dapp generation capabilities. How should we go about this? Usually I ask an agent to create a simple dex. Let&rsquo;s plan first.</p>
+      </blockquote>
+
+      <p>The first thing it did was go find my Gemma article and copy the methodology out of it (the same compile-test-deploy gauntlet, scored by how many times a human has to step in). Which means the scoring you&rsquo;re about to read was partly designed by the thing being scored. Make of that what you will.</p>
+
+      <p>It asked me a few planning questions before starting. I told it to verify everything locally first and then deploy to Monad testnet, asked for the full stack, and turned down milestone check-ins. Those three answers, plus the gas later, are the complete list of things I typed for the rest of the build. It also set one constraint on itself that I liked: write the AMM from scratch instead of forking Uniswap V2, because a fork only proves you can copy. Then it went off and I watched. One model the whole way through, no subagents and no fallback to anything smaller.</p>
+
+      <h2>The contracts compiled first try, and it debugged its own tests</h2>
+
+      <p>The Solidity came back as a proper v2-style constant product AMM (factory, pair, router, two demo tokens), no OpenZeppelin, and it compiled clean on the first attempt. The security work showed up without me asking for any of it, a reentrancy lock and fee-adjusted k-check in the pair, slippage and deadline guards on every router entry point. The one that got me was the minimum-liquidity burn against the first-depositor inflation attack, because it also wrote a test that actually runs the attack and checks the attacker ends up owning 1 share out of 1001. Here it is, trimmed:</p>
+
+      <pre><code class="language-solidity">vm.startPrank(attacker);
+router.addLiquidity(address(tokenA), address(tokenB), 1001, 1001, 0, 0, attacker, DEADLINE);
+Pair p = Pair(factory.getPair(address(tokenA), address(tokenB)));
+// Donate to inflate share price.
+tokenA.transfer(address(p), 10_000e18);
+tokenB.transfer(address(p), 10_000e18);
+p.sync();
+vm.stopPrank();
+
+// The attacker holds 1 of 1001 total shares: >99.9% of the donation
+// accrues to the locked dead shares, not the attacker.
+assertEq(p.balanceOf(attacker), 1);
+assertEq(p.totalSupply(), 1001);</code></pre>
+
+      <p>The comments are its own. I went looking for this pattern because it&rsquo;s the kind of thing auditors bill for, and it was already in the test file with the attack spelled out.</p>
+
+      <p>The test suite is where the Gemma comparison gets interesting. First run: 18 of 20 green. With Gemma, every red test turned into me reading the trace and spelling out the cause. Here the model read its own failure output, worked out that both failures were bugs in the test fixtures (its attacker tried to donate more tokens than it had left after seeding the pool, and one test expected the k-check revert when an earlier input check fires first), fixed the tests, and left the contracts alone. The full suite is 21 tests including fuzz runs, all passing, and the contracts never changed after their first draft.</p>
+
+      <h2>It read the library instead of dreaming it</h2>
+
+      <p><strong>Gemma&rsquo;s failure mode was inventing APIs. Fable&rsquo;s habit is checking them.</strong> wagmi 3 came out after most training data, and instead of writing imports from memory it grepped the actual <code>.d.ts</code> files in <code>node_modules</code> to confirm which hooks and connectors exist before using them. The frontend still wasn&rsquo;t flawless, the type checker caught two config-level mistakes (the Next.js scaffold targets ES2017, which breaks BigInt literals, and wagmi narrows chain ids in a way its first attempt didn&rsquo;t satisfy), but it found and fixed both from the compiler output. At one point its fix &ldquo;didn&rsquo;t work&rdquo; because TypeScript&rsquo;s incremental cache was serving stale errors, and it figured that out too instead of churning on correct code. That is precisely the trap the 12B fell into for three rounds.</p>
+
+      <h2>It built its own way to click the buttons</h2>
+
+      <p>My favorite part of the run. A headless agent can&rsquo;t operate MetaMask, so it gave the app a dev-only mock wallet wired to an Anvil account, wrote a Playwright script, and drove its own UI through the whole swap flow like a user, reading the numbers off the screen as it went. The quote shown in the interface for 100 WMON over a 10,000/20,000 pool was 197.431606 USDC, which matches the constant-product formula to all six displayed decimals. The script passed on its first run.</p>
+
+      <figure>
+        <img src="../assets/articles/i-asked-fable-5-to-build-a-dex/after-swap.png" width="1280" height="892" loading="lazy" decoding="async" alt="the dex UI after the headless swap">
+        <figcaption>the pool tab right after its own headless swap, 10100 / 19802.5683 reserves</figcaption>
+      </figure>
+
+      <p>The machine fought back a little (my fault, the box is a graveyard of old benchmark sessions 😭). A leftover Anvil from some previous run was still holding port 8545 with dirty nonces, so the first local deploy landed on wrong addresses, and ports 3000 through 3002 were busy too. It killed the stale node and moved its dev server to 3010 without any of that friction reaching me.</p>
+
+      <h2>One human, one job: gas</h2>
+
+      <p>For the testnet deploy it generated a fresh keypair, dropped the key in a gitignored <code>.env</code>, and asked me to fund the address. I sent 5 MON, which is the entire human contribution to this project. It deployed, seeded the pool, then verified the deployment the paranoid way: pulled 1,000 WMON from its own faucet contract and executed a real swap on testnet. 10 WMON in, 19.920139 USDC out, again exact against the formula. All five contracts came back <code>exact_match</code> on Monad&rsquo;s Sourcify, and about 1.4 MON of the 5 got spent. The whole run, from that first prompt to verified contracts on the explorer, took about 25 minutes of wall clock.</p>
+
+      <p>Final score, same scale as last time. Gemma needed a human to name every bug before it could fix one. Fable&rsquo;s sheet reads:</p>
+
+      <ul>
+        <li>contracts: compiled on the first attempt, never edited after their first draft</li>
+        <li>tests: 18/20 on the first run, both reds self-diagnosed as fixture bugs, 21/21 after one pass</li>
+        <li>frontend: two type-level mistakes, both found and fixed from compiler output</li>
+        <li>browser e2e it wrote for itself: passed first run</li>
+        <li>humans required: one, holding 5 testnet MON</li>
+      </ul>
+
+      <p>One honest caveat: the browser test signs through that mock connector, so real wallet UX, the network-switch prompt, a user rejecting a transaction, never got exercised end to end. The testnet swap went through <code>cast</code> rather than the UI. If there&rsquo;s a bug left in this thing, it&rsquo;s hiding in that gap. Next round I&rsquo;d make it drive a real wallet extension instead of the mock, and I&rsquo;d hand it something nastier than a textbook AMM (fee-on-transfer tokens are the classic way to break a pool like this one).</p>
+
+      <p>So my verdict, same framing as last time. The 12B was a fast junior who needed me standing over its shoulder. This worked more like a contractor I hired and never met: it scoped the job, built it, checked its own work, and billed me for materials. What&rsquo;s left of my job on a build like this is choosing what gets built and reviewing what comes back, and the caveat above is exactly why the reviewing half hasn&rsquo;t gone anywhere.</p>
+
+      <p>The dex is live at https://fableswap.vercel.app, connect a wallet on Monad testnet, grab demo tokens from the in-app faucet, and swap against the same pool it deployed. The contracts are verified on the explorer, factory at <code>0x514d4aD259143c4a6bE7C2399D46CBe8B1F9E2Db</code> (<a href="https://testnet.monadexplorer.com/address/0x514d4aD259143c4a6bE7C2399D46CBe8B1F9E2Db">explorer</a>), and the repo with the full run log is at https://github.com/portdeveloper/fableswap (the scorecard lives in <code>BENCHMARK.md</code>). If you run a model through this same gauntlet, I want to see the scorecard.</p>
+
+      <p>Questions?</p>
+    </article>
+  </main>
+</body>
+</html>

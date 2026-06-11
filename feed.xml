@@ -5,8 +5,15 @@
     <link>https://portdeveloper.github.io/</link>
     <description>Articles by port about developer tools, AI coding workflows, and Monad development.</description>
     <language>en</language>
-    <lastBuildDate>Fri, 05 Jun 2026 12:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 11 Jun 2026 12:00:00 GMT</lastBuildDate>
     <atom:link href="https://portdeveloper.github.io/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>I asked Fable 5 to build a dex. Here's how it went.</title>
+      <link>https://portdeveloper.github.io/articles/i-asked-fable-5-to-build-a-dex.html</link>
+      <guid isPermaLink="true">https://portdeveloper.github.io/articles/i-asked-fable-5-to-build-a-dex.html</guid>
+      <pubDate>Thu, 11 Jun 2026 12:00:00 GMT</pubDate>
+      <description>I gave Anthropic's Fable 5 the same test I gave a local Gemma 4 12B: build a dapp for Monad, full stack, and I keep score. It wrote the AMM from scratch, debugged its own tests, drove a browser to verify the swap, and the only thing it needed from me was 5 testnet MON.</description>
+    </item>
     <item>
       <title>I asked Gemma 4 12B to create a dapp. Make no mistakes.</title>
       <link>https://portdeveloper.github.io/articles/i-asked-gemma-4-12b-to-create-a-dapp.html</link>

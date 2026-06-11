@@ -378,7 +378,7 @@ PAGE = """<!DOCTYPE html>
 
     <article class="article">
       <h1>{title_html}</h1>
-      <p class="article-meta">{date_display} &middot; originally published on <a href="{op_url}">{op_platform}</a></p>
+      <p class="article-meta">{date_display}{op_suffix}</p>
 
       {body}
     </article>
@@ -396,7 +396,7 @@ def build_article(front: dict, body_md: str) -> tuple[str, str]:
     tags = front["tags"]
     keywords = front.get("keywords", tags + [section])
     cover = front["cover"]
-    op = front["originally_published"]
+    op = front.get("originally_published")
 
     cover_path = REPO / cover["src"]
     cw, ch = image_dims(cover_path)
@@ -487,8 +487,10 @@ def build_article(front: dict, body_md: str) -> tuple[str, str]:
         ldjson=_indent(json.dumps(ld, indent=2, ensure_ascii=False), 4),
         breadcrumb_ldjson=_indent(json.dumps(breadcrumb, indent=2, ensure_ascii=False), 4),
         date_display=_escape(front["date_display"]),
-        op_url=_attr_escape(op["url"]),
-        op_platform=_escape(op["platform"]),
+        op_suffix=(
+            f' &middot; originally published on <a href="{_attr_escape(op["url"])}">{_escape(op["platform"])}</a>'
+            if op else ""
+        ),
         body=body_html,
     )
     return slug, page
