@@ -22,6 +22,7 @@ cover:
   src: "assets/articles/i-asked-fable-5-to-build-a-dex/cover.png"
   alt: "Fable 5 builds a dex"
   og_alt: "Fable 5 builds a dex"
+devto_id: 3875212
 ---
 
 ![Fable 5 builds a dex](assets/articles/i-asked-fable-5-to-build-a-dex/cover.png "the dex it built, live on monad testnet")
