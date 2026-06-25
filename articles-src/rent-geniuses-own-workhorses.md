@@ -39,7 +39,7 @@ The second job is deciding which moments are actually any good. I send that to C
 
 ## when you do want the genius at home
 
-Sometimes you genuinely want a strong general model in your house, for privacy or just because you can. So I built a calculator for exactly that question: [shouldirunthis.xyz](https://shouldirunthis.xyz). It lists real models against real GPU prices and your own electricity rate, and tells you whether buying the rig beats paying for a subscription or an API.
+Sometimes you genuinely want a strong general model in your house, for privacy or just because you can. So I built a calculator for exactly that question: [shouldirunthis.xyz](https://shouldirunthis.xyz). It lists actual models with real GPU build prices and your own electricity rate, and tells you whether buying the rig beats paying for a subscription or an API.
 
 The short version is that putting a real general model in your house runs from about $1,100 for a small one on a laptop up past nineteen grand for a serious rig, and for normal usage the verdict reads the same the whole way down the table: just subscribe. If you're wiring up an agent it can't use your $200 monthly plan anyway, so you flip the "I use the API" toggle and the verdict turns into just use the API. The rig only starts winning once you're burning more than a subscription can hold, which most people never get near.
 
@@ -49,9 +49,9 @@ Which loops right back to extractoor: **my transcription workhorse isn't even on
 
 So how do you build a personal agent with all of this in your head? You split it by job. I put the always-on brain on a Raspberry Pi, the part that keeps my context and answers me whenever, because it has to run forever and barely touches the power bill. The heavy reasoning it can't do itself, it hands to the cloud. The boring repetitive grunt work can go to that dead 1050 sitting next to it.
 
-I stood up an OpenClaw agent on the Pi as that brain and pointed it at deepseek-v4-pro. To be clear, that model is not running on the Pi and it never could, it wants something like thirteen thousand dollars of GPUs and two and a half kilowatts to even boot, so the Pi is really just placing a cloud call. Which is the whole thesis happening to me by accident: the little Pi runs the show, the cloud does the thinking, and I never once tried to run the genius at home because I'd already built the thing that told me not to.
+I stood up an OpenClaw agent on the Pi as that brain and pointed it at deepseek-v4-pro. To be clear, that model is not running on the Pi and it never could, it wants something like thirteen thousand dollars of GPUs and two and a half kilowatts to even boot, so the Pi is really just placing a cloud call. Which is the whole thesis happening to me by accident: I never even tried to run the genius at home, because I'd already built the thing that told me not to.
 
-I had this running on my own scrappy orchestrator, Hermes, before I swapped OpenClaw in, and honestly the orchestrator barely matters. The architecture is the point: keep the always-on brain and the boring jobs on cheap hardware you own, and rent the cloud only for the work that's actually hard.
+I had this running on my own scrappy orchestrator, Hermes, before I swapped OpenClaw in, and honestly the orchestrator barely matters. The split is what matters, and it holds up no matter which orchestrator you drop in.
 
 ## so, should you run it locally?
 
