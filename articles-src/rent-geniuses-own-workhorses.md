@@ -41,9 +41,9 @@ The second job is deciding which moments are actually any good. I send that to C
 
 Sometimes you genuinely want a strong general model in your house, for privacy or just because you can. So I built a calculator for exactly that question: [shouldirunthis.xyz](https://shouldirunthis.xyz). It lists real models against real GPU prices and your own electricity rate, and tells you whether buying the rig beats paying for a subscription or an API.
 
-The short version is that the cheapest box which runs a capable general model is around a $2,600 build, and it climbs past nineteen grand once you want something serious. For normal usage the verdict reads the same the whole way down the table: just subscribe. If you're wiring up an agent it can't use your $200 monthly plan anyway, so you flip the "I use the API" toggle and the verdict turns into just use the API. The rig only starts winning once you're burning more than a subscription can hold, which most people never get near.
+The short version is that putting a real general model in your house runs from about $1,100 for a small one on a laptop up past nineteen grand for a serious rig, and for normal usage the verdict reads the same the whole way down the table: just subscribe. If you're wiring up an agent it can't use your $200 monthly plan anyway, so you flip the "I use the API" toggle and the verdict turns into just use the API. The rig only starts winning once you're burning more than a subscription can hold, which most people never get near.
 
-Which loops right back to extractoor: **my transcription workhorse isn't even on that chart.** A narrow job doesn't need a $2,600 brain, it needs the laptop you were about to throw out.
+Which loops right back to extractoor: **my transcription workhorse isn't even on that chart.** A GTX 1050 can't run a single general model the calculator lists. A narrow job runs fine on the hardware everyone else is throwing out.
 
 ## wiring it into one personal agent
 
