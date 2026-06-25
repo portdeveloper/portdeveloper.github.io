@@ -57,6 +57,14 @@ So when shouldirunthis tells you to subscribe, that's the math talking, and the 
 
 None of this touches the workhorse half. The narrow job on my dead 1050 won't care what a Claude plan costs next year, because it was never renting anything to begin with.
 
+## the other reason to own
+
+Cost is one reason to own a workhorse. The other is that some data has no business leaving your machine: a private call, a folder of internal docs, anything you would never paste into someone else's API. All of it is fine to hand to a model running on hardware you control.
+
+This is where owning stops being only about money. The same dead laptop that transcribes my videos would chew through a sensitive recording just as happily, and it never leaves the room. I don't have to trust anyone's privacy policy or wonder what a retention setting actually does. The recording goes into a model on my desk and the text comes back out, and that's the entire data trail.
+
+And none of this shows up in the calculator. shouldirunthis can tell you renting is cheaper every single time, and for the work I keep at home that verdict is just irrelevant. Privacy isn't a number it knows how to weigh.
+
 ## wiring it into one personal agent
 
 So how do you build a personal agent with all of this in your head? You split it by job. I put the always-on brain on a Raspberry Pi, the part that keeps my context and answers me whenever, because it has to run forever and barely touches the power bill. The heavy reasoning it can't do itself, it hands to the cloud. The boring repetitive grunt work can go to that dead 1050 sitting next to it.
