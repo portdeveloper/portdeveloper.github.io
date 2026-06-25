@@ -45,6 +45,18 @@ The short version is that putting a real general model in your house runs from a
 
 Which loops right back to extractoor: **my transcription workhorse isn't even on that chart.** A GTX 1050 can't run a single general model the calculator lists. A narrow job runs fine on the hardware everyone else is throwing out.
 
+## the rent is subsidized, for now
+
+There's a reason the calculator keeps telling you to subscribe: right now the labs are selling the genius for far less than it costs them to run. [SemiAnalysis](https://x.com/SemiAnalysis_/status/2064815044085318040) bought every Anthropic and OpenAI plan in June and hammered them with coding tasks until the weekly limits cut out:
+
+> Recently, we purchased one of each Anthropic/OpenAI subscription plan and randomly ran long horizon coding tasks until we exhausted the weekly limit. It's widely believed that a $200/month plan maxes out at ~$2000/month worth of tokens (assuming API pricing). However, we found...
+
+The real number was nowhere near $2,000: a maxed-out Claude Max plan came out around $8,000 of API-priced tokens, and ChatGPT's top tier landed near $14,000. For a heavy user the subscription runs something like 40 to 70 times cheaper than paying the API rate for the same work.
+
+So when shouldirunthis tells you to subscribe, that's the math talking, and the math only works because someone else is eating the bill. Subsidies get repriced once the people writing the checks want their margins back, and when the rent goes up some of those home rigs start to pencil out.
+
+None of this touches the workhorse half. The narrow job on my dead 1050 won't care what a Claude plan costs next year, because it was never renting anything to begin with.
+
 ## wiring it into one personal agent
 
 So how do you build a personal agent with all of this in your head? You split it by job. I put the always-on brain on a Raspberry Pi, the part that keeps my context and answers me whenever, because it has to run forever and barely touches the power bill. The heavy reasoning it can't do itself, it hands to the cloud. The boring repetitive grunt work can go to that dead 1050 sitting next to it.
