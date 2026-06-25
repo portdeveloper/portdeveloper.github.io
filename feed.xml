@@ -5,8 +5,15 @@
     <link>https://portdeveloper.github.io/</link>
     <description>Articles by port about developer tools, AI coding workflows, and Monad development.</description>
     <language>en</language>
-    <lastBuildDate>Thu, 11 Jun 2026 12:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 25 Jun 2026 12:00:00 GMT</lastBuildDate>
     <atom:link href="https://portdeveloper.github.io/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>rent geniuses, own workhorses</title>
+      <link>https://portdeveloper.github.io/articles/rent-geniuses-own-workhorses.html</link>
+      <guid isPermaLink="true">https://portdeveloper.github.io/articles/rent-geniuses-own-workhorses.html</guid>
+      <pubDate>Thu, 25 Jun 2026 12:00:00 GMT</pubDate>
+      <description>I run AI two opposite ways inside one app: Whisper transcription on a dead GTX 1050 laptop, and Claude in the cloud for the judgment calls. That split is the whole answer to 'should I run AI locally?'. You rent geniuses and you own workhorses, and I built a calculator (shouldirunthis.xyz) that proves owning the genius isn't worth it.</description>
+    </item>
     <item>
       <title>I asked Fable 5 to build a dex. Here's how it went.</title>
       <link>https://portdeveloper.github.io/articles/i-asked-fable-5-to-build-a-dex.html</link>
