@@ -33,9 +33,9 @@ For anything broad and smart you rent it from the cloud. For one narrow, repetit
 
 I built a thing called [extractoor](https://extractoor.com). You hand it a long video and it pulls out the clips worth posting. Under the hood it reaches for AI twice, and the two jobs taught me opposite lessons.
 
-The first job is transcription, turning the audio into text. It's narrow and well defined, and a specialized model like Whisper is genuinely great at it. I run Whisper locally on a janky old laptop with a GTX 1050 in it, three gigs of VRAM, the kind of GPU you'd find in a drawer and not bother selling. No rate limits, no per-minute bill, it just churns through audio while I do something else.
+The first job is transcription, turning the audio into text. It's narrow and well defined, and a specialized model like Whisper is genuinely great at it. I run Whisper locally on a janky old laptop with a GTX 1050 in it. I can leave hours of audio grinding through it and the only bill is the electricity.
 
-The second job is deciding which moments are actually any good. That's reading and taste, the kind of judgment you can't write rules for. I send that to Claude in the cloud, because nothing I can run at home comes anywhere close. Same app, same me, and "should I run this locally?" came back with two different answers because the shape of the work was different each time.
+The second job is deciding which moments are actually any good. I send that to Claude in the cloud, because nothing I can run at home comes anywhere close.
 
 ## when you do want the genius at home
 
