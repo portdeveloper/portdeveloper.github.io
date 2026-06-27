@@ -371,7 +371,8 @@ PAGE = """<!DOCTYPE html>
       <nav>
         <a href="../#about">About</a> &middot;
         <a href="../#projects">Projects</a> &middot;
-        <a href="../#writing">Writing</a>
+        <a href="../#writing">Writing</a> &middot;
+        <a href="../#events">Events and talks</a>
       </nav>
     </header>
     <hr>
