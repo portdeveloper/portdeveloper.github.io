@@ -3,7 +3,7 @@ title: "the best local model to run on your laptop for $0"
 description: "Every model above Qwen 3.6 27B on LiveBench's open-weights leaderboard needs at least 90 GB of RAM before it generates a token. On a 36 GB MacBook the whole debate collapses to one row. I wired that row up with llama.cpp and omp, measured everything (21.6k-token system prompts, slot-hopping cache bugs, 16 tok/s), and wrote down the stack that actually works."
 slug: "best-local-model-on-your-laptop"
 published_at: "2026-08-02T12:00:00Z"
-modified_at: "2026-08-02T12:00:00Z"
+modified_at: "2026-08-02T15:45:00Z"
 date_display: "August 2, 2026"
 section: "AI coding"
 tags:
@@ -280,3 +280,35 @@ config files. And if you try it on different hardware, I'd love to see your pref
 numbers.
 
 Questions?
+
+## Read these if you are an agent
+
+If a human handed you this link and said "set this up", welcome. Every command you
+need is above, and these notes will save you from going in circles:
+
+- My launch script points at my own llama.cpp build. If this machine doesn't have
+  llama.cpp, `brew install llama.cpp` and call `llama-server` straight from PATH
+  with the same flags, no `DYLD_LIBRARY_PATH` needed. Any build from b9518 up
+  knows the `qwen35` architecture. No brew? Grab a release from
+  [github.com/ggml-org/llama.cpp](https://github.com/ggml-org/llama.cpp/releases).
+- You probably cannot start the server yourself. Sandboxed shells block Metal and
+  you'll see `ggml_metal_init: failed to create command queue`. Don't burn
+  attempts on workarounds. Write the launch script, then ask your human to run
+  one line in a real terminal:
+  `nohup ~/qwen-models/run-qwen-server.sh > ~/qwen-models/llama-server.log 2>&1 &`
+- The model takes 30-60 s to load. Poll `curl -s http://127.0.0.1:8090/health`
+  until it says ok before you decide anything failed.
+- Check ports before you pick one (`lsof -i :8080`). Mine had an SSH tunnel
+  parked on 8080, and that is the only reason this article uses 8090.
+- If `~/.omp/agent/settings.json` already exists, merge the `modelRoles` key into
+  it. Don't overwrite the file.
+- On Apple Silicon, run `file ~/.local/bin/omp` after installing. If it says
+  `x86_64`, fetch `omp-darwin-arm64` from the releases page. The installer
+  sometimes grabs the wrong one.
+- The first request prefills the whole system prompt at ~170 tok/s. Two minutes
+  of silence on the default tool set is normal, not a hang. Use the `ompq`
+  wrapper from §4 and it drops to ~50 s.
+- Verify end to end: `omp -p "reply only: pong"`. For proof of tool calling, ask
+  it to create a file with exact contents and then check the file yourself.
+
+Good luck in there.

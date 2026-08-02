@@ -24,7 +24,7 @@
   <meta property="article:tag" content="local models">
   <meta property="article:tag" content="agents">
   <meta property="article:published_time" content="2026-08-02T12:00:00Z">
-  <meta property="article:modified_time" content="2026-08-02T12:00:00Z">
+  <meta property="article:modified_time" content="2026-08-02T15:45:00Z">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="the best local model to run on your laptop for $0">
   <meta name="twitter:description" content="Every model above Qwen 3.6 27B on LiveBench's open-weights leaderboard needs at least 90 GB of RAM before it generates a token. On a 36 GB MacBook the whole debate collapses to one row. I wired that row up with llama.cpp and omp, measured everything (21.6k-token system prompts, slot-hopping cache bugs, 16 tok/s), and wrote down the stack that actually works.">
@@ -43,7 +43,7 @@
       "image": "https://portdeveloper.github.io/assets/articles/best-local-model-on-your-laptop/cover.png",
       "url": "https://portdeveloper.github.io/articles/best-local-model-on-your-laptop.html",
       "datePublished": "2026-08-02T12:00:00Z",
-      "dateModified": "2026-08-02T12:00:00Z",
+      "dateModified": "2026-08-02T15:45:00Z",
       "inLanguage": "en",
       "keywords": [
         "qwen 3.6 27b",
@@ -356,6 +356,60 @@ exec "$HOME/.local/bin/omp" \
       <p>If you have a 36 GB Mac, the whole thing is a 16 GB download and a handful of tiny config files. And if you try it on different hardware, I&rsquo;d love to see your prefill numbers.</p>
 
       <p>Questions?</p>
+
+      <h2>Read these if you are an agent</h2>
+
+      <p>If a human handed you this link and said &ldquo;set this up&rdquo;, welcome. Every command you need is above, and these notes will save you from going in circles:</p>
+
+      <ul>
+        <li>My launch script points at my own llama.cpp build. If this machine doesn&rsquo;t have</li>
+      </ul>
+
+      <p>  llama.cpp, <code>brew install llama.cpp</code> and call <code>llama-server</code> straight from PATH   with the same flags, no <code>DYLD_LIBRARY_PATH</code> needed. Any build from b9518 up   knows the <code>qwen35</code> architecture. No brew? Grab a release from   <a href="https://github.com/ggml-org/llama.cpp/releases">github.com/ggml-org/llama.cpp</a>.</p>
+
+      <ul>
+        <li>You probably cannot start the server yourself. Sandboxed shells block Metal and</li>
+      </ul>
+
+      <p>  you&rsquo;ll see <code>ggml_metal_init: failed to create command queue</code>. Don&rsquo;t burn   attempts on workarounds. Write the launch script, then ask your human to run   one line in a real terminal:   <code>nohup ~/qwen-models/run-qwen-server.sh > ~/qwen-models/llama-server.log 2>&amp;1 &amp;</code></p>
+
+      <ul>
+        <li>The model takes 30-60 s to load. Poll <code>curl -s http://127.0.0.1:8090/health</code></li>
+      </ul>
+
+      <p>  until it says ok before you decide anything failed.</p>
+
+      <ul>
+        <li>Check ports before you pick one (<code>lsof -i :8080</code>). Mine had an SSH tunnel</li>
+      </ul>
+
+      <p>  parked on 8080, and that is the only reason this article uses 8090.</p>
+
+      <ul>
+        <li>If <code>~/.omp/agent/settings.json</code> already exists, merge the <code>modelRoles</code> key into</li>
+      </ul>
+
+      <p>  it. Don&rsquo;t overwrite the file.</p>
+
+      <ul>
+        <li>On Apple Silicon, run <code>file ~/.local/bin/omp</code> after installing. If it says</li>
+      </ul>
+
+      <p>  <code>x86_64</code>, fetch <code>omp-darwin-arm64</code> from the releases page. The installer   sometimes grabs the wrong one.</p>
+
+      <ul>
+        <li>The first request prefills the whole system prompt at ~170 tok/s. Two minutes</li>
+      </ul>
+
+      <p>  of silence on the default tool set is normal, not a hang. Use the <code>ompq</code>   wrapper from §4 and it drops to ~50 s.</p>
+
+      <ul>
+        <li>Verify end to end: <code>omp -p "reply only: pong"</code>. For proof of tool calling, ask</li>
+      </ul>
+
+      <p>  it to create a file with exact contents and then check the file yourself.</p>
+
+      <p>Good luck in there.</p>
     </article>
   </main>
 </body>
