@@ -146,7 +146,7 @@
         <figcaption>every model above qwen needs at least 90 GB before it says a single token</figcaption>
       </figure>
 
-      <p>*Scores: LiveBench open-weights filter, accessed 2026-08-02. Parameter counts: each model&rsquo;s safetensors metadata on Hugging Face. Q4 weight sizes extrapolated from the measured 28B → 16 GB ratio of Unsloth&rsquo;s Q4_K_XL quant.*</p>
+      <em>Scores: LiveBench open-weights filter, accessed 2026-08-02. Parameter counts: each model's safetensors metadata on Hugging Face. Q4 weight sizes extrapolated from the measured 28B → 16 GB ratio of Unsloth's Q4_K_XL quant.</em>
 
       <p>Every model above Qwen 3.6 27B needs at least 90 GB of RAM. The gap to the next-smallest model is <strong>5.6×</strong>. If your machine is a normal high-end laptop, the &ldquo;best open model&rdquo; debate collapses to only one. LiveBench prices hosted Qwen 3.6 27B at $0.202 per successful task; my laptop serves it for the cost of electricity, with nothing going out of my lappy.</p>
 
@@ -205,22 +205,10 @@ exec env DYLD_LIBRARY_PATH="$L" "$L/llama-server" \
       <p>Three of these flags are the difference between &ldquo;works&rdquo; and &ldquo;unusable&rdquo;, and none of them is the default:</p>
 
       <ul>
-        <li><code>--jinja</code> is <strong>required for agent use.</strong> It enables the model&rsquo;s own chat template</li>
+        <li><code>--jinja</code> is <strong>required for agent use.</strong> It enables the model&rsquo;s own chat template so tool calling works. Without it, tool calls break in ways that look like model stupidity.</li>
+        <li><code>-np 1</code> might <strong>be a problem.</strong> The default (<code>-np -1</code>, auto) creates multiple server slots, each with its own prompt cache. I watched requests hop from slot 3 to slot 2 in the logs, and every hop re-processes the entire system prompt from scratch (2+ minutes at omp&rsquo;s default size). Give it one slot.</li>
+        <li><code>-c 49152</code> is the context size. omp&rsquo;s default system prompt alone is ~21.6k tokens (§4). KV cache for this model is cheap (a measured ~150 MB at 21.6k tokens), so 48k costs well under 500 MB on top of the 16 GB of weights. Don&rsquo;t go below ~32k with omp. The model itself trains to 262k context, thus with more RAM the ceiling is higher.</li>
       </ul>
-
-      <p>  so tool calling works. Without it, tool calls break in ways that look like model   stupidity.</p>
-
-      <ul>
-        <li><code>-np 1</code> might <strong>be a problem.</strong> The default (<code>-np -1</code>, auto) creates multiple</li>
-      </ul>
-
-      <p>  server slots, each with its own prompt cache. I watched requests hop from slot 3   to slot 2 in the logs, and every hop re-processes the entire system prompt from   scratch (2+ minutes at omp&rsquo;s default size). Give it one slot.</p>
-
-      <ul>
-        <li><code>-c 49152</code> is the context size. omp&rsquo;s default system prompt alone is ~21.6k</li>
-      </ul>
-
-      <p>  tokens (§4). KV cache for this model is cheap (a measured ~150 MB at 21.6k   tokens), so 48k costs well under 500 MB on top of the 16 GB of weights. Don&rsquo;t go   below ~32k with omp. The model itself trains to 262k context, thus with more RAM   the ceiling is higher.</p>
 
       <p>The small print: <code>-a qwen3.6-27b</code> gives the API a clean model id, and <code>-ngl 99</code> is full Metal offload. <code>--port 8090</code> is only there because 8080 (llama.cpp&rsquo;s default) was taken by an SSH tunnel on my machine. If your 8080 is free, drop the flag and the <code>baseUrl</code> override in §3, and omp discovers the server with zero config.</p>
 
@@ -299,55 +287,21 @@ exec "$HOME/.local/bin/omp" \
       <h2>Tips</h2>
 
       <ul>
-        <li><strong>Hybrid roles.</strong> Keep <code>default</code> local and point <code>slow</code> at a cloud model for hard</li>
+        <li><strong>Hybrid roles.</strong> Keep <code>default</code> local and point <code>slow</code> at a cloud model for hard reasoning: <code>omp --slow &lt;model></code>.</li>
+        <li><strong>The prompt cache is per-server-process.</strong> Restarting llama-server means the next turn re-prefills. Leave the server running.</li>
+        <li><strong>Skip the extras locally.</strong> Advisor (a second model reviewing every turn) and the memory/tiny-model features default off or online. Leave them that way on a 27B.</li>
+        <li><strong>Speculative decoding</strong> (<code>--model-draft</code>) could lift generation speed further, but there&rsquo;s no small same-vocab draft model for Qwen3.6 yet, and at 16-17 tok/s generation it isn&rsquo;t the bottleneck anyway.</li>
       </ul>
-
-      <p>  reasoning: <code>omp --slow &lt;model></code>.</p>
-
-      <ul>
-        <li><strong>The prompt cache is per-server-process.</strong> Restarting llama-server means the next</li>
-      </ul>
-
-      <p>  turn re-prefills. Leave the server running.</p>
-
-      <ul>
-        <li><strong>Skip the extras locally.</strong> Advisor (a second model reviewing every turn) and</li>
-      </ul>
-
-      <p>  the memory/tiny-model features default off or online. Leave them that way on a   27B.</p>
-
-      <ul>
-        <li><strong>Speculative decoding</strong> (<code>--model-draft</code>) could lift generation speed further,</li>
-      </ul>
-
-      <p>  but there&rsquo;s no small same-vocab draft model for Qwen3.6 yet, and at 16-17 tok/s   generation it isn&rsquo;t the bottleneck anyway.</p>
 
       <h2>What I didn&rsquo;t pick, and why</h2>
 
       <ul>
-        <li><strong>A bigger model</strong>: see the leaderboard table at the top. The next step up is</li>
-      </ul>
-
-      <p>  158B, which means ~90 GB of weights at Q4 and a 128 GB Mac Studio or a DGX Spark?</p>
-
-      <ul>
-        <li><strong>A 10k-15k rig</strong>:If you have the</li>
-      </ul>
-
-      <p>  budget, start with the <a href="https://x.com/0xSero">@0xSero</a> writeup from the top of   this article and go run the frontier at home. I wrote this for the rest of us who can&rsquo;t have a separate budget for buying a rig.</p>
-
-      <ul>
-        <li><strong>Ollama / LM Studio</strong>: fine servers, but you give up direct control of the flags</li>
-      </ul>
-
-      <p>  that made this stack work (<code>-np 1</code>, <code>--jinja</code>, exact context). Ollama&rsquo;s default   4k context truncates agent prompts without telling you.</p>
-
-      <ul>
+        <li><strong>A bigger model</strong>: see the leaderboard table at the top. The next step up is 158B, which means ~90 GB of weights at Q4 and a 128 GB Mac Studio or a DGX Spark?</li>
+        <li><strong>A 10k-15k rig</strong>:If you have the budget, start with the <a href="https://x.com/0xSero">@0xSero</a> writeup from the top of this article and go run the frontier at home. I wrote this for the rest of us who can&rsquo;t have a separate budget for buying a rig.</li>
+        <li><strong>Ollama / LM Studio</strong>: fine servers, but you give up direct control of the flags that made this stack work (<code>-np 1</code>, <code>--jinja</code>, exact context). Ollama&rsquo;s default 4k context truncates agent prompts without telling you.</li>
         <li><strong>Unsloth Studio</strong>: worked, but prints a new API key on every restart, you need to change harness config every time. llama-server is keyless. If anyone from Unsloth is reading this please correct me if I am wrong!</li>
-        <li><strong>Vanilla Pi</strong>: lighter system prompt, but omp&rsquo;s weak-model edit tuning is worth</li>
+        <li><strong>Vanilla Pi</strong>: lighter system prompt, but omp&rsquo;s weak-model edit tuning is worth it.</li>
       </ul>
-
-      <p>  it.</p>
 
       <h2>Check my numbers</h2>
 
@@ -362,52 +316,15 @@ exec "$HOME/.local/bin/omp" \
       <p>If a human handed you this link and said &ldquo;set this up&rdquo;, welcome. Every command you need is above, and these notes will save you from going in circles:</p>
 
       <ul>
-        <li>My launch script points at my own llama.cpp build. If this machine doesn&rsquo;t have</li>
+        <li>My launch script points at my own llama.cpp build. If this machine doesn&rsquo;t have llama.cpp, <code>brew install llama.cpp</code> and call <code>llama-server</code> straight from PATH with the same flags, no <code>DYLD_LIBRARY_PATH</code> needed. Any build from b9518 up knows the <code>qwen35</code> architecture. No brew? Grab a release from <a href="https://github.com/ggml-org/llama.cpp/releases">github.com/ggml-org/llama.cpp</a>.</li>
+        <li>You probably cannot start the server yourself. Sandboxed shells block Metal and you&rsquo;ll see <code>ggml_metal_init: failed to create command queue</code>. Don&rsquo;t burn attempts on workarounds. Write the launch script, then ask your human to run one line in a real terminal: <code>nohup ~/qwen-models/run-qwen-server.sh > ~/qwen-models/llama-server.log 2>&amp;1 &amp;</code></li>
+        <li>The model takes 30-60 s to load. Poll <code>curl -s http://127.0.0.1:8090/health</code> until it says ok before you decide anything failed.</li>
+        <li>Check ports before you pick one (<code>lsof -i :8080</code>). Mine had an SSH tunnel parked on 8080, and that is the only reason this article uses 8090.</li>
+        <li>If <code>~/.omp/agent/settings.json</code> already exists, merge the <code>modelRoles</code> key into it. Don&rsquo;t overwrite the file.</li>
+        <li>On Apple Silicon, run <code>file ~/.local/bin/omp</code> after installing. If it says <code>x86_64</code>, fetch <code>omp-darwin-arm64</code> from the releases page. The installer sometimes grabs the wrong one.</li>
+        <li>The first request prefills the whole system prompt at ~170 tok/s. Two minutes of silence on the default tool set is normal, not a hang. Use the <code>ompq</code> wrapper from §4 and it drops to ~50 s.</li>
+        <li>Verify end to end: <code>omp -p "reply only: pong"</code>. For proof of tool calling, ask it to create a file with exact contents and then check the file yourself.</li>
       </ul>
-
-      <p>  llama.cpp, <code>brew install llama.cpp</code> and call <code>llama-server</code> straight from PATH   with the same flags, no <code>DYLD_LIBRARY_PATH</code> needed. Any build from b9518 up   knows the <code>qwen35</code> architecture. No brew? Grab a release from   <a href="https://github.com/ggml-org/llama.cpp/releases">github.com/ggml-org/llama.cpp</a>.</p>
-
-      <ul>
-        <li>You probably cannot start the server yourself. Sandboxed shells block Metal and</li>
-      </ul>
-
-      <p>  you&rsquo;ll see <code>ggml_metal_init: failed to create command queue</code>. Don&rsquo;t burn   attempts on workarounds. Write the launch script, then ask your human to run   one line in a real terminal:   <code>nohup ~/qwen-models/run-qwen-server.sh > ~/qwen-models/llama-server.log 2>&amp;1 &amp;</code></p>
-
-      <ul>
-        <li>The model takes 30-60 s to load. Poll <code>curl -s http://127.0.0.1:8090/health</code></li>
-      </ul>
-
-      <p>  until it says ok before you decide anything failed.</p>
-
-      <ul>
-        <li>Check ports before you pick one (<code>lsof -i :8080</code>). Mine had an SSH tunnel</li>
-      </ul>
-
-      <p>  parked on 8080, and that is the only reason this article uses 8090.</p>
-
-      <ul>
-        <li>If <code>~/.omp/agent/settings.json</code> already exists, merge the <code>modelRoles</code> key into</li>
-      </ul>
-
-      <p>  it. Don&rsquo;t overwrite the file.</p>
-
-      <ul>
-        <li>On Apple Silicon, run <code>file ~/.local/bin/omp</code> after installing. If it says</li>
-      </ul>
-
-      <p>  <code>x86_64</code>, fetch <code>omp-darwin-arm64</code> from the releases page. The installer   sometimes grabs the wrong one.</p>
-
-      <ul>
-        <li>The first request prefills the whole system prompt at ~170 tok/s. Two minutes</li>
-      </ul>
-
-      <p>  of silence on the default tool set is normal, not a hang. Use the <code>ompq</code>   wrapper from §4 and it drops to ~50 s.</p>
-
-      <ul>
-        <li>Verify end to end: <code>omp -p "reply only: pong"</code>. For proof of tool calling, ask</li>
-      </ul>
-
-      <p>  it to create a file with exact contents and then check the file yourself.</p>
 
       <p>Good luck in there.</p>
     </article>

@@ -35,9 +35,7 @@ models you could run on a MacBook:
 
 ![bar chart of the top open-weights models on LiveBench: overall score and memory needed at Q4, with Qwen 3.6 27B highlighted as the only row that fits in 36 GB](assets/articles/best-local-model-on-your-laptop/cover.png "every model above qwen needs at least 90 GB before it says a single token")
 
-*Scores: LiveBench open-weights filter, accessed 2026-08-02. Parameter counts: each
-model's safetensors metadata on Hugging Face. Q4 weight sizes extrapolated from the
-measured 28B → 16 GB ratio of Unsloth's Q4_K_XL quant.*
+<em>Scores: LiveBench open-weights filter, accessed 2026-08-02. Parameter counts: each model's safetensors metadata on Hugging Face. Q4 weight sizes extrapolated from the measured 28B → 16 GB ratio of Unsloth's Q4_K_XL quant.</em>
 
 Every model above Qwen 3.6 27B needs at least 90 GB of RAM. The gap to the
 next-smallest model is **5.6×**. If your machine is a normal high-end laptop, the
@@ -124,18 +122,9 @@ nohup ~/qwen-models/run-qwen-server.sh > ~/qwen-models/llama-server.log 2>&1 &
 Three of these flags are the difference between "works" and "unusable", and none
 of them is the default:
 
-- `--jinja` is **required for agent use.** It enables the model's own chat template
-  so tool calling works. Without it, tool calls break in ways that look like model
-  stupidity.
-- `-np 1` might **be a problem.** The default (`-np -1`, auto) creates multiple
-  server slots, each with its own prompt cache. I watched requests hop from slot 3
-  to slot 2 in the logs, and every hop re-processes the entire system prompt from
-  scratch (2+ minutes at omp's default size). Give it one slot.
-- `-c 49152` is the context size. omp's default system prompt alone is ~21.6k
-  tokens (§4). KV cache for this model is cheap (a measured ~150 MB at 21.6k
-  tokens), so 48k costs well under 500 MB on top of the 16 GB of weights. Don't go
-  below ~32k with omp. The model itself trains to 262k context, thus with more RAM
-  the ceiling is higher.
+- `--jinja` is **required for agent use.** It enables the model's own chat template so tool calling works. Without it, tool calls break in ways that look like model stupidity.
+- `-np 1` might **be a problem.** The default (`-np -1`, auto) creates multiple server slots, each with its own prompt cache. I watched requests hop from slot 3 to slot 2 in the logs, and every hop re-processes the entire system prompt from scratch (2+ minutes at omp's default size). Give it one slot.
+- `-c 49152` is the context size. omp's default system prompt alone is ~21.6k tokens (§4). KV cache for this model is cheap (a measured ~150 MB at 21.6k tokens), so 48k costs well under 500 MB on top of the 16 GB of weights. Don't go below ~32k with omp. The model itself trains to 262k context, thus with more RAM the ceiling is higher.
 
 The small print: `-a qwen3.6-27b` gives the API a clean model id, and `-ngl 99` is
 full Metal offload. `--port 8090` is only there because 8080 (llama.cpp's default)
@@ -241,30 +230,18 @@ Almost all of the waiting here is prefill.
 
 ## Tips
 
-- **Hybrid roles.** Keep `default` local and point `slow` at a cloud model for hard
-  reasoning: `omp --slow <model>`.
-- **The prompt cache is per-server-process.** Restarting llama-server means the next
-  turn re-prefills. Leave the server running.
-- **Skip the extras locally.** Advisor (a second model reviewing every turn) and
-  the memory/tiny-model features default off or online. Leave them that way on a
-  27B.
-- **Speculative decoding** (`--model-draft`) could lift generation speed further,
-  but there's no small same-vocab draft model for Qwen3.6 yet, and at 16-17 tok/s
-  generation it isn't the bottleneck anyway.
+- **Hybrid roles.** Keep `default` local and point `slow` at a cloud model for hard reasoning: `omp --slow <model>`.
+- **The prompt cache is per-server-process.** Restarting llama-server means the next turn re-prefills. Leave the server running.
+- **Skip the extras locally.** Advisor (a second model reviewing every turn) and the memory/tiny-model features default off or online. Leave them that way on a 27B.
+- **Speculative decoding** (`--model-draft`) could lift generation speed further, but there's no small same-vocab draft model for Qwen3.6 yet, and at 16-17 tok/s generation it isn't the bottleneck anyway.
 
 ## What I didn't pick, and why
 
-- **A bigger model**: see the leaderboard table at the top. The next step up is
-  158B, which means ~90 GB of weights at Q4 and a 128 GB Mac Studio or a DGX Spark?
-- **A 10k-15k rig**:If you have the
-  budget, start with the [@0xSero](https://x.com/0xSero) writeup from the top of
-  this article and go run the frontier at home. I wrote this for the rest of us who can't have a separate budget for buying a rig.
-- **Ollama / LM Studio**: fine servers, but you give up direct control of the flags
-  that made this stack work (`-np 1`, `--jinja`, exact context). Ollama's default
-  4k context truncates agent prompts without telling you.
+- **A bigger model**: see the leaderboard table at the top. The next step up is 158B, which means ~90 GB of weights at Q4 and a 128 GB Mac Studio or a DGX Spark?
+- **A 10k-15k rig**:If you have the budget, start with the [@0xSero](https://x.com/0xSero) writeup from the top of this article and go run the frontier at home. I wrote this for the rest of us who can't have a separate budget for buying a rig.
+- **Ollama / LM Studio**: fine servers, but you give up direct control of the flags that made this stack work (`-np 1`, `--jinja`, exact context). Ollama's default 4k context truncates agent prompts without telling you.
 - **Unsloth Studio**: worked, but prints a new API key on every restart, you need to change harness config every time. llama-server is keyless. If anyone from Unsloth is reading this please correct me if I am wrong!
-- **Vanilla Pi**: lighter system prompt, but omp's weak-model edit tuning is worth
-  it.
+- **Vanilla Pi**: lighter system prompt, but omp's weak-model edit tuning is worth it.
 
 ## Check my numbers
 
@@ -286,29 +263,13 @@ Questions?
 If a human handed you this link and said "set this up", welcome. Every command you
 need is above, and these notes will save you from going in circles:
 
-- My launch script points at my own llama.cpp build. If this machine doesn't have
-  llama.cpp, `brew install llama.cpp` and call `llama-server` straight from PATH
-  with the same flags, no `DYLD_LIBRARY_PATH` needed. Any build from b9518 up
-  knows the `qwen35` architecture. No brew? Grab a release from
-  [github.com/ggml-org/llama.cpp](https://github.com/ggml-org/llama.cpp/releases).
-- You probably cannot start the server yourself. Sandboxed shells block Metal and
-  you'll see `ggml_metal_init: failed to create command queue`. Don't burn
-  attempts on workarounds. Write the launch script, then ask your human to run
-  one line in a real terminal:
-  `nohup ~/qwen-models/run-qwen-server.sh > ~/qwen-models/llama-server.log 2>&1 &`
-- The model takes 30-60 s to load. Poll `curl -s http://127.0.0.1:8090/health`
-  until it says ok before you decide anything failed.
-- Check ports before you pick one (`lsof -i :8080`). Mine had an SSH tunnel
-  parked on 8080, and that is the only reason this article uses 8090.
-- If `~/.omp/agent/settings.json` already exists, merge the `modelRoles` key into
-  it. Don't overwrite the file.
-- On Apple Silicon, run `file ~/.local/bin/omp` after installing. If it says
-  `x86_64`, fetch `omp-darwin-arm64` from the releases page. The installer
-  sometimes grabs the wrong one.
-- The first request prefills the whole system prompt at ~170 tok/s. Two minutes
-  of silence on the default tool set is normal, not a hang. Use the `ompq`
-  wrapper from §4 and it drops to ~50 s.
-- Verify end to end: `omp -p "reply only: pong"`. For proof of tool calling, ask
-  it to create a file with exact contents and then check the file yourself.
+- My launch script points at my own llama.cpp build. If this machine doesn't have llama.cpp, `brew install llama.cpp` and call `llama-server` straight from PATH with the same flags, no `DYLD_LIBRARY_PATH` needed. Any build from b9518 up knows the `qwen35` architecture. No brew? Grab a release from [github.com/ggml-org/llama.cpp](https://github.com/ggml-org/llama.cpp/releases).
+- You probably cannot start the server yourself. Sandboxed shells block Metal and you'll see `ggml_metal_init: failed to create command queue`. Don't burn attempts on workarounds. Write the launch script, then ask your human to run one line in a real terminal: `nohup ~/qwen-models/run-qwen-server.sh > ~/qwen-models/llama-server.log 2>&1 &`
+- The model takes 30-60 s to load. Poll `curl -s http://127.0.0.1:8090/health` until it says ok before you decide anything failed.
+- Check ports before you pick one (`lsof -i :8080`). Mine had an SSH tunnel parked on 8080, and that is the only reason this article uses 8090.
+- If `~/.omp/agent/settings.json` already exists, merge the `modelRoles` key into it. Don't overwrite the file.
+- On Apple Silicon, run `file ~/.local/bin/omp` after installing. If it says `x86_64`, fetch `omp-darwin-arm64` from the releases page. The installer sometimes grabs the wrong one.
+- The first request prefills the whole system prompt at ~170 tok/s. Two minutes of silence on the default tool set is normal, not a hang. Use the `ompq` wrapper from §4 and it drops to ~50 s.
+- Verify end to end: `omp -p "reply only: pong"`. For proof of tool calling, ask it to create a file with exact contents and then check the file yourself.
 
 Good luck in there.
