@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#121212">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><style>text{fill:%23496f99}@media(prefers-color-scheme:dark){text{fill:%238ebce9}}</style><text x='16' y='24' font-size='26' font-weight='bold' text-anchor='middle' font-family='Georgia,serif'>p</text></svg>">
+  <meta name="description" content="Every model above Qwen 3.6 27B on LiveBench's open-weights leaderboard needs at least 90 GB of RAM before it generates a token. On a 36 GB MacBook the whole debate collapses to one row. I wired that row up with llama.cpp and omp, measured everything (21.6k-token system prompts, slot-hopping cache bugs, 16 tok/s), and wrote down the stack that actually works.">
+  <link rel="canonical" href="https://portdeveloper.github.io/articles/best-local-model-on-your-laptop.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="port">
+  <meta property="og:title" content="the best local model to run on your laptop for $0">
+  <meta property="og:description" content="Every model above Qwen 3.6 27B on LiveBench's open-weights leaderboard needs at least 90 GB of RAM before it generates a token. On a 36 GB MacBook the whole debate collapses to one row. I wired that row up with llama.cpp and omp, measured everything (21.6k-token system prompts, slot-hopping cache bugs, 16 tok/s), and wrote down the stack that actually works.">
+  <meta property="og:url" content="https://portdeveloper.github.io/articles/best-local-model-on-your-laptop.html">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://portdeveloper.github.io/assets/articles/best-local-model-on-your-laptop/cover.png">
+  <meta property="og:image:width" content="2400">
+  <meta property="og:image:height" content="960">
+  <meta property="og:image:alt" content="the open-model leaderboard vs a 36 GB laptop">
+  <meta property="article:author" content="https://portdeveloper.github.io/">
+  <meta property="article:section" content="AI coding">
+  <meta property="article:tag" content="AI">
+  <meta property="article:tag" content="local models">
+  <meta property="article:tag" content="agents">
+  <meta property="article:published_time" content="2026-08-02T12:00:00Z">
+  <meta property="article:modified_time" content="2026-08-02T12:00:00Z">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="the best local model to run on your laptop for $0">
+  <meta name="twitter:description" content="Every model above Qwen 3.6 27B on LiveBench's open-weights leaderboard needs at least 90 GB of RAM before it generates a token. On a 36 GB MacBook the whole debate collapses to one row. I wired that row up with llama.cpp and omp, measured everything (21.6k-token system prompts, slot-hopping cache bugs, 16 tok/s), and wrote down the stack that actually works.">
+  <meta name="twitter:image" content="https://portdeveloper.github.io/assets/articles/best-local-model-on-your-laptop/cover.png">
+  <meta name="twitter:image:alt" content="the open-model leaderboard vs a 36 GB laptop">
+  <meta name="twitter:creator" content="@port_dev">
+  <title>the best local model to run on your laptop for $0 - port</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="alternate" type="application/rss+xml" title="port - writing" href="https://portdeveloper.github.io/feed.xml">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "the best local model to run on your laptop for $0",
+      "description": "Every model above Qwen 3.6 27B on LiveBench's open-weights leaderboard needs at least 90 GB of RAM before it generates a token. On a 36 GB MacBook the whole debate collapses to one row. I wired that row up with llama.cpp and omp, measured everything (21.6k-token system prompts, slot-hopping cache bugs, 16 tok/s), and wrote down the stack that actually works.",
+      "image": "https://portdeveloper.github.io/assets/articles/best-local-model-on-your-laptop/cover.png",
+      "url": "https://portdeveloper.github.io/articles/best-local-model-on-your-laptop.html",
+      "datePublished": "2026-08-02T12:00:00Z",
+      "dateModified": "2026-08-02T12:00:00Z",
+      "inLanguage": "en",
+      "keywords": [
+        "qwen 3.6 27b",
+        "local coding agent",
+        "llama.cpp",
+        "omp",
+        "oh my pi",
+        "livebench",
+        "unsloth",
+        "shouldirunthis"
+      ],
+      "author": {
+        "@type": "Person",
+        "name": "port",
+        "alternateName": [
+          "portdeveloper",
+          "port_dev"
+        ],
+        "url": "https://portdeveloper.github.io/",
+        "sameAs": [
+          "https://github.com/portdeveloper",
+          "https://twitter.com/port_dev",
+          "https://x.com/port_dev"
+        ],
+        "jobTitle": "Developer Advocate",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Monad",
+          "url": "https://www.monad.xyz/"
+        }
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "port",
+        "url": "https://portdeveloper.github.io/"
+      },
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "port",
+        "url": "https://portdeveloper.github.io/"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://portdeveloper.github.io/articles/best-local-model-on-your-laptop.html"
+      }
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://portdeveloper.github.io/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Writing",
+          "item": "https://portdeveloper.github.io/#writing"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "the best local model to run on your laptop for $0",
+          "item": "https://portdeveloper.github.io/articles/best-local-model-on-your-laptop.html"
+        }
+      ]
+    }
+  </script>
+</head>
+<body class="article-page">
+  <main>
+    <header class="site-header">
+      <a class="site-title" href="../">port</a>
+      <nav>
+        <a href="../#about">About</a> &middot;
+        <a href="../#projects">Projects</a> &middot;
+        <a href="../#writing">Writing</a> &middot;
+        <a href="../#events">Events and talks</a>
+      </nav>
+    </header>
+    <hr>
+
+    <article class="article">
+      <h1>the best local model to run on your laptop for $0</h1>
+      <p class="article-meta">August 2, 2026</p>
+
+      <p>I get this question a lot, and I ask this to myself almost every 3 weeks. I ask it so often that I built <a href="https://shouldirunthis.xyz/">shouldirunthis.xyz</a> to settle the money side of it (buy a rig, or keep your sub?). The model side of the question has an answer too, and it is probably Qwen 3.6 27B. In this article I am going to show you the best way to get that lil, capable thing on your machine.</p>
+
+      <p>Let&rsquo;s take a look at why I chose that model.</p>
+
+      <p>Look at <a href="https://livebench.ai/">LiveBench&rsquo;s</a> open-weights leaderboard and count the models you could run on a MacBook:</p>
+
+      <figure>
+        <img src="../assets/articles/best-local-model-on-your-laptop/cover.png" width="2400" height="960" decoding="async" fetchpriority="high" alt="bar chart of the top open-weights models on LiveBench: overall score and memory needed at Q4, with Qwen 3.6 27B highlighted as the only row that fits in 36 GB">
+        <figcaption>every model above qwen needs at least 90 GB before it says a single token</figcaption>
+      </figure>
+
+      <p>*Scores: LiveBench open-weights filter, accessed 2026-08-02. Parameter counts: each model&rsquo;s safetensors metadata on Hugging Face. Q4 weight sizes extrapolated from the measured 28B → 16 GB ratio of Unsloth&rsquo;s Q4_K_XL quant.*</p>
+
+      <p>Every model above Qwen 3.6 27B needs at least 90 GB of RAM. The gap to the next-smallest model is <strong>5.6×</strong>. If your machine is a normal high-end laptop, the &ldquo;best open model&rdquo; debate collapses to only one. LiveBench prices hosted Qwen 3.6 27B at $0.202 per successful task; my laptop serves it for the cost of electricity, with nothing going out of my lappy.</p>
+
+      <p>That table is a wall, and people are throwing serious money at it. <a href="https://x.com/0xSero">@0xSero</a> wrote a great piece on how a Discord community got GLM-5.2 (row 2) <a href="https://x.com/0xSero/status/2079230064840106173">running at home for 15,000$</a> with 3 DGX Sparks and some wild sub-4-bit quantization. Even their most extreme trick (2-bit weights with an FP4 rescue path) would put the *smallest* model above Qwen at ~40 GB for weights alone.</p>
+
+      <p>So how much agent can you actually squeeze out of that one row? Here&rsquo;s my setup, tested on my MacBook Pro M4 Max with 36 GB.</p>
+
+      <h2>The stack</h2>
+
+      <ul>
+        <li><strong>Model</strong>: <a href="https://huggingface.co/unsloth/Qwen3.6-27B-GGUF">Qwen3.6-27B</a>, Unsloth <code>UD-Q4_K_XL</code> (16 GB). The leaderboard&rsquo;s only laptop-sized model, and it&rsquo;s tuned for agentic coding.</li>
+        <li><strong>Server</strong>: <code>llama-server</code> from <a href="https://github.com/ggml-org/llama.cpp">llama.cpp</a>. Gives me the three flags that make or break local agents (§2), speaks plain OpenAI API, no key needed.</li>
+        <li><strong>Harness</strong>: <a href="https://omp.sh">omp (Oh My Pi)</a>. Its edit format and prompts are tuned for weaker models. The omp team measured a 6.7% → 68.3% task pass-rate jump on a small model from the edit format alone.</li>
+      </ul>
+
+      <p>Behold, the stack. There are people behind each row: the quant is by the Unsloth team (<a href="https://x.com/danielhanchen">@danielhanchen</a> and crew), and omp is <a href="https://x.com/_can1357">Can Bölük&rsquo;s</a> fork of <a href="https://x.com/badlogicgames">Mario Zechner&rsquo;s</a> Pi. llama.cpp needs no intro. s/o to all the chads above</p>
+
+      <h2>1. Install omp</h2>
+
+      <pre><code class="language-sh">curl -fsSL https://omp.sh/install | sh -s -- --binary</code></pre>
+
+      <p>Installs to <code>~/.local/bin/omp</code>.</p>
+
+      <p><strong>Gotcha (Apple Silicon):</strong> the installer gave me the <code>darwin-x64</code> binary on an M4 Max, so it ran under Rosetta and warned about missing AVX. Check with <code>file ~/.local/bin/omp</code>; if it says <code>x86_64</code>, replace it:</p>
+
+      <pre><code class="language-sh">curl -fsSL -o ~/.local/bin/omp \
+  https://github.com/can1357/oh-my-pi/releases/latest/download/omp-darwin-arm64
+chmod +x ~/.local/bin/omp
+omp --version   # omp/17.2.4 at time of writing</code></pre>
+
+      <p>Alternative installs: <code>brew install can1357/tap/omp</code> or <code>bun install -g @oh-my-pi/pi-coding-agent</code> (needs bun ≥ 1.3.14).</p>
+
+      <h2>2. Serve the model</h2>
+
+      <p>Get the GGUF (~16 GB). <code>-C -</code> resumes a dropped download, so rerun the same command if it dies, but never run two copies at once:</p>
+
+      <pre><code class="language-sh">mkdir -p ~/qwen-models
+curl -L -C - -o ~/qwen-models/Qwen3.6-27B-UD-Q4_K_XL.gguf \
+  https://huggingface.co/unsloth/Qwen3.6-27B-GGUF/resolve/main/Qwen3.6-27B-UD-Q4_K_XL.gguf</code></pre>
+
+      <p>The model&rsquo;s <code>general.architecture</code> is <code>qwen35</code>, supported by llama.cpp b9518 and later. Launch script (<code>~/qwen-models/run-qwen-server.sh</code>):</p>
+
+      <pre><code class="language-sh">#!/bin/sh
+L="$HOME/llama.cpp-bin/extracted/llama-b9518"   # your llama.cpp bin dir
+exec env DYLD_LIBRARY_PATH="$L" "$L/llama-server" \
+  -m "$HOME/qwen-models/Qwen3.6-27B-UD-Q4_K_XL.gguf" \
+  -a qwen3.6-27b \
+  --host 127.0.0.1 --port 8090 \
+  -c 49152 -ngl 99 --jinja \
+  -np 1</code></pre>
+
+      <p>Run it in the background from a normal terminal:</p>
+
+      <pre><code class="language-sh">nohup ~/qwen-models/run-qwen-server.sh > ~/qwen-models/llama-server.log 2>&amp;1 &amp;</code></pre>
+
+      <p>Three of these flags are the difference between &ldquo;works&rdquo; and &ldquo;unusable&rdquo;, and none of them is the default:</p>
+
+      <ul>
+        <li><code>--jinja</code> is <strong>required for agent use.</strong> It enables the model&rsquo;s own chat template</li>
+      </ul>
+
+      <p>  so tool calling works. Without it, tool calls break in ways that look like model   stupidity.</p>
+
+      <ul>
+        <li><code>-np 1</code> might <strong>be a problem.</strong> The default (<code>-np -1</code>, auto) creates multiple</li>
+      </ul>
+
+      <p>  server slots, each with its own prompt cache. I watched requests hop from slot 3   to slot 2 in the logs, and every hop re-processes the entire system prompt from   scratch (2+ minutes at omp&rsquo;s default size). Give it one slot.</p>
+
+      <ul>
+        <li><code>-c 49152</code> is the context size. omp&rsquo;s default system prompt alone is ~21.6k</li>
+      </ul>
+
+      <p>  tokens (§4). KV cache for this model is cheap (a measured ~150 MB at 21.6k   tokens), so 48k costs well under 500 MB on top of the 16 GB of weights. Don&rsquo;t go   below ~32k with omp. The model itself trains to 262k context, thus with more RAM   the ceiling is higher.</p>
+
+      <p>The small print: <code>-a qwen3.6-27b</code> gives the API a clean model id, and <code>-ngl 99</code> is full Metal offload. <code>--port 8090</code> is only there because 8080 (llama.cpp&rsquo;s default) was taken by an SSH tunnel on my machine. If your 8080 is free, drop the flag and the <code>baseUrl</code> override in §3, and omp discovers the server with zero config.</p>
+
+      <p>One flag I tried and then removed: <code>--cache-reuse 256</code> (KV-cache reuse via shifting on partial prefix changes). The server disables it for this model with <code>cache_reuse is not supported by this context</code>; the qwen35 attention layout doesn&rsquo;t support KV shifting. Worth adding back if you serve a model where it takes.</p>
+
+      <h2>3. Point omp at it</h2>
+
+      <p><code>~/.omp/agent/models.yml</code>:</p>
+
+      <pre><code class="language-yaml">providers:
+  llama.cpp:
+    baseUrl: http://127.0.0.1:8090
+    auth: none
+    api: openai-completions
+    discovery:
+      type: llama.cpp</code></pre>
+
+      <p><code>~/.omp/agent/settings.json</code>:</p>
+
+      <pre><code class="language-json">{
+  "modelRoles": {
+    "default": "llama.cpp/qwen3.6-27b"
+  }
+}</code></pre>
+
+      <p>Verify (<code>omp models</code> lists what discovery found; the server must be running):</p>
+
+      <pre><code class="language-sh">omp models | grep qwen
+omp -p "reply only: pong"</code></pre>
+
+      <h2>4. omp&rsquo;s system prompt ate half my context</h2>
+
+      <p>My first request sat at &ldquo;Working...&rdquo; for 2 minutes. The server was eating through 21,610 tokens of system prompt before my prompt got processed. omp ships &ldquo;batteries included&rdquo; (32 tools plus LSP and DAP operations) and it kinda bloats the context window.</p>
+
+      <p>At 48k context, that&rsquo;s half my working room gone at &ldquo;hello&rdquo;. So I started cutting tools and measuring (prefill runs at ~170-184 tok/s on the M4 Max):</p>
+
+      <ul>
+        <li>default (all tools): 21,610 tokens of system prompt, ~130 s cold prefill, ~27k of 48k context left</li>
+        <li><code>--tools=read,write,edit,search,find,bash,lsp,todo</code>: 11,178 tokens, ~62 s, ~38k left</li>
+        <li><code>--tools=read,write,edit,search,find,bash</code> + <code>--no-skills --no-extensions</code>: 9,019 tokens, ~50 s, ~40k left</li>
+      </ul>
+
+      <p>That last row is a 58% cut. The speed is nice, but I mostly did it for the model&rsquo;s sake. A Q4 27B only has so much attention to spend, and by default it spends a chunk of it on schemas for a debugger and a TTS voice it will never touch.(idk why it even has that) I haven&rsquo;t benchmarked the quality difference properly, but small models get worse at following instructions as the instruction pile grows, and I&rsquo;d rather not gamble 21k tokens on it.</p>
+
+      <p>I shipped the lean profile as a wrapper (<code>~/.local/bin/ompq</code>):</p>
+
+      <pre><code class="language-sh">#!/bin/sh
+exec "$HOME/.local/bin/omp" \
+  --tools=read,write,edit,search,find,bash \
+  --no-skills --no-extensions \
+  "$@"</code></pre>
+
+      <p>I use <code>ompq</code> day to day and keep plain <code>omp</code> around for cloud models. If you actually use <code>lsp</code> and <code>todo</code>, add them back (it is 2.2k tokens). And your CLAUDE.md or AGENTS.md gets appended on top of all this, so a fat context file eats into the same budget.</p>
+
+      <h2>5. Does tool calling actually work?</h2>
+
+      <p>The failure mode of local agent stacks is silent. The model emits tool calls in a format the harness half-understands and after a couple of retries everything looks like it ran while nothing actually landed on disk. So I tested the full round trip:</p>
+
+      <pre><code class="language-sh">ompq --approval-mode yolo -p \
+  "Create a file named tooltest.txt in the current directory containing exactly the line: local stack works"</code></pre>
+
+      <p>The file showed up with <code>local stack works</code> in it from a single <code>write</code> call on the first try, so the <code>--jinja</code> chat template is working fine. The server log clocked the turn at 17.4 tok/s.</p>
+
+      <h2>Measured performance (M4 Max, 36 GB, Q4_K_XL)</h2>
+
+      <ul>
+        <li>prompt processing (prefill): 168-184 tok/s</li>
+        <li>generation: 16.3-17.4 tok/s</li>
+        <li>KV cache: ~150 MB at 21.6k tokens</li>
+        <li>cold first turn on the lean profile: ~50 s</li>
+        <li>warm turns hit the prompt cache and only prefill the new tokens</li>
+      </ul>
+
+      <p>Almost all of the waiting here is prefill.</p>
+
+      <h2>Tips</h2>
+
+      <ul>
+        <li><strong>Hybrid roles.</strong> Keep <code>default</code> local and point <code>slow</code> at a cloud model for hard</li>
+      </ul>
+
+      <p>  reasoning: <code>omp --slow &lt;model></code>.</p>
+
+      <ul>
+        <li><strong>The prompt cache is per-server-process.</strong> Restarting llama-server means the next</li>
+      </ul>
+
+      <p>  turn re-prefills. Leave the server running.</p>
+
+      <ul>
+        <li><strong>Skip the extras locally.</strong> Advisor (a second model reviewing every turn) and</li>
+      </ul>
+
+      <p>  the memory/tiny-model features default off or online. Leave them that way on a   27B.</p>
+
+      <ul>
+        <li><strong>Speculative decoding</strong> (<code>--model-draft</code>) could lift generation speed further,</li>
+      </ul>
+
+      <p>  but there&rsquo;s no small same-vocab draft model for Qwen3.6 yet, and at 16-17 tok/s   generation it isn&rsquo;t the bottleneck anyway.</p>
+
+      <h2>What I didn&rsquo;t pick, and why</h2>
+
+      <ul>
+        <li><strong>A bigger model</strong>: see the leaderboard table at the top. The next step up is</li>
+      </ul>
+
+      <p>  158B, which means ~90 GB of weights at Q4 and a 128 GB Mac Studio or a DGX Spark?</p>
+
+      <ul>
+        <li><strong>A 10k-15k rig</strong>:If you have the</li>
+      </ul>
+
+      <p>  budget, start with the <a href="https://x.com/0xSero">@0xSero</a> writeup from the top of   this article and go run the frontier at home. I wrote this for the rest of us who can&rsquo;t have a separate budget for buying a rig.</p>
+
+      <ul>
+        <li><strong>Ollama / LM Studio</strong>: fine servers, but you give up direct control of the flags</li>
+      </ul>
+
+      <p>  that made this stack work (<code>-np 1</code>, <code>--jinja</code>, exact context). Ollama&rsquo;s default   4k context truncates agent prompts without telling you.</p>
+
+      <ul>
+        <li><strong>Unsloth Studio</strong>: worked, but prints a new API key on every restart, you need to change harness config every time. llama-server is keyless. If anyone from Unsloth is reading this please correct me if I am wrong!</li>
+        <li><strong>Vanilla Pi</strong>: lighter system prompt, but omp&rsquo;s weak-model edit tuning is worth</li>
+      </ul>
+
+      <p>  it.</p>
+
+      <h2>Check my numbers</h2>
+
+      <p>Every token count and tok/s figure in this article is a <code>print_timing</code> line taken from <code>~/qwen-models/llama-server.log</code>, so you can watch your own numbers scroll by with <code>tail -f</code> while omp is working. The only claims I didn&rsquo;t produce myself are the following: the leaderboard scores (LiveBench, 2026-08-02), the parameter counts (each model&rsquo;s safetensors metadata on Hugging Face), and omp&rsquo;s 6.7% → 68.3% edit-format jump, which is from <a href="https://blog.can.ac/2026/02/12/the-harness-problem/">Can&rsquo;s own benchmarks</a>.</p>
+
+      <p>If you have a 36 GB Mac, the whole thing is a 16 GB download and a handful of tiny config files. And if you try it on different hardware, I&rsquo;d love to see your prefill numbers.</p>
+
+      <p>Questions?</p>
+    </article>
+  </main>
+</body>
+</html>

@@ -5,8 +5,15 @@
     <link>https://portdeveloper.github.io/</link>
     <description>Articles by port about developer tools, AI coding workflows, and Monad development.</description>
     <language>en</language>
-    <lastBuildDate>Thu, 25 Jun 2026 12:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 02 Aug 2026 12:00:00 GMT</lastBuildDate>
     <atom:link href="https://portdeveloper.github.io/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>the best local model to run on your laptop for $0</title>
+      <link>https://portdeveloper.github.io/articles/best-local-model-on-your-laptop.html</link>
+      <guid isPermaLink="true">https://portdeveloper.github.io/articles/best-local-model-on-your-laptop.html</guid>
+      <pubDate>Sun, 02 Aug 2026 12:00:00 GMT</pubDate>
+      <description>Every model above Qwen 3.6 27B on LiveBench's open-weights leaderboard needs at least 90 GB of RAM before it generates a token. On a 36 GB MacBook the whole debate collapses to one row. I wired that row up with llama.cpp and omp, measured everything (21.6k-token system prompts, slot-hopping cache bugs, 16 tok/s), and wrote down the stack that actually works.</description>
+    </item>
     <item>
       <title>rent geniuses, own workhorses</title>
       <link>https://portdeveloper.github.io/articles/rent-geniuses-own-workhorses.html</link>
