@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#121212">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><style>text{fill:%23496f99}@media(prefers-color-scheme:dark){text{fill:%238ebce9}}</style><text x='16' y='24' font-size='26' font-weight='bold' text-anchor='middle' font-family='Georgia,serif'>p</text></svg>">
+  <meta name="description" content="Mullvad on meant a captcha on every website. Mullvad off meant no Discord. I wanted exactly one browser on the VPN and the rest of the Mac untouched, so I built perbrowser: a userspace WireGuard tunnel and a locked-down Chromium profile per browser, with no root and no kernel extensions.">
+  <link rel="canonical" href="https://portdeveloper.github.io/articles/one-vpn-per-browser.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="port">
+  <meta property="og:title" content="one VPN per browser">
+  <meta property="og:description" content="Mullvad on meant a captcha on every website. Mullvad off meant no Discord. I wanted exactly one browser on the VPN and the rest of the Mac untouched, so I built perbrowser: a userspace WireGuard tunnel and a locked-down Chromium profile per browser, with no root and no kernel extensions.">
+  <meta property="og:url" content="https://portdeveloper.github.io/articles/one-vpn-per-browser.html">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://portdeveloper.github.io/assets/articles/one-vpn-per-browser/cover.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="480">
+  <meta property="og:image:alt" content="one VPN per browser article cover">
+  <meta property="article:author" content="https://portdeveloper.github.io/">
+  <meta property="article:section" content="Developer tools">
+  <meta property="article:tag" content="perbrowser">
+  <meta property="article:tag" content="WireGuard">
+  <meta property="article:tag" content="macOS">
+  <meta property="article:published_time" content="2026-08-09T12:00:00Z">
+  <meta property="article:modified_time" content="2026-08-09T12:00:00Z">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="one VPN per browser">
+  <meta name="twitter:description" content="Mullvad on meant a captcha on every website. Mullvad off meant no Discord. I wanted exactly one browser on the VPN and the rest of the Mac untouched, so I built perbrowser: a userspace WireGuard tunnel and a locked-down Chromium profile per browser, with no root and no kernel extensions.">
+  <meta name="twitter:image" content="https://portdeveloper.github.io/assets/articles/one-vpn-per-browser/cover.svg">
+  <meta name="twitter:image:alt" content="one VPN per browser article cover">
+  <meta name="twitter:creator" content="@port_dev">
+  <title>one VPN per browser - port</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="alternate" type="application/rss+xml" title="port - writing" href="https://portdeveloper.github.io/feed.xml">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "one VPN per browser",
+      "description": "Mullvad on meant a captcha on every website. Mullvad off meant no Discord. I wanted exactly one browser on the VPN and the rest of the Mac untouched, so I built perbrowser: a userspace WireGuard tunnel and a locked-down Chromium profile per browser, with no root and no kernel extensions.",
+      "image": "https://portdeveloper.github.io/assets/articles/one-vpn-per-browser/cover.svg",
+      "url": "https://portdeveloper.github.io/articles/one-vpn-per-browser.html",
+      "datePublished": "2026-08-09T12:00:00Z",
+      "dateModified": "2026-08-09T12:00:00Z",
+      "inLanguage": "en",
+      "keywords": [
+        "perbrowser",
+        "wireguard",
+        "mullvad",
+        "socks5 proxy",
+        "split tunneling macos",
+        "wireproxy",
+        "vpn per browser"
+      ],
+      "author": {
+        "@type": "Person",
+        "name": "port",
+        "alternateName": [
+          "portdeveloper",
+          "port_dev"
+        ],
+        "url": "https://portdeveloper.github.io/",
+        "sameAs": [
+          "https://github.com/portdeveloper",
+          "https://twitter.com/port_dev",
+          "https://x.com/port_dev"
+        ],
+        "jobTitle": "Developer Advocate",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Monad",
+          "url": "https://www.monad.xyz/"
+        }
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "port",
+        "url": "https://portdeveloper.github.io/"
+      },
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "port",
+        "url": "https://portdeveloper.github.io/"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://portdeveloper.github.io/articles/one-vpn-per-browser.html"
+      }
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://portdeveloper.github.io/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Writing",
+          "item": "https://portdeveloper.github.io/#writing"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "one VPN per browser",
+          "item": "https://portdeveloper.github.io/articles/one-vpn-per-browser.html"
+        }
+      ]
+    }
+  </script>
+</head>
+<body class="article-page">
+  <main>
+    <header class="site-header">
+      <a class="site-title" href="../">port</a>
+      <nav>
+        <a href="../#about">About</a> &middot;
+        <a href="../#projects">Projects</a> &middot;
+        <a href="../#writing">Writing</a> &middot;
+        <a href="../#events">Events and talks</a>
+      </nav>
+    </header>
+    <hr>
+
+    <article class="article">
+      <h1>one VPN per browser</h1>
+      <p class="article-meta">August 9, 2026</p>
+
+      <figure>
+        <img src="../assets/articles/one-vpn-per-browser/cover.svg" width="1200" height="480" decoding="async" fetchpriority="high" alt="one VPN per browser">
+        <figcaption>one browser out through Sweden, everything else straight out</figcaption>
+      </figure>
+
+      <p>I had to choose between turning mullvad on and getting a captcha on every website I visit, or leaving it off so discord still worked.</p>
+
+      <p>So I wanted exactly one browser on the VPN, with Discord inside that browser. Everything else stays on the normal connection, including the Tailscale setup I need for work. I ran a hand-made version of that for months and it worked for me, until i forgot how to launch it.</p>
+
+      <p>Then one morning the VPN browser stopped loading anything. The WireGuard logs looked perfectly healthy: handshake sent, handshake response received, over and over. It took me embarrassingly long to realize I had rotated the device on Mullvad&rsquo;s dashboard weeks earlier. A deleted WireGuard key still *handshakes* happily while passing zero traffic. I lost most of that morning to it 😭.</p>
+
+      <p>I rebuilt it by hand and then wrote a script so I would never have to do that again. That script is now perbrowser, a <code>brew install</code> away.</p>
+
+      <h2>macOS can&rsquo;t tunnel one app</h2>
+
+      <p>I wanted this browser through the VPN and nothing else on the Mac to change. Have you ever tried doing that natively? macOS has no good answer for it (or so i thought).</p>
+
+      <p>VPN apps tunnel the whole machine. I checked mullvad&rsquo;s and a couple of others: on macOS split tunneling is absent or exclude-only. It lets you pull apps *out* of the tunnel, never put one app in. Stack two VPN network extensions instead, say Mullvad and Tailscale, and they fight over routes and DNS until something breaks. Browser proxy extensions leak WebRTC and share your normal cookie jar. They also assume you already have a proxy endpoint to point at, and getting one is the actual work. That leaves a VM per region, and I&rsquo;m not booting a VM to open Discord.</p>
+
+      <h2>wireproxy plus a locked-down Chromium profile</h2>
+
+      <p><a href="https://github.com/windtf/wireproxy">wireproxy</a> speaks WireGuard in userspace and exposes the tunnel as a SOCKS5 proxy on loopback. To macOS (and to Tailscale) wireproxy looks like an ordinary process sending outbound UDP, so your routing table never changes. I let launchd supervise it, so it starts at login and comes back after a crash. The launcher app then opens a dedicated Chromium profile with the proxy flags already applied.</p>
+
+      <pre><code class="language-plaintext">--user-data-dir=/Users/you/.config/perbrowser/discord/profile  # separate cookie jar
+--proxy-server=socks5://127.0.0.1:1080                         # all TCP through the tunnel
+--host-resolver-rules="MAP * ~NOTFOUND , EXCLUDE 127.0.0.1"    # no local DNS
+--force-webrtc-ip-handling-policy=disable_non_proxied_udp      # no WebRTC escape hatch</code></pre>
+
+      <p>I trust flags more than an extension here. A website can&rsquo;t disable a flag, and there&rsquo;s no window where the profile exists unproxied. The DNS rule stops Chromium from resolving names itself, so it hands each hostname to the proxy and the lookup happens at the VPN exit. Failing closed on WebRTC costs me Discord voice. Call audio rides UDP, and neither wireproxy&rsquo;s SOCKS5 listener nor Chromium will carry UDP here, so the call never connects.</p>
+
+      <p><a href="https://github.com/portdeveloper/perbrowser">perbrowser</a> does all of that, once per instance:</p>
+
+      <pre><code class="language-plaintext">$ perbrowser add discord ~/Downloads/se-sto-wg-001.conf --browser brave
+$ perbrowser add work    ~/Downloads/us-nyc-wg-301.conf --browser chrome
+$ perbrowser list
+NAME         BROWSER    PORT   AGENT       TUNNEL
+discord      brave      1080   running     185.65.135.1 SE
+work         chrome     1081   running     170.62.100.18 US</code></pre>
+
+      <p>Each instance gets its own tunnel process, port, browser profile, and app in <code>~/Applications</code>, so &ldquo;perbrowser - Brave through Discord&rdquo; sits in Spotlight next to &ldquo;perbrowser - Chrome through Work&rdquo;. Any WireGuard config with a private key and an endpoint works. Mine came from Mullvad, but Proton&rsquo;s or your own box&rsquo;s will do.</p>
+
+      <h2>What <code>list</code> and <code>doctor</code> check</h2>
+
+      <p>After that morning I gave perbrowser one rule: <strong>never trust a handshake log.</strong> <code>perbrowser list</code> and <code>perbrowser doctor</code> check health by fetching your exit IP through the proxy itself. Nothing comes back, you get <code>DEAD</code> in <code>list</code> and <code>FAIL</code> from <code>doctor</code>. Key rotation is the failure I actually hit, so one command recovers from it:</p>
+
+      <pre><code class="language-plaintext">$ perbrowser update-config discord ~/Downloads/new-device.conf</code></pre>
+
+      <p>That swaps the config file and restarts the agent. Then it checks that traffic is actually flowing again. It also offers to delete the file you just downloaded, because a WireGuard config holds a private key and <code>~/Downloads</code> is a bad home for one.</p>
+
+      <p><code>doctor</code> catches the rest of it. Unloaded agents, file permissions that drifted, a launcher that lost one of its flags. If the tunnel itself stopped passing traffic it restarts the agent once and checks again. It won&rsquo;t fix a rotated key, but it tells you which command will.</p>
+
+      <h2>You can read the whole script in ten minutes</h2>
+
+      <p>perbrowser holds your WireGuard private keys, so I kept it to one POSIX shell script. You can read the whole thing before you run it. The only thing it downloads is wireproxy, pinned to <code>v1.1.2</code> and checked against a hardcoded SHA256 before it installs. Everything runs as your own user, and the config files with the private keys in them are mode <code>600</code> inside a mode <code>700</code> directory.</p>
+
+      <h2>Get it</h2>
+
+      <pre><code class="language-plaintext">brew install portdeveloper/tap/perbrowser</code></pre>
+
+      <p>It&rsquo;s MIT, on <a href="https://github.com/portdeveloper/perbrowser">GitHub</a>. macOS and Chromium-family browsers only, for now. I&rsquo;d most love help with Firefox and Linux. Firefox sets proxies in prefs, and anything with profile access can flip a pref while the browser is running. A flag can&rsquo;t be flipped like that. On Linux I&rsquo;d be writing systemd user units where this uses launchd.</p>
+
+      <p>When it breaks, run <code>perbrowser doctor</code>.</p>
+
+      <p>Questions?</p>
+    </article>
+  </main>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 480" width="1200" height="480" role="img">
+  <rect width="1200" height="480" fill="#1E201E"/>
+
+  <g font-family="'Outfit', 'Helvetica Neue', Helvetica, Arial, sans-serif" fill="#F5EFE6">
+
+    <!-- left column: apps on the Mac -->
+    <text x="80" y="70" font-size="22" opacity="0.55" letter-spacing="1.5">YOUR MAC</text>
+
+    <g opacity="0.5">
+      <rect x="80" y="96" width="230" height="52" rx="10" fill="none" stroke="#F5EFE6" stroke-width="1.5"/>
+      <text x="104" y="129" font-size="23">Mail</text>
+      <rect x="80" y="164" width="230" height="52" rx="10" fill="none" stroke="#F5EFE6" stroke-width="1.5"/>
+      <text x="104" y="197" font-size="23">Terminal</text>
+      <rect x="80" y="232" width="230" height="52" rx="10" fill="none" stroke="#F5EFE6" stroke-width="1.5"/>
+      <text x="104" y="265" font-size="23">Tailscale</text>
+    </g>
+
+    <rect x="80" y="322" width="230" height="60" rx="10" fill="#8ebce9" fill-opacity="0.14" stroke="#8ebce9" stroke-width="2"/>
+    <text x="104" y="359" font-size="23" fill="#8ebce9">Brave (Discord)</text>
+
+    <!-- straight-out paths -->
+    <g stroke="#F5EFE6" stroke-width="1.5" opacity="0.45" fill="none">
+      <path d="M310 122 H 900"/>
+      <path d="M310 190 H 900"/>
+      <path d="M310 258 H 900"/>
+    </g>
+    <g fill="#F5EFE6" opacity="0.45">
+      <polygon points="900,116 916,122 900,128"/>
+      <polygon points="900,184 916,190 900,196"/>
+      <polygon points="900,252 916,258 900,264"/>
+    </g>
+
+    <!-- tunnelled path -->
+    <path d="M310 352 H 470" stroke="#8ebce9" stroke-width="2.5" fill="none"/>
+    <rect x="470" y="326" width="300" height="52" rx="26" fill="none" stroke="#8ebce9" stroke-width="2"/>
+    <text x="496" y="359" font-size="20" fill="#8ebce9">socks5 127.0.0.1:1080</text>
+    <path d="M770 352 H 900" stroke="#8ebce9" stroke-width="2.5" fill="none"/>
+    <polygon points="900,345 918,352 900,359" fill="#8ebce9"/>
+
+    <!-- exits -->
+    <text x="940" y="130" font-size="24" opacity="0.55">your ISP</text>
+    <text x="940" y="196" font-size="24" opacity="0.55">your ISP</text>
+    <text x="940" y="264" font-size="24" opacity="0.55">your ISP</text>
+    <text x="940" y="360" font-size="26" fill="#8ebce9">Sweden</text>
+
+    <line x1="80" y1="424" x2="1120" y2="424" stroke="#F5EFE6" stroke-width="1" opacity="0.2"/>
+    <text x="80" y="458" font-size="21" opacity="0.6">one browser through the tunnel. no root, no kernel extensions.</text>
+  </g>
+</svg>
