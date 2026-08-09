@@ -201,6 +201,18 @@ These kept reappearing even in a piece that was about avoiding slop. Watch for t
 - **Projects don't want things.** "this setup wanted to be a tool", "the code was asking for an abstraction", "the problem was begging for". You decided to build it. Say that you decided.
 - **Personification of tools is a yellow flag generally.** Logs "lying" is fine, it's what the section is about and it's load-bearing. A VPN that "died and told me it was fine" is the same idea dressed up as a character. One personified beat per article, and only where the point genuinely is the gap between what a thing reports and what it does.
 
+## Tells caught in the perbrowser edit rounds (2026-08)
+
+Five review passes over one article. These are the ones that kept coming back, plus two the passes themselves introduced.
+
+- **No roadmap signpost at the end of the intro.** "Here's how it works and why I built it that way." A person who just told you a story about losing a morning does not then announce the table of contents. Name the tool and get on with it. Same family: "This post covers", "First I'll explain X, then Y".
+- **One bold pivot per article, maximum.** Bolding is for the sentence the piece turns on. Two bolded phrases and neither reads as a pivot any more, it reads as an essay with its thesis highlighted for a grader.
+- **Don't bolt a hedge onto the end of a claim.** "On macOS their split tunneling is absent or exclude-only, and I checked mullvad's and a couple of others." The evidence arrives after the verdict, like a footnote added in review. Lead with what you did: "I checked mullvad's and a couple of others: on macOS split tunneling is absent or exclude-only."
+- **Watch the accuracy-hedge shape: claim, comma, walk-back.** "Any standard WireGuard config works, as long as it has a private key and an endpoint in it." Correcting a too-broad claim by appending a qualifier leaves the original overreach sitting there in the main clause. Fold the condition into the subject instead: "Any WireGuard config with a private key and an endpoint works." This shape appears constantly when you fix a factual error without rewriting the sentence.
+- **No fronted-object inversion for rhythm.** "A rotated key it won't touch, but it names the problem." / "What it can't fix safely, it prints for you." Moving the object to the front is a music decision, and it turns a sentence about error messages into something with a cape on. Subject first: "It won't fix a rotated key, but it tells you which command will."
+- **Editing passes introduce their own slop.** Every pass here fixed real problems and added new ones: a heading rewritten for accuracy came back as a balanced two-clause construction built for the ear, and a sentence rewritten for correctness came back with three subordinate clauses. Re-read the sentences you just changed, not only the ones you haven't.
+- **Verify the claims, not only the prose.** The loudest "a machine wrote this" signal to a technical reader is a statement that is confidently wrong: a command that doesn't print what you said it prints, a copy-pasteable block that would break, a mechanism described the way it feels rather than the way it works. Check every technical sentence against the actual thing before worrying about its rhythm.
+
 ## When in doubt
 
 Read the puddleswap article. If your draft sounds different in voice, fix the draft.
