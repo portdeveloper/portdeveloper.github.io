@@ -96,9 +96,9 @@ work         chrome     1081   running     170.62.100.18 US
 ```
 
 Each instance gets its own tunnel process, port, browser profile, and app
-in `~/Applications`, so "perbrowser - Brave through Discord" sits in
-Spotlight next to "perbrowser - Chrome through Work". Any WireGuard config with a private key and an endpoint
-works. Mine came from Mullvad, but Proton's or your own box's will do.
+in `~/Applications`, so "perbrowser - Discord (Brave)" sits in Spotlight
+next to "perbrowser - Work (Chrome)". Any WireGuard config with a private
+key and an endpoint works. Mine came from Mullvad, but Proton's or your own box's will do.
 
 ## What `list` and `doctor` check
 
