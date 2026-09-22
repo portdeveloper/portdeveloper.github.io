@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 480" role="img" aria-labelledby="title desc">
+  <title id="title">What makes Monad different</title>
+  <desc id="desc">Placeholder cover: dark background with the article title.</desc>
+  <rect width="1200" height="480" fill="#101014"/>
+  <circle cx="1004" cy="92" r="210" fill="#836ef9" opacity="0.16"/>
+  <text x="80" y="230" font-family="Georgia,serif" font-size="64" fill="#f4f1ff">What makes Monad different</text>
+  <text x="80" y="300" font-family="Georgia,serif" font-size="30" fill="#b9aaff">for devs who already ship on an EVM chain</text>
+</svg>

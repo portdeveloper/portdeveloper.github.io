@@ -367,3 +367,14 @@ body.article-page .article pre code {
     margin-left: 0;
   }
 }
+
+body.article-page .article figure.embed {
+  margin: 2.3rem auto;
+  max-width: none;
+}
+
+body.article-page .article figure.embed iframe {
+  display: block;
+  width: 100%;
+  background: #101014;
+}
