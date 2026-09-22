@@ -43,7 +43,7 @@ A note: I will be linking as many terms as I can out of this article to the rele
 I made a site for this question a while ago: [whymonad.com](https://whymonad.com/). I was tired of saying "parallel EVM, 10k TPS, 300ms blocks" and watching people nod and forget it. As far as I can tell, numbers by themselves don't make anyone switch chains; people switch when they try to build something and it doesn't work where they are. So the site takes three situations like that and plays them out on Ethereum, Solana, Arbitrum and Monad at the same time, with the same users.
 
 <figure class="embed">
-<iframe src="https://whymonad.com/#this-is-monad" title="Monad validators proposing live mainnet blocks, from whymonad.com" loading="lazy" style="width:100%;height:680px;border:0;border-radius:6px" referrerpolicy="no-referrer-when-downgrade"></iframe>
+<iframe src="https://whymonad.com/embed/this-is-monad" title="Monad validators proposing live mainnet blocks, from whymonad.com" loading="lazy" scrolling="no" style="width:100%;height:640px;border:0;border-radius:6px;overflow:hidden" referrerpolicy="no-referrer-when-downgrade"></iframe>
 <figcaption>live from whymonad.com, or <a href="https://whymonad.com/#this-is-monad">open this section on the site</a></figcaption>
 </figure>
 
@@ -54,7 +54,7 @@ The site shows what happens in each case. The why is in the docs, and I've linke
 Suppose a stablecoin drops to $0.97. Half a million people now want out before it drops further, and the site shows the first 70 of them trying on each chain.
 
 <figure class="embed">
-<iframe src="https://whymonad.com/#race" title="A stablecoin depeg simulated on four chains, from whymonad.com" loading="lazy" style="width:100%;height:760px;border:0;border-radius:6px" referrerpolicy="no-referrer-when-downgrade"></iframe>
+<iframe src="https://whymonad.com/embed/race" title="A stablecoin depeg simulated on four chains, from whymonad.com" loading="lazy" scrolling="no" style="width:100%;height:640px;border:0;border-radius:6px;overflow:hidden" referrerpolicy="no-referrer-when-downgrade"></iframe>
 <figcaption>live from whymonad.com, or <a href="https://whymonad.com/#race">open this section on the site</a></figcaption>
 </figure>
 
@@ -69,7 +69,7 @@ This does cost something. A Monad full node wants 16 cores, 32 GB of RAM and two
 Now consider the opposite situation, which is the day every consumer app is hoping for. A claim or a ticket drop or a game item blows up on social and wallets start signing all at once. Where can that land so that the users who showed up can actually complete the action?
 
 <figure class="embed">
-<iframe src="https://whymonad.com/#launch" title="A viral consumer launch simulated on four chains, from whymonad.com" loading="lazy" style="width:100%;height:760px;border:0;border-radius:6px" referrerpolicy="no-referrer-when-downgrade"></iframe>
+<iframe src="https://whymonad.com/embed/launch" title="A viral consumer launch simulated on four chains, from whymonad.com" loading="lazy" scrolling="no" style="width:100%;height:640px;border:0;border-radius:6px;overflow:hidden" referrerpolicy="no-referrer-when-downgrade"></iframe>
 <figcaption>live from whymonad.com, or <a href="https://whymonad.com/#launch">open this section on the site</a></figcaption>
 </figure>
 
@@ -84,7 +84,7 @@ Consumer apps are also the ones that run out of room in the contract. On Monad c
 This has the same shape as the depeg, except there is money on both sides of it. The price breaks lower, liquidations fire around eight seconds in, arb spreads open up around twenty, and liquidators, arbitrageurs and market makers all hit the chain at once. Blockspace in those twenty seconds is worth more than at any other time, and transaction ordering decides who gets paid for it.
 
 <figure class="embed">
-<iframe src="https://whymonad.com/#market" title="A market shock simulated on four chains, from whymonad.com" loading="lazy" style="width:100%;height:760px;border:0;border-radius:6px" referrerpolicy="no-referrer-when-downgrade"></iframe>
+<iframe src="https://whymonad.com/embed/market" title="A market shock simulated on four chains, from whymonad.com" loading="lazy" scrolling="no" style="width:100%;height:640px;border:0;border-radius:6px;overflow:hidden" referrerpolicy="no-referrer-when-downgrade"></iframe>
 <figcaption>live from whymonad.com, or <a href="https://whymonad.com/#market">open this section on the site</a></figcaption>
 </figure>
 
@@ -99,9 +99,21 @@ Fastlane just shipped the best example of this I've seen. [Moose](https://moose.
 The bottom of the site is a table with six rows: EVM compatible, decentralized validator set, high sustained throughput, sub-second finality, low fees as activity rises, self-sufficient base chain. For any one row you can find a chain that passes it; the claim is that Monad passes all six. The site says this looks like marketing until you see the mechanisms, and I agree, so here they are.
 
 <figure class="embed">
-<iframe src="https://whymonad.com/#matrix" title="Chain property comparison matrix, from whymonad.com" loading="lazy" style="width:100%;height:720px;border:0;border-radius:6px" referrerpolicy="no-referrer-when-downgrade"></iframe>
+<iframe src="https://whymonad.com/embed/matrix" title="Chain property comparison matrix, from whymonad.com" loading="lazy" scrolling="no" style="width:100%;height:640px;border:0;border-radius:6px;overflow:hidden" referrerpolicy="no-referrer-when-downgrade"></iframe>
 <figcaption>live from whymonad.com, or <a href="https://whymonad.com/#matrix">open this section on the site</a></figcaption>
 </figure>
+
+<script>
+window.addEventListener("message", function (e) {
+  if (!e.data || e.data.type !== "whymonad-embed-height") return;
+  var frames = document.querySelectorAll("figure.embed iframe");
+  for (var i = 0; i < frames.length; i++) {
+    if (frames[i].contentWindow === e.source) {
+      frames[i].style.height = Math.ceil(e.data.height) + "px";
+    }
+  }
+});
+</script>
 
 First, parallel EVM execution on unchanged bytecode. Second, MonadDb, from above, which also uses async I/O so parallel reads don't block each other. Third, pipelined consensus, so the slow steps overlap instead of running one after another. Fourth, finality two 300ms slots after proposal with a couple hundred validators, instead of one operator.
 
