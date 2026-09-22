@@ -25,7 +25,8 @@ cover:
 
 I keep getting the following question from people on every Blitz I do: "What makes Monad different?"  and I want to answer it in this article. 
 
-I work at Monad, grain of salt and all that. Read along.
+First, a bit of blogging here, from the viewpoint of a rogue solo dev:
+You are reading this article because you want to convince yourself to build on Monad. Admit it. Monad is here to stay. You probably see Monad every week if not every day. You see the improvements the chain is receiving, you see the hackathons, you see the events, you see the community posting. Well, below, I touched on the technical side of the story with ample visuals. But for me, Monad is home. It will be a home to you as well. Embrace Monad. Get to reading and dm me at [t.me/portdev](https://t.me/portdev). Let's get your app on Monad.
 
 
 ## Same code, so what changed
@@ -60,7 +61,7 @@ On Ethereum the txs queue and fees go up, because sequential execution and a gen
 
 On Monad everyone is out in under a second. Monad's consensus is [MonadBFT](https://docs.monad.xyz/monad-arch/consensus/monad-bft). A block gets voted on in the slot after it is proposed and becomes final in the slot after that. Slots are 300ms, so a transaction is final about 600ms after it enters a block. On an optimistic L2 the fast confirmation comes from the sequencer. It means the sequencer intends to include the transaction. The transaction is only settled on Ethereum about a week later. On Monad there is no sequencer, so there is nothing upstream that can reorder or undo the transaction once it's final. And there are about 200 validators voting on it, which an L2 with one sequencer doesn't have.
 
-The cost of this is hardware. A Monad full node wants 16 cores, 32 GB of RAM and two 2 TB NVMe drives, about four times the CPU and bandwidth of an Ethereum full node. I'd rather tell you here than have you find it on the hardware requirements page.
+The cost of this is hardware. A Monad full node wants 16 cores, 32 GB of RAM and two 2 TB NVMe drives, about four times the CPU and bandwidth of an Ethereum full node. 
 
 ## A consumer app goes viral
 
@@ -71,11 +72,11 @@ Now consider the opposite situation, which is the day every consumer app is hopi
 <figcaption>live from whymonad.com, or <a href="https://whymonad.com/#launch">open this section on the site</a></figcaption>
 </figure>
 
-On Ethereum the launch gets expensive.  Some people wait it out. A lot of new users look at the fee, decide the claim is not worth it and close the tab, and those were the people the launch was for. On Solana fees are fine, but you can't bring your contracts, so first you port. On a rollup the claim is cheap and fast, and then the user asks how to move their thing somewhere else and you're explaining bridges.
+On Ethereum the launch gets expensive. I remember paying 1ETH for an NFT mint back in 2021. Some people choose to wait it out. A lot of new users look at the fee, decide the claim is not worth it and close the tab, and those were the people the launch was for. On Solana fees are fine, but you can't bring your contracts, so first you port(jokes on me) and under load the chain might just not work at all. On a rollup the claim is cheap and fast, and then the user asks how to move their thing somewhere else and you're explaining bridges and probably having problems with them too.
 
-On Monad the demand clears without leaving the EVM, mainly because there is a lot more room. The chain does 500M gas per second (150M per block, every 300ms) where Ethereum does 2.5M. A single transaction can spend 30M gas, which is an entire Ethereum block. A transfer is about 0.0021 MON, a swap about 0.02 MON. The base fee rises slowly and falls fast, so a spike raises fees gradually. And the contract taking all this is the same bytecode you already had, so the people who come back tomorrow find the same contract at the same address.
+On Monad the demand clears without leaving the EVM, mainly because there is a lot more room. The chain does 500M gas per second (150M per block, every 300ms) where Ethereum does 2.5M. A single transaction can spend 30M gas, which is an entire Ethereum block. A transfer is about 0.0021 MON, a swap about 0.02 MON. The base fee rises slowly and falls fast.
 
-Consumer apps are also the ones that run out of room in the contract. On Monad contracts can be 128 KB instead of 24 KB, so the diamond proxy you built to fit under EIP-170 is optional now. Memory is priced linearly up to 8 MB. A 1 MB allocation is about 16k gas on Monad and about 2.2M on Ethereum. I measured one of these for [mipland](https://mipland.com/): a storage scratchpad rewritten to use memory instead went from 2,420,884 gas to 57,003 on mainnet, and the transaction hash is on the site if you want to check.
+Consumer apps are also the ones that run out of room in the contract. On Monad contracts can be 128 KB instead of 24 KB, so the diamond proxy you built to fit under EIP-170 is optional now. Memory is priced linearly up to 8 MB. A 1 MB allocation is about 16k gas on Monad and about 2.2M on Ethereum. I measured one of these for [mipland](https://mipland.com/mip-3): a storage scratchpad rewritten to use memory instead went from 2,420,884 gas to 57,003 on mainnet, and the transaction hash is on the site if you want to check.
 
 ## A market moves before everyone can react
 
@@ -90,7 +91,7 @@ On Ethereum the liquidity is deep but it waits for blockspace. On Solana it's fa
 
 On Monad two things matter here. The first is parallel execution, which means the liquidator and the arbitrageur don't wait on each other unless they actually touch the same state, and if they do, the client notices and re-runs the later one. The second is ordering: inside a block it is the leader's call, with a priority gas auction as the default, and there is no third-party block builder in the path. The consensus also has tail-fork resistance, meaning a leader cannot fork away the previous block to grab what was in it.
 
-Fastlane just shipped the best example of this I've seen. [Moose](https://moose.trade) is a DEX aggregator that picks the route onchain, at execution time, based on the price each route actually fills at. The simulated quote doesn't enter into it. Their words: it "doesn't place a server between you and the blockchain," so there's no offchain quote for a market maker to spoof. You need the memory and contract limits from the last section and the execution from this one to write that.
+Fastlane just shipped the best example of this I've seen. [Moose](https://moose.trade) is a DEX aggregator that picks the route onchain, at execution time, based on the price each route actually fills at. The simulated quote doesn't enter into it. Their words: it "doesn't place a server between you and the blockchain," so there's no offchain quote for a market maker to spoof.
 
 ## The matrix
 
@@ -136,3 +137,5 @@ Also, full nodes don't keep arbitrary historical state. Blocks, receipts, logs a
 Monad ships its own client and its own consensus, so protocol changes come as Monad Improvement Proposals every few months, and some change the gas schedule under you. MIP-8 went live in September and grouped storage into pages of 128 slots. A repeated write to a slot in a page you already touched is 100 gas now instead of 11,000. Arrays and structs get this for free; mappings don't, because each key lands on its own page. L2s don't have this, so read the spec before your next storage layout.
 
 If you already ship on an EVM chain, run the three situations on [whymonad.com](https://whymonad.com/) with your own chain swapped in, then come back to the list of what breaks. Deploy the thing you already have and tell me how it went in the [Monad developer Discord](https://discord.gg/monaddev) or on [Telegram](https://t.me/portdev).
+
+And to keep up with the latest news, follow [x.com/monad_dev](https://x.com/monad_dev).
