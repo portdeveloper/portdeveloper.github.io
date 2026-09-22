@@ -25,7 +25,7 @@ cover:
 
 I keep getting the following question from people on every Blitz I do: "What makes Monad different?"  and I want to answer it in this article. 
 
-I work at Monad, grain of salt and all that. This is the answer I give when someone who already ships on an EVM chain asks me that question. Read along.
+I work at Monad, grain of salt and all that. Read along.
 
 
 ## Same code, so what changed
@@ -38,7 +38,7 @@ A note: I will be linking as many terms as I can out of this article to the rele
 
 ## whymonad.com
 
-I made a site for this question a while ago: [whymonad.com](https://whymonad.com/). I was tired of saying "parallel EVM, 10k TPS, 300ms blocks" and watching people nod and forget it. As far as I can tell, numbers by themselves don't make anyone switch chains; people switch when they try to build something and it doesn't work where they are. So the site takes three situations like that and plays them out on Ethereum, Solana, Arbitrum and Monad at the same time, with the same users.
+I made a site for this question a while ago: [whymonad.com](https://whymonad.com/). I was tired of saying "parallel EVM, 10k TPS, 300ms blocks". As far as I can tell, numbers by themselves don't make anyone switch chains; people switch when they try to build something and it doesn't work where they are. So the site takes three situations like that and plays them out on Ethereum, Solana, Arbitrum and Monad at the same time, with the same users.
 
 <figure class="embed">
 <iframe src="https://whymonad.com/embed/this-is-monad" title="Monad validators proposing live mainnet blocks, from whymonad.com" loading="lazy" scrolling="no" style="width:100%;height:640px;border:0;border-radius:6px;overflow:hidden" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -49,16 +49,16 @@ The site shows what happens in each case. The why is in the docs, and I've linke
 
 ## A stablecoin breaks its peg
 
-Suppose a stablecoin drops to $0.97. Half a million people now want out before it drops further, and the site shows the first 70 of them trying on each chain.
+Suppose a stablecoin drops to $0.97. Half a million people now want out before it drops further, and the animation shows the first 70 of them trying on each chain.
 
 <figure class="embed">
 <iframe src="https://whymonad.com/embed/race" title="A stablecoin depeg simulated on four chains, from whymonad.com" loading="lazy" scrolling="no" style="width:100%;height:640px;border:0;border-radius:6px;overflow:hidden" referrerpolicy="no-referrer-when-downgrade"></iframe>
 <figcaption>live from whymonad.com, or <a href="https://whymonad.com/#race">open this section on the site</a></figcaption>
 </figure>
 
-On Ethereum they queue and fees go up, because sequential execution and a generic state database cap the chain at about 15 transactions a second, and better hardware doesn't change that. On Solana execution is fast, but the exit you built for the EVM doesn't exist there. Solana has also gone down under this kind of load before, 17 hours in 2021 from a bot flood. On Arbitrum things are cheap and you get a soft confirmation in about 2 seconds. But it all goes through one sequencer, and if you want to actually leave to L1 that takes about 7 days.
+On Ethereum they queue and fees go up, because sequential execution and a generic state database cap the chain at about 15 transactions a second, and better hardware doesn't change that. On Solana execution is fast, but the exit you built for the EVM doesn't exist there. Solana has also gone down under this kind of load before, 17 hours in 2021 from a bot flood. On Arbitrum things are cheap and you get a soft confirmation in about 2 seconds. But it all goes through one sequencer, and if you want to actually leave to L1 that takes about approximately 7 days.
 
-On Monad everyone is out in under a second, and the reason is [MonadBFT](https://docs.monad.xyz/monad-arch/consensus/monad-bft): a block is proposed, voted on in the next 300ms slot, and final one slot after that, so 600ms in total, and this is a protocol guarantee. On an optimistic L2 the 200ms confirmation you show your user is the sequencer telling you what it plans to do, and the settlement that would let you hold it to that is a week away on Ethereum. On Monad there is no sequencer, so there is nothing upstream that can reorder or undo the transaction once it's final. And there are about 200 validators voting on it, which an L2 with one sequencer doesn't have.
+On Monad everyone is out in under a second. Monad's consensus is [MonadBFT](https://docs.monad.xyz/monad-arch/consensus/monad-bft). A block gets voted on in the slot after it is proposed and becomes final in the slot after that. Slots are 300ms, so a transaction is final about 600ms after it enters a block, and that is guaranteed by the protocol. On an optimistic L2 the 200ms confirmation you show your user is the sequencer telling you what it plans to do, and the settlement that would let you hold it to that is a week away on Ethereum. On Monad there is no sequencer, so there is nothing upstream that can reorder or undo the transaction once it's final. And there are about 200 validators voting on it, which an L2 with one sequencer doesn't have.
 
 This does cost something. A Monad full node wants 16 cores, 32 GB of RAM and two 2 TB NVMe drives, about four times the CPU and bandwidth of an Ethereum full node. I'd rather tell you here than have you find it on the hardware requirements page.
 
@@ -134,7 +134,5 @@ Also, full nodes don't keep arbitrary historical state. Blocks, receipts, logs a
 ## The chain moves
 
 Monad ships its own client and its own consensus, so protocol changes come as Monad Improvement Proposals every few months, and some change the gas schedule under you. MIP-8 went live in September and grouped storage into pages of 128 slots. A repeated write to a slot in a page you already touched is 100 gas now instead of 11,000. Arrays and structs get this for free; mappings don't, because each key lands on its own page. No L2 has this, so read the spec before your next storage layout.
-
-I built [mipland.com](https://mipland.com/) because the specs are dense and I wanted somewhere you can click through what a MIP does to your gas before you sit down with the spec itself.
 
 If you already ship on an EVM chain, run the three situations on [whymonad.com](https://whymonad.com/) with your own chain swapped in, then come back to the list of what breaks. Deploy the thing you already have, hit the reserve balance once, and tell me how it went in the [Monad developer Discord](https://discord.gg/monaddev) or on [Telegram](https://t.me/portdev).
