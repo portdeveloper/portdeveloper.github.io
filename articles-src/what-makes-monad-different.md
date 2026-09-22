@@ -71,7 +71,7 @@ Now consider the opposite situation, which is the day every consumer app is hopi
 <figcaption>live from whymonad.com, or <a href="https://whymonad.com/#launch">open this section on the site</a></figcaption>
 </figure>
 
-On Ethereum the launch gets expensive. A big claim turns blockspace into the product experience. People wait, retry, or decide it's not worth the fee, and the ones who leave are the ones you wanted. On Solana fees are fine, but you can't bring your contracts, so first you port. On a rollup the claim feels cheap and fast, which is real, and then the user asks how to move their thing somewhere else and you're explaining bridges.
+On Ethereum the launch gets expensive.  Some people wait it out. A lot of new users look at the fee, decide the claim is not worth it and close the tab, and those were the people the launch was for. On Solana fees are fine, but you can't bring your contracts, so first you port. On a rollup the claim feels cheap and fast, which is real, and then the user asks how to move their thing somewhere else and you're explaining bridges.
 
 On Monad the demand clears without leaving the EVM, mainly because there is a lot more room: the chain does 500M gas per second (150M per block, every 300ms) where Ethereum does 2.5M, and a single transaction can spend 30M gas, which is an entire Ethereum block. A transfer is about 0.0021 MON, a swap about 0.02 MON. The base fee rises slowly and falls fast, so a spike raises fees gradually. And the contract taking all this is the same bytecode you already had, so the people who come back tomorrow find the same contract at the same address.
 
