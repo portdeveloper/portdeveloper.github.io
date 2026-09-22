@@ -23,8 +23,6 @@ cover:
   og_alt: "What makes Monad different, for devs who already ship on an EVM chain"
 ---
 
-![What makes Monad different](assets/articles/what-makes-monad-different/cover.svg "same solidity, different chain underneath")
-
 I keep getting the following question from people on every Blitz I do: "What makes Monad different?"  and I want to answer it in this article. 
 
 I work at Monad, grain of salt and all that. This is the answer I give when someone who already ships on an EVM chain asks me that question. Read along.
