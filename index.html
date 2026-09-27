@@ -16,15 +16,15 @@
   <meta property="og:description" content="Personal site of port, also known as portdeveloper and port_dev: developer advocate at Monad, builder of developer tools, and writer on AI coding workflows.">
   <meta property="og:url" content="https://portdeveloper.github.io/">
   <meta property="og:locale" content="en_US">
-  <meta property="og:image" content="https://portdeveloper.github.io/assets/articles/you-are-prompting-gpt-5-5-wrong/cover.jpg">
+  <meta property="og:image" content="https://portdeveloper.github.io/assets/og-home.png">
   <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="480">
-  <meta property="og:image:alt" content="Prompting GPT 5.5 article cover from port">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="port, Developer Advocate at Monad">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="port / portdeveloper / port_dev - Monad and AI coding">
   <meta name="twitter:description" content="Personal site of port, also known as portdeveloper and port_dev: developer advocate at Monad, builder of developer tools, and writer on AI coding workflows.">
-  <meta name="twitter:image" content="https://portdeveloper.github.io/assets/articles/you-are-prompting-gpt-5-5-wrong/cover.jpg">
-  <meta name="twitter:image:alt" content="Prompting GPT 5.5 article cover from port">
+  <meta name="twitter:image" content="https://portdeveloper.github.io/assets/og-home.png">
+  <meta name="twitter:image:alt" content="port, Developer Advocate at Monad">
   <meta name="twitter:creator" content="@port_dev">
   <title>port / portdeveloper / port_dev - Monad and AI coding</title>
   <link rel="stylesheet" href="style.css">
@@ -95,6 +95,7 @@
       <ul>
         <li>I build and contribute to developer tools. I care about good documentation, open source software, and experimentation. I automate the stuff that makes sense automating.</li>
         <li>Developer Advocate at <a href="https://www.monad.xyz/">Monad</a>, helping grow the developer community, maintaining the <a href="https://docs.monad.xyz/">docs</a>, and building cool stuff on Monad.</li>
+        <li>Built <a href="https://blitz.devnads.com/">blitz.devnads.com</a>, the platform Monad Blitz hackathons run on, and organize Blitz events across Turkey.</li>
         <li>Merc at <a href="https://buidlguidl.com/">BuidlGuidl</a>, helping make <a href="https://abi.ninja/">abi.ninja</a> and <a href="https://scaffoldeth.io/">Scaffold-ETH</a> better, building public goods, and doing media work.</li>
         <li><a href="https://github.com/portdeveloper">GitHub</a> · <a href="https://twitter.com/port_dev">Twitter</a> · <a href="https://t.me/portdev">Telegram</a></li>
       </ul>
@@ -103,29 +104,32 @@
     <section id="tab-projects" class="tab-content">
       <h2 class="visually-hidden">Projects</h2>
       <ul>
-        <li><a href="https://mipland.com/">mipland.com</a> - learn about Monad Improvement Proposals visually</li>
+        <li><a href="https://blitz.devnads.com/">blitz.devnads.com</a> - Monad-native hackathon platform</li>
+        <li><a href="https://devnads.com">devnads.com</a> - home for Monad community tools: events, skills, and more</li>
+        <li><a href="https://www.npmjs.com/package/docusaurus-plugin-copy-page-button">docusaurus-plugin-copy-page-button</a> - a copy-page button for Docusaurus, now on 28 docs sites (Puppeteer, Sui, Arbitrum, Ethereum execution-apis, Cardano…). Story: <a href="articles/how-a-button-i-built-for-one-docs-site-ended-up-on-twenty.html">How to find ideas worth building</a></li>
         <li><a href="https://abi.ninja/">abi.ninja</a> - interact with any contract on any chain (maintainer, not owner)</li>
+        <li><a href="https://mipland.com/">mipland.com</a> - learn about Monad Improvement Proposals visually</li>
+        <li><a href="https://portdeveloper.github.io/clear-signing-helper/">clear-signing-helper</a> - go from a deployed contract to an ERC-7730 clear-signing registry submission that passes the registry's own checks (<a href="https://github.com/portdeveloper/clear-signing-helper">Claude Code skill</a>)</li>
+        <li><a href="https://www.npmjs.com/package/llms-txt-check">llms-txt-check</a> - validates a site's llms.txt against what the site actually serves. Found 71 dead links in Drizzle's docs on day one. Also runs a weekly <a href="https://github.com/portdeveloper/llms-txt-scoreboard">scoreboard</a> of major docs sites</li>
+        <li><a href="https://github.com/portdeveloper/gulltoppr">gulltoppr</a> - lets AI agents read, simulate, and prepare txs for any contract on any EVM chain, even unverified ones (decompiles via <a href="https://github.com/Jon-Becker/heimdall-rs">heimdall-rs</a>). REST, MCP, SDK, and a skill</li>
+        <li><a href="https://github.com/portdeveloper/evm-abi-commons">evm-abi-commons</a> - provably-correct EVM selector to signature dataset (CC0), like 4byte but every entry carries a proof</li>
         <li><a href="https://app.puddleswap.org/">puddleswap</a> - testnet swap on Monad testnet</li>
         <li><a href="https://monad-is-different.vercel.app">monad is different</a> - interactive explainer for why Monad keeps the full stack at scale</li>
-        <li><a href="https://shouldirunthis.xyz">should i run this</a> - calculator for whether a local AI rig beats subscriptions and APIs</li>
-        <li><a href="https://extractoor.com">extractoor</a> - extract viral clips from long videos with AI</li>
-        <li><a href="https://www.monadclip.fun/">monadclip</a> - old school flash game website for Monad-based games</li>
-        <li><a href="https://github.com/portdeveloper/cloudflare-crawl">cloudflare-crawl</a> - Claude Code skill for using Cloudflare's /crawl API</li>
-        <li><a href="https://github.com/portdeveloper/clear-signing-helper">clear-signing-helper</a> - Claude Code skill for ERC-7730 human-readable transactions</li>
+        <li><a href="https://github.com/portdeveloper/blockchains-visualized">blockchains-visualized</a> - teaches how blockchains work by running a toy one in your browser</li>
         <li><a href="https://github.com/portdeveloper/nad-agent">nad-agent</a> - 100% local AI agent with a gasless, self-custodial wallet on Monad (QVAC + WDK)</li>
-        <li><a href="https://blitz.devnads.com/">blitz.devnads.com</a> - Monad-native hackathon platform</li>
-        <li><a href="https://address.vision/">address.vision</a> - peek into any eth address</li>
-        <li><a href="https://storagoor.vercel.app/">storagoor</a> - peek into evm storage slots (beta)</li>
-        <li><a href="https://github.com/portdeveloper/gulltoppr">gulltoppr</a> - actix backend for <a href="https://github.com/Jon-Becker/heimdall-rs">heimdall-rs</a></li>
-        <li><a href="https://github.com/portdeveloper/evm-abi-commons">evm-abi-commons</a> - provably-correct EVM selector to signature dataset (CC0), like 4byte but every entry carries a proof</li>
-        <li><a href="https://www.npmjs.com/package/docusaurus-plugin-copy-page-button">docusaurus-plugin-copy-page-button</a> - a copy-page button for Docusaurus, now on 28 docs sites (Puppeteer, Sui, Arbitrum, Ethereum execution-apis, Cardano…). Story: <a href="articles/how-a-button-i-built-for-one-docs-site-ended-up-on-twenty.html">How to find ideas worth building</a></li>
-        <li><a href="https://www.npmjs.com/package/llms-txt-check">llms-txt-check</a> - validates a site's llms.txt against what the site actually serves. Found 71 dead links in Drizzle's docs on day one</li>
-        <li><a href="https://github.com/portdeveloper/scaffold-pwa">scaffold-pwa</a> - Scaffold-ETH, but pwa, using serwist</li>
+        <li><a href="https://shouldirunthis.xyz">should i run this</a> - calculator for whether a local AI rig beats subscriptions and APIs</li>
+        <li><a href="https://github.com/portdeveloper/perbrowser">perbrowser</a> - one VPN per browser on macOS, each with its own WireGuard exit. Story: <a href="articles/one-vpn-per-browser.html">one VPN per browser</a></li>
+        <li><a href="https://github.com/portdeveloper/cloudflare-crawl">cloudflare-crawl</a> - Claude Code skill for using Cloudflare's /crawl API</li>
         <li><a href="https://github.com/portdeveloper/monad-monitor">monad-monitor</a> - lightweight TUI for real-time monitoring of Monad nodes</li>
+        <li><a href="https://address.vision/">address.vision</a> - peek into any eth address</li>
+        <li><a href="https://github.com/portdeveloper/storagoor">storagoor</a> - peek into evm storage slots (beta)</li>
+        <li><a href="https://github.com/portdeveloper/oracle-dashboard">oracle-dashboard</a> - oracle price feed dashboard for monad mainnet</li>
         <li><a href="https://github.com/portdeveloper/nft-snapshot">nft-snapshot</a> - capture ownership snapshots for ERC-721, ERC-1155, and ERC-20 tokens on Monad</li>
         <li><a href="https://github.com/portdeveloper/monad-sync-demo">monad-sync-demo</a> - demo for Monad's eth_sendRawTransactionSync RPC method</li>
-        <li><a href="https://github.com/portdeveloper/oracle-dashboard">oracle-dashboard</a> - oracle price feed dashboard for monad mainnet</li>
         <li><a href="https://github.com/portdeveloper/claude-historian">claude-historian</a> - interactive CLI browser for Claude Code sessions</li>
+        <li><a href="https://github.com/portdeveloper/scaffold-pwa">scaffold-pwa</a> - Scaffold-ETH, but pwa, using serwist</li>
+        <li><a href="https://www.monadclip.fun/">monadclip</a> - old school flash game website for Monad-based games</li>
+        <li>extractoor - extract viral clips from long videos with AI (I took it private)</li>
         <li><a href="https://github.com/portdeveloper/splait">splait</a> - Scaffold-ETH 2 fork for splitting ETH using words, instead of clicks, powered by gpt</li>
         <li>Also check out my <a href="https://github.com/portdeveloper">GitHub</a> for smaller stuff.</li>
       </ul>
@@ -192,8 +196,10 @@
 
     <section id="tab-events" class="tab-content">
       <h2 class="visually-hidden">Events and talks</h2>
-      <p>I organize the Monad Blitz hackathon series across Turkey and speak at developer and AI events.</p>
+      <p>I organize the Monad Blitz hackathon series and speak at developer and AI events.</p>
       <ul>
+        <li>Monad Blitz İstanbul v2 <span class="article-date">Sep 26, 2026</span></li>
+        <li>Monad Blitz Belgrade <span class="article-date">Aug 22, 2026</span></li>
         <li>
           ClawCon Ankara 2 - a talk on when running AI locally is actually worth it (<a href="articles/rent-geniuses-own-workhorses.html">write-up</a>)
           <span class="article-date">June 28, 2026</span>
