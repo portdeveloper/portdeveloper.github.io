@@ -157,6 +157,30 @@ figcaption {
   margin-left: 0.4rem;
 }
 
+.event-desc {
+  margin: 0.3rem 0 0.6rem;
+}
+
+.event-photos {
+  display: grid;
+  gap: 0.4rem;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.event-photos img {
+  aspect-ratio: 3 / 2;
+  display: block;
+  height: auto;
+  object-fit: cover;
+  width: 100%;
+}
+
+@media (max-width: 480px) {
+  .event-photos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 /* Article page — wider outer container so wide code blocks can bleed out
    beyond the 70ch reading column. */
 body.article-page {
