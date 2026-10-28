@@ -209,6 +209,11 @@ figcaption {
   width: 100%;
 }
 
+/* odd photo out (1 or 3 photos) spans the full row */
+.event-photos img:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
 @media (max-width: 480px) {
   .event-photos {
     gap: 0.35rem;
