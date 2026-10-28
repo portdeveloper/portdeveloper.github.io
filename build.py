@@ -428,7 +428,7 @@ def build_article(front: dict, body_md: str) -> tuple[str, str]:
                 "https://twitter.com/port_dev",
                 "https://x.com/port_dev",
             ],
-            "jobTitle": "Developer Advocate",
+            "jobTitle": "Developer Relations Engineer",
             "worksFor": {
                 "@type": "Organization",
                 "name": "Monad",
