@@ -164,7 +164,7 @@ figcaption {
 .event-photos {
   display: grid;
   gap: 0.4rem;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .event-photos img {
@@ -177,7 +177,7 @@ figcaption {
 
 @media (max-width: 480px) {
   .event-photos {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
   }
 }
 
